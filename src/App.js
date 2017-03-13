@@ -1,18 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {browserHistory} from 'react-router';
+import DevFinder from './reducers'
+import {Menu, Icon, Image} from 'semantic-ui-react'
+
+import './App.scss';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Menu color='teal' inverted borderless icon>
+          <Menu.Item
+            position="left"
+            name='devFinder'
+            onClick={()=>browserHistory.push('/dashboard')}
+          >
+            Dev Finder
+          </Menu.Item>
+          <Menu.Item
+            position="right"
+            name='reviews'
+            onClick={()=>browserHistory.push('/search')}
+          >
+            <Icon name='search' />
+          </Menu.Item>
+          <Menu.Item
+            onClick={()=>browserHistory.push('/watchlist')}
+            name='watchlist'
+          >
+            <Icon name='star' />
+          </Menu.Item>
+          <Menu.Item
+            name='messages'
+            onClick={()=>browserHistory.push('/messages')}
+          >
+            <Icon name='mail' />
+          </Menu.Item>
+          <Menu.Item
+            name='profile'
+            onClick={()=>browserHistory.push('/profile')}
+          >
+            <Image src='http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg' size="mini" shape="circular" />
+          </Menu.Item>
+        </Menu>
+        <div>{this.props.children}</div>
       </div>
     );
   }
