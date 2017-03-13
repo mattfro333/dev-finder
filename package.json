@@ -4,15 +4,20 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.17.1",
+<<<<<<< HEAD
 
     "express": "^4.15.2",
     "massive": "^2.6.0",
     "nodemailer": "^3.1.5",
 
+=======
+    "concurrently": "^3.4.0",
+>>>>>>> 017325b79e0843ba69ff4ad7fa3f76408e381ee1
     "cors": "^2.8.1",
     "express": "^4.15.2",
     "express-session": "^1.15.1",
     "massive": "^2.6.0",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "react": "^15.4.2",
@@ -26,9 +31,12 @@
     "react-scripts": "0.9.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"cd server && nodemon server.js\" ",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "client":{
+    "proxy": "http://localhost:3500/"
   }
 }
