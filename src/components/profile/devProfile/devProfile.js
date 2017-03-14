@@ -10,8 +10,9 @@ class DevProfile extends Component{
     super();
 
     this.state = {
-      dev: []
+      dev: {}
     }
+
   }
 
   render(){
@@ -19,12 +20,12 @@ class DevProfile extends Component{
       <div>
         <div className='topContainer'>
           <div className='profilePic'></div>
-            <p>name</p>
+            <p>ryan</p>
             <p>Bio</p>
             <p>Location</p>
         </div>
         <div className='leftInfoBar'>
-          <div className=''><a>email</a></div>
+          <div className=''><a>{this.state.dev.email || 'Loading'}</a></div>
           <div className=''><a>Message</a></div>
           <div className=''><a>github</a></div>
           <div className=''><a>twitter</a></div>
@@ -53,7 +54,7 @@ class DevProfile extends Component{
   componentDidMount() {
     getprofile().then(dev => {
       this.setState({
-        dev: dev
+        dev: dev[0]
 
       })
       console.log(dev);
