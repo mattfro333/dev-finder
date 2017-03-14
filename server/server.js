@@ -55,6 +55,11 @@ const applicationsCtrl = require('./controllers/applicationsCtrl');
 //user endpoints
 app.post('/api/register', userCtrl.register);
 
+app.get('/api/test', (req, res) => {
+	console.log('working')
+	res.status(200).send('test')
+})
+
 //watchlist endpoints
 app.get('/api/flaggedJobs', watchCtrl.get);
 app.delete('/api/flaggedJobs', watchCtrl.delete);

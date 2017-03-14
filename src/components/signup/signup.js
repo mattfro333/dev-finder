@@ -17,7 +17,7 @@ class SignUp extends Component{
   postUser = () => {
      return axios.post('/api/register', {username: this.usernameInput,
      password: this.passwordInput,
-     company: this.state.value})
+     company: this.state.value}).then((r)=>console.log(r))
   }
   render(){
     return(
