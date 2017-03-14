@@ -17,7 +17,7 @@ class SignUp extends Component{
   postUser = () => {
      return axios.post('/api/register', {username: this.usernameInput,
      password: this.passwordInput,
-     company: this.state.value}).then((r)=>console.log(r))
+     company: this.state.value})
   }
   render(){
     return(
@@ -40,7 +40,7 @@ class SignUp extends Component{
           <Form.Field>
           <Radio
             label='Company'
-            name='radioGroup'
+            name='company'
             value={true}
             checked={this.state.value === true}
             onChange={this.handleChange}
@@ -49,13 +49,13 @@ class SignUp extends Component{
           <Form.Field>
             <Radio
               label='Developer'
-              name='radioGroup'
+              name='company'
               value={false}
               checked={this.state.value === false}
               onChange={this.handleChange}
             />
           </Form.Field>
-          <Button type='submit' onClick={()=>this.postUser()}>Submit</Button>
+          <Button type='submit' onClick={()=>this.postUser().then(()=>this.state.value ? browserHistory.push('/signup/company') : browserHistory.push('/signup/developer'))}>Submit</Button>
       </Form>
     )
   }

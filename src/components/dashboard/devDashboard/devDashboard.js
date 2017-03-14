@@ -4,11 +4,15 @@ import {Menu} from 'semantic-ui-react'
 import './devDashboard.scss';
 
 
+
 class DevDashboard extends Component {
 
   render(){
     return(
+      <div>
       <h1>Dev Dashboard</h1>
+      
+      </div>
     )
   }
 }
