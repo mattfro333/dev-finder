@@ -4,19 +4,13 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.17.1",
-<<<<<<< HEAD
-
-    "express": "^4.15.2",
-    "massive": "^2.6.0",
-    "nodemailer": "^3.1.5",
-
-=======
     "concurrently": "^3.4.0",
->>>>>>> 017325b79e0843ba69ff4ad7fa3f76408e381ee1
     "cors": "^2.8.1",
     "express": "^4.15.2",
     "express-session": "^1.15.1",
     "massive": "^2.6.0",
+    "nodemailer": "^3.1.5",
+    "nodemailer-mailgun-transport": "^1.2.4",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
@@ -24,8 +18,6 @@
     "react-dom": "^15.4.2",
     "react-router": "^2.8.1",
     "redux": "^3.6.0"
-
-
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
@@ -36,7 +28,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "client":{
+  "client": {
     "proxy": "http://localhost:3500/"
   }
 }

@@ -6,7 +6,9 @@ const cors = require('cors');
 const massive = require('massive');
 const passport = require('passport');
 const localAuth = require('passport-local');
+const emailCtrl = require('./e-mailer.js')
 //Our Modules
+
 const config = require('./config');
 //Set up App
 const app = express();
@@ -19,6 +21,17 @@ const massiveInstance = massive.connectSync({
 app.set('db', massiveInstance);
 var db = app.get('db')
 //Server
+
+
+var app = express();
+
+
+
+app.post('/api/email', emailCtrl.sendEmail);
+
+
+
+
 const PORT = config.port
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)
