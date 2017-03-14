@@ -15,11 +15,6 @@ class SignUp extends Component{
   handleChange = (e, { value }) => this.setState({ value })
 
   postUser = () => {
-    let user = {
-      username: this.usernameInput,
-      password: this.passwordInput,
-      company: this.state.value
-    }
      return axios.post('/api/register', {username: this.usernameInput,
      password: this.passwordInput,
      company: this.state.value})
