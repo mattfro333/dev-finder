@@ -6,6 +6,7 @@
     "aws-sdk": "^2.28.0",
     "axios": "^0.15.3",
     "bcryptjs": "^2.4.3",
+
     "body-parser": "^1.17.1",
     "concurrently": "^3.4.0",
     "cors": "^2.8.1",
@@ -13,6 +14,8 @@
     "express": "^4.15.2",
     "express-session": "^1.15.1",
     "massive": "^2.6.0",
+    "nodemailer": "^3.1.5",
+    "nodemailer-mailgun-transport": "^1.2.4",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
@@ -34,5 +37,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+
   "proxy": "http://localhost:3500/"
+
 }

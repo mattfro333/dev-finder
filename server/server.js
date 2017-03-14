@@ -7,10 +7,14 @@ const massive = require('massive');
 const localAuth = require('passport-local');
 const CryptoJS = require('crypto-js');
 //Our Modules
+
 const config = require('./config');
 //Set up App
 const app = module.exports = express();
-app.use(bodyParser.json());
+
+app.use(bodyParser.json())
+
+
 app.use(cors());
 //Set up Session
 app.use(session({
@@ -78,7 +82,18 @@ app.get('/api/applicants', applicants.get);
 app.delete('/api/applicants', applicants.delete);
 
 //Server
-const PORT = config.port;
+
+
+
+const emailCtrl = require('./e-mailer.js');
+
+app.post('/api/email', emailCtrl.sendEmail);
+
+
+
+
+const PORT = config.port
+
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)
 })
