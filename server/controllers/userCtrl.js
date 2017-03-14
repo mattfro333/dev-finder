@@ -1,5 +1,6 @@
-var app = require('./../index');
+var app = require('./../server');
 var db = app.get('db');
+
 
 // BCRYPT
 var bcrypt = require('bcryptjs');
@@ -17,12 +18,13 @@ module.exports = {
 	register: function(req, res, next) {
 		var user = req.body;
 
+
 		// Hash the users password for security
 		user.password = hashPassword(user.password);
 
 		user.username = user.username.toLowerCase();
-
-		db.user.insert([user.username, user.password], function(err, user) {
+		console.log('creating user', user)
+		db.user.insert([user.username, user.password, user.company], function(err, user) {
 			// If err, send err
 			if (err) {
 				console.log('Registration error: ', err);

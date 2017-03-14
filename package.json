@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.15.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "concurrently": "^3.4.0",
     "cors": "^2.8.1",
@@ -28,7 +30,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "client":{
-    "proxy": "http://localhost:3500/"
-  }
+  "proxy": "http://localhost:3500/"
 }

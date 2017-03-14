@@ -8,7 +8,7 @@ const localAuth = require('passport-local');
 //Our Modules
 const config = require('./config');
 //Set up App
-const app = express();
+const app = module.exports = express();
 app.use(bodyParser.json());
 app.use(cors());
 //Set up Session
@@ -23,6 +23,7 @@ const massiveInstance = massive.connectSync({
 })
 app.set('db', massiveInstance);
 var db = app.get('db')
+
 
 
 //AUTHENTICATION
@@ -45,8 +46,17 @@ var isAuthed = function(req, res, next) {
 		.send();
 	return next();
 };
+
+
+const userCtrl = require('./controllers/userCtrl');
+
 //user endpoints
 app.post('/api/register', userCtrl.register);
+
+app.get('/api/test', (req, res) => {
+	console.log('working')
+	res.status(200).send('test')
+})
 
 
 
