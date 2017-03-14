@@ -40,7 +40,7 @@ class SignUp extends Component{
           <Form.Field>
           <Radio
             label='Company'
-            name='radioGroup'
+            name='company'
             value={true}
             checked={this.state.value === true}
             onChange={this.handleChange}
@@ -49,7 +49,7 @@ class SignUp extends Component{
           <Form.Field>
             <Radio
               label='Developer'
-              name='radioGroup'
+              name='company'
               value={false}
               checked={this.state.value === false}
               onChange={this.handleChange}
