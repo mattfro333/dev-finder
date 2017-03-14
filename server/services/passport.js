@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local')
 var bcrypt = require('bcryptjs');
 
 // APP //
-var app = require('./../index');
+var app = require('./../server');
 var db = app.get('db');
 
 // VERIFY PASSWORD //
