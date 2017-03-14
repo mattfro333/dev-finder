@@ -57,6 +57,7 @@ const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
 const devSignup = require('./controllers/devsignUpCtrl');
+const compSignup = require('./controllers/compSignUpCtrl')
 
 //user endpoints
 app.post('/api/register', userCtrl.register);
@@ -84,7 +85,7 @@ app.delete('/api/applications', applicationsCtrl.delete);
 
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
-
+app.post('/api/createcomp', compSignup.post)
 //Server
 
 
