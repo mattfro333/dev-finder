@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 const localAuth = require('passport-local');
+const CryptoJS = require('crypto-js');
 //Our Modules
 const config = require('./config');
 //Set up App
@@ -33,7 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //passport endpoints
 app.post('/api/login', passport.authenticate('local', {
-	successRedirect: '/home'
+	successRedirect: '/api/me'
 }));
 app.get('/api/logout', function(req, res, next) {
 	req.logout();
@@ -49,6 +50,8 @@ var isAuthed = function(req, res, next) {
 
 
 const userCtrl = require('./controllers/userCtrl');
+const watchCtrl = require('./controllers/watchlistCtrl');
+const applicationsCtrl = require('./controllers/applicationsCtrl');
 
 //user endpoints
 app.post('/api/register', userCtrl.register);
@@ -59,11 +62,25 @@ app.get('/api/test', (req, res) => {
 })
 
 
+app.get('/api/me', isAuthed, userCtrl.me)
+
+//watchlist endpoints
+app.get('/api/flaggedJobs', watchCtrl.get);
+app.delete('/api/flaggedJobs', watchCtrl.delete);
 
 
+//applications endpoints
+app.get('/api/applications', applicationsCtrl.get);
+app.delete('/api/applications', applicationsCtrl.delete);
+
+//applicants endpoints
+app.get('/api/applicants', applicants.get);
+app.delete('/api/applicants', applicants.delete);
 
 //Server
-const PORT = config.port
+const PORT = config.port;
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)
 })
+
+//AWS-FineUploader Encryption
