@@ -10,6 +10,9 @@ import JobSearch from './components/jobSearch/jobSearch'
 import Messages from './components/messages/messages'
 import DevWatchlist from './components/devWatchlist/devWatchlist'
 import DevProfile from './components/profile/devProfile/devProfile'
+import CompProfile from './components/profile/compProfile/compProfile'
+import Login from './components/login/login'
+import SignUp from './components/signup/signup'
 import './index.scss';
 
 let store = createStore(DevFinder)
@@ -22,7 +25,10 @@ ReactDOM.render(
         <Route path='/search' component={JobSearch} />
         <Route path='/messages' component={Messages} />
         <Route path='/watchlist' component={DevWatchlist} />
-        <Route path='/profile' component={DevProfile} />
+        <Route path='/profile/dev' component={DevProfile} />
+        <Route path='/profile/company' component={CompProfile} />
+        <Route path='/login' component={Login} />
+        <Route path='/signup' component={SignUp} />
       </Route>
     </Router>
   </Provider>,
