@@ -49,13 +49,23 @@ var isAuthed = function(req, res, next) {
 
 
 const userCtrl = require('./controllers/userCtrl');
+const watchCtrl = require('./controllers/watchlistCtrl');
+const applicationsCtrl = require('./controllers/applicationsCtrl');
 
 //user endpoints
 app.post('/api/register', userCtrl.register);
 
+//watchlist endpoints
+app.get('/api/flaggedJobs', watchCtrl.get);
+app.delete('/api/flaggedJobs', watchCtrl.delete);
 
+//applications endpoints
+app.get('/api/applications', applicationsCtrl.get);
+app.delete('/api/applications', applicationsCtrl.delete);
 
-
+//applicants endpoints
+app.get('/api/applicants', applicants.get);
+app.delete('/api/applicants', applicants.delete);
 
 //Server
 const PORT = config.port;
