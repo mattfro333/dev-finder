@@ -32,7 +32,7 @@ class CompanySignUp extends Component{
       <Input placeholder="City" onChange={(e)=>this.compCity = e.target.value}/>
       <Input placeholder="State" onChange={(e)=>this.compState = e.target.value}/>
       <Input placeholder="Industry" onChange={(e)=>this.compIndustry = e.target.value}/>
-      <Button content="Submit" onClick={()=>this.CreateCompany()} />
+      <Button content="Submit" onClick={()=>this.CreateCompany()}/>
      </div>
   )
   }

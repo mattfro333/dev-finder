@@ -17,7 +17,7 @@ class SignUp extends Component{
   postUser = () => {
      return axios.post('/api/register', {username: this.usernameInput,
      password: this.passwordInput,
-     company: this.state.value})
+     company: this.state.value}))
   }
   render(){
     return(
@@ -55,7 +55,7 @@ class SignUp extends Component{
               onChange={this.handleChange}
             />
           </Form.Field>
-          <Button type='submit' onClick={()=>this.postUser().then(()=>this.state.value ? browserHistory.push('/signup/company') : browserHistory.push('/signup/developer'))}>Submit</Button>
+          <Button type='submit' onClick={()=>this.postUser()}>Submit</Button>
       </Form>
     )
   }
