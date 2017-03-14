@@ -59,7 +59,9 @@ const applicationsCtrl = require('./controllers/applicationsCtrl');
 const devSignup = require('./controllers/devsignUpCtrl');
 
 //user endpoints
-app.post('/api/register', userCtrl.register);
+app.post('/api/register', userCtrl.register, passport.authenticate('local', {
+	successRedirect: '/api/me'
+}));
 
 app.get('/api/test', (req, res) => {
 	console.log('working')
