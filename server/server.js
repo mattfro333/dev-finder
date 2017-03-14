@@ -19,7 +19,7 @@ const massiveInstance = massive.connectSync({
 app.set('db', massiveInstance);
 var db = app.get('db')
 //Server
-const PORT = config.port
+const PORT = config.port;
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)
 })
