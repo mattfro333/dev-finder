@@ -53,6 +53,11 @@ const userCtrl = require('./controllers/userCtrl');
 //user endpoints
 app.post('/api/register', userCtrl.register);
 
+app.get('/api/test', (req, res) => {
+	console.log('working')
+	res.status(200).send('test')
+})
+
 
 
 
