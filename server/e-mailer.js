@@ -17,16 +17,16 @@ var nodemailer = nodemailer.createTransport(mg(auth));
 module.exports = {
 	sendEmail: function(req, res, next) {
 		var mailOptions = {
-			from: 'mattfro333@gmail.com',
+			from: req.body.from,
 			to: req.body.to,
 			subject: req.body.subject,
-			text: req.body.message
+			text: req.body.text
 		};
 
 		nodemailer.sendMail(mailOptions, function(error, info) {
 			if (error) {
 				console.log(error);
-				res.send(error);
+				return res.send(error);
 			} else
 				console.log('Message sent: ' + info);
 			res.send(info);

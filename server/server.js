@@ -6,12 +6,11 @@ const cors = require('cors');
 const massive = require('massive');
 const passport = require('passport');
 const localAuth = require('passport-local');
-const emailCtrl = require('./e-mailer.js')
 //Our Modules
 
 const config = require('./config');
 //Set up App
-const app = express();
+const app = module.exports = express();
 app.use(bodyParser.json())
 app.use(cors());
 //Set up Database
@@ -23,9 +22,7 @@ var db = app.get('db')
 //Server
 
 
-var app = express();
-
-
+const emailCtrl = require('./e-mailer.js');
 
 app.post('/api/email', emailCtrl.sendEmail);
 
