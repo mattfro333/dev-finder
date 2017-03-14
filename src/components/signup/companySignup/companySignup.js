@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {Menu} from 'semantic-ui-react'
-import './compProfile.scss';
+import './companySignup.css';
 
 
-class CompProfile extends Component{
+class CompanySignUp extends Component{
   render(){
     return(
-      <h1>CompProfile</h1>
+      <h1>CompanySignUp</h1>
     )
   }
 }
 
-export default CompProfile
+export default CompanySignUp
