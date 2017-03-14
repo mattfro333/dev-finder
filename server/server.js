@@ -54,7 +54,9 @@ const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
 
 //user endpoints
-app.post('/api/register', userCtrl.register);
+app.post('/api/register', userCtrl.register, passport.authenticate('local', {
+	successRedirect: '/api/me'
+}));
 
 app.get('/api/test', (req, res) => {
 	console.log('working')
@@ -74,8 +76,8 @@ app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
 
 //applicants endpoints
-app.get('/api/applicants', applicants.get);
-app.delete('/api/applicants', applicants.delete);
+// app.get('/api/applicants', applicants.get);
+// app.delete('/api/applicants', applicants.delete);
 
 //Server
 const PORT = config.port;

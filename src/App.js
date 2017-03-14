@@ -3,14 +3,14 @@ import {browserHistory} from 'react-router';
 import DevFinder from './reducers'
 import {Menu, Icon, Image} from 'semantic-ui-react'
 
-import './App.scss';
+import './App.css';
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Menu color='teal' inverted borderless icon>
+        <Menu className='navbar'color='teal' inverted borderless icon>
           <Menu.Item
             position="left"
             name='devFinder'
