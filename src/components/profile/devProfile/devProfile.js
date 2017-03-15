@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import { getprofile } from '../../../services/devProfile'
 import {Menu} from 'semantic-ui-react'
-import './devProfile.scss';
+import './devProfile.css';
 
 class DevProfile extends Component{
 
@@ -20,17 +20,16 @@ class DevProfile extends Component{
       <div>
         <div className='topContainer'>
           <div className='profilePic'></div>
-            <p>ryan</p>
-            <p>Bio</p>
-            <p>Location</p>
+            <p>{this.state.dev.firstname || 'Loading'} {this.state.dev.lastname}</p>
+            <p>bio:{this.state.dev.description}</p>
+            <p>Location:{this.state.dev.city}, {this.state.dev.state}</p>
         </div>
         <div className='leftInfoBar'>
           <div className=''><a>{this.state.dev.email || 'Loading'}</a></div>
-          <div className=''><a>Message</a></div>
-          <div className=''><a>github</a></div>
-          <div className=''><a>twitter</a></div>
-          <div className=''><a>interest</a></div>
-          <div className='technologys'>
+          <div className=''><a><button>Message</button></a></div>
+          <div className=''><a href='{this.state.dev.github}'>Github</a></div>
+          <div className=''><a href='{this.state.dev.twitter}'>Github</a></div>
+          <div className='technologies'>
             <ul>
               <li>item1</li>
               <li>item2</li>
