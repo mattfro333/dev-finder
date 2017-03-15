@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Input, Button} from 'semantic-ui-react'
+import {Input, Button} from 'semantic-ui-react'
 import FineUploaderS3 from 'fine-uploader-wrappers/s3'
 import Gallery from 'react-fine-uploader'
 import config from './../../../../server/config'
