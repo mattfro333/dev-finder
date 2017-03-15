@@ -5,6 +5,14 @@ import './compProfile.css';
 
 
 class CompProfile extends Component{
+  constructor(){
+    super();
+
+    this.state = {
+      company: {}
+    }
+
+  }
   render(){
     return(
       <div className = 'body'>
@@ -12,9 +20,9 @@ class CompProfile extends Component{
           <div className='prof-pic'>
           </div>
           <div className='info'>
-            <h1>Company Name</h1>
+            <h1>Company Name:{this.state.company.name}</h1>
             <h2>Reviews</h2>
-            <h3>Founded: 2011</h3>
+            <h3>Founded: {this.state.company.founded}</h3>
             <h3><button>Message</button></h3>
           </div>
         </div>
@@ -33,7 +41,7 @@ class CompProfile extends Component{
             <h3>Position Location</h3>
             <p>This is a short position Description </p>
           </div>
-          <div className = 'right-pane'><h1>Company Bio</h1>
+          <div className = 'right-pane'><h1>Company Bio: {this.state.company.description}</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis ut urna a imperdiet. Nulla condimentum faucibus urna, vitae venenatis metus congue et. Integer nec nibh efficitur, semper dui venenatis, finibus odio. Proin quis metus rhoncus, tincidunt dolor in, ultrices odio. Aliquam luctus sodales mauris, ut viverra lorem dictum quis. Aenean fermentum augue at tortor tempus, in sagittis mauris pellentesque. Maecenas cursus augue cursus tempus tempor. Cras lacus nunc, dictum quis velit sed, luctus porta eros. Pellentesque urna urna, fringilla ac bibendum non, venenatis eget elit. Duis at hendrerit ex. </p>
             <p>Vestibulum maximus lorem sapien, ac volutpat quam fringilla vitae. Aliquam consequat accumsan nisl, in consectetur purus vehicula non. Maecenas at vehicula risus, auctor sodales nunc. Nam fringilla orci metus, sit amet hendrerit enim tincidunt sed. Phasellus porttitor id augue at faucibus.</p>
 
@@ -43,6 +51,15 @@ class CompProfile extends Component{
       </div>
     
     )
+  }
+   componentDidMount() {
+    // getCompanyProfile().then(company => {
+    //   this.setState({
+    //     company: company[0]
+
+    //   })
+    //   console.log(company);
+    // })
   }
 }
 
