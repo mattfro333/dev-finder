@@ -19,7 +19,7 @@ class Login extends Component{
     }).then((r)=>{
       console.log(r);
       let user = r.data
-      user.company ? browserHistory.push('/dashboard-company') : browserHistory.push('/dashboard-dev')
+      user.company ? browserHistory.push('/signup/company') : browserHistory.push('/signup/developer')
     })
   }
   render(){

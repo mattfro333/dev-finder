@@ -39,7 +39,9 @@ getUserId = ()=>{
         <Input placeholder='City' onChange={(e)=>this.devCity = e.target.value} />
         <Input placeholder='State' onChange={(e)=>this.devState = e.target.value} />
         <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
-          <Button content='Create User' onClick={()=>this.CreateUser()}/>
+        <Button content='Update' onClick={()=>this.CreateUser()}/>
+        <Button content='Go To Dashboard' onClick={()=>browserHistory.push
+          ('/dashboard-dev')}/>
       </div>
     </div>
     )
