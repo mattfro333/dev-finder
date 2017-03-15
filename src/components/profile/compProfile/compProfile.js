@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {Menu} from 'semantic-ui-react'
 import './compProfile.css';
-
+import { getCompanyProfile } from '../../../services/companyProfile.js'
 
 class CompProfile extends Component{
   constructor(){
@@ -53,13 +53,13 @@ class CompProfile extends Component{
     )
   }
    componentDidMount() {
-    // getCompanyProfile().then(company => {
-    //   this.setState({
-    //     company: company[0]
+    getCompanyProfile().then(company => {
+      this.setState({
+        company: company[0]
 
-    //   })
-    //   console.log(company);
-    // })
+      })
+      console.log(company);
+    })
   }
 }
 

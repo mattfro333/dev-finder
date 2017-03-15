@@ -90,6 +90,7 @@ const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
 const devProfileCtrl = require('./controllers/devProfileCtrl');
 const devSignup = require('./controllers/devsignUpCtrl');
+const companyProfileCtrl = require('./controllers/companyProfileCtrl')
 const compSignup = require('./controllers/compSignUpCtrl')
 
 //user endpoints
@@ -124,7 +125,8 @@ app.delete('/api/applications', applicationsCtrl.delete);
 
 //devProfile endpoints
 app.get('/api/devProfile', devProfileCtrl.get);
-
+//CopmanyProfile Endooints
+app.get('/api/companyProfile', companyProfileCtrl.get);
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 
