@@ -56,7 +56,7 @@ getUserId = ()=>{
   render(){
     return(
       <div>
-        <h1>UpdateProfile</h1>
+        <h1>UpdateDevProfile</h1>
         <div>
         <h2>Add Profile Image</h2>
         <Gallery uploader={uploader} />

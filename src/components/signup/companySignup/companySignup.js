@@ -60,7 +60,8 @@ class CompanySignUp extends Component{
   render(){
     return(
       <div>
-      <h1>UpdateProfile</h1>
+      <h1>UpdateCompanyProfile</h1>
+      <h2>Add Profile Image</h2>
       <Gallery uploader={uploader} />
       <Input placeholder="Company Name" onChange={(e)=>this.compName = e.target.value}/>
       <Input placeholder="Description" onChange={(e)=>this.compDescription = e.target.value}/>
