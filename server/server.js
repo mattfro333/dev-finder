@@ -88,11 +88,14 @@ app.post("/s3handler", function(req, res) {
 const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
+const devProfileCtrl = require('./controllers/devProfileCtrl');
 const devSignup = require('./controllers/devsignUpCtrl');
 const compSignup = require('./controllers/compSignUpCtrl')
 
 //user endpoints
-app.post('/api/register', userCtrl.register);
+app.post('/api/register', userCtrl.register, passport.authenticate('local', {
+	successRedirect: '/api/me'
+}));
 
 app.get('/api/test', (req, res) => {
 	console.log('working')
@@ -112,12 +115,21 @@ app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
 
 //applicants endpoints
-// app.get('/api/applicants', applicants.get);
-// app.delete('/api/applicants', applicants.delete);
+
+
+
+
+//app.get('/api/applicants', applicants.get);
+//app.delete('/api/applicants', applicants.delete);
+
+//devProfile endpoints
+app.get('/api/devProfile', devProfileCtrl.get);
 
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
+
 app.post('/api/createcomp', compSignup.post)
+
 //Server
 
 

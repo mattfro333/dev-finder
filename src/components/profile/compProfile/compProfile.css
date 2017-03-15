@@ -1,0 +1,29 @@
+.body{
+    margin: 0 10vw;
+}
+.prof-pic{
+    height:250px;
+    width:300px;
+    background-color: grey;
+    float:left;
+}
+.info{
+    padding: 0 0 0 20px;
+    float:left;
+}
+.top{
+    height:300px;
+    clear:both;
+}
+.left-pane{
+    width:30%;
+    float:left;
+    border: black solid 2px;
+    border-radius: 5px;
+}
+.right-pane{
+    float:right;
+      border: black solid 2px;
+    border-radius: 5px;
+    width:70%
+}
