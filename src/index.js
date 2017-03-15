@@ -4,6 +4,7 @@ import {Router, Route, browserHistory} from 'react-router';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import DevFinder from './reducers'
+import Landing from './components/Landing'
 import App from './App';
 import DevDashboard from './components/dashboard/devDashboard/devDashboard'
 import CompDashboard from './components/dashboard/compDashboard/compDashboard'
@@ -23,7 +24,8 @@ let store = createStore(DevFinder)
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App}>
+    <Route path='/' component={Landing}/>
+      <Route path='/app' component={App}>
         <Route path='/profile/dev/dashboard/:userid' component={DevDashboard} />
         <Route path='/profile/company/dashboard/:userid' component={CompDashboard} />
         <Route path='/search' component={JobSearch} />
