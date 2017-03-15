@@ -13,6 +13,7 @@ import Messages from './components/messages/messages'
 import DevWatchlist from './components/devWatchlist/devWatchlist'
 import DevProfile from './components/profile/devProfile/devProfile'
 import CompProfile from './components/profile/compProfile/compProfile'
+import CreateJob from './components/createjob/createjob'
 import Login from './components/login/login'
 import SignUp from './components/signup/signup'
 import DevSignUp from './components/signup/devSignup/devSignup'
@@ -28,6 +29,7 @@ ReactDOM.render(
       <Route path='/app' component={App}>
         <Route path='/profile/dev/dashboard/:userid' component={DevDashboard} />
         <Route path='/profile/company/dashboard/:userid' component={CompDashboard} />
+        <Route path='/newjob' component={CreateJob} />
         <Route path='/search' component={JobSearch} />
         <Route path='/messages' component={Messages} />
         <Route path='/watchlist' component={DevWatchlist} />
