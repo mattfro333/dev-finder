@@ -51,7 +51,7 @@ class DevProfile extends Component{
     )
   }
   componentDidMount() {
-    getprofile().then(dev => {
+    getprofile(this.props.params.userid).then(dev => {
       this.setState({
         dev: dev
 
