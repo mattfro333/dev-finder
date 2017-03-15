@@ -44,6 +44,10 @@ CREATE TABLE IF NOT EXISTS experience(
 experience_id INTEGER SERIAL PRIMARY KEY,
 title VARCHAR(100),
 description TEXT,
+start_month INTEGER,
+start_year INTEGER,
+end_month INTEGER,
+end_year INTEGER,
 work_true_education_false BOOLEAN,
 user_id INTEGER
 );
