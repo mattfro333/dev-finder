@@ -116,17 +116,15 @@ app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
 
 //applicants endpoints
-
-
-
-
 //app.get('/api/applicants', applicants.get);
 //app.delete('/api/applicants', applicants.delete);
 
 //devProfile endpoints
-app.get('/api/devProfile', devProfileCtrl.get);
+app.get('/api/devProfile/:id', devProfileCtrl.get);
+
 //CopmanyProfile Endooints
-app.get('/api/companyProfile', companyProfileCtrl.get);
+app.get('/api/companyProfile/:id', companyProfileCtrl.get);
+
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 
