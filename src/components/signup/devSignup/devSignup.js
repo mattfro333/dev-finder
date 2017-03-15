@@ -20,8 +20,7 @@ CreateUser = ()=>{
   return axios.post('/api/createdev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType})
 }
 componentWillMount(){
-  this.getUserId().then((response) => this.setState({user:response}))
-  console.log(this.state.user);
+  this.getUserId().then((r) => this.setState({user: r.data}))
 }
 getUserId = ()=>{
   return axios.get('/api/me')
@@ -30,7 +29,7 @@ getUserId = ()=>{
   render(){
     return(
       <div>
-        <h1>DevSignUp</h1>
+        <h1>UpdateProfile</h1>
         <div>
         <Input placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
         <Input placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
@@ -41,7 +40,7 @@ getUserId = ()=>{
         <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
         <Button content='Update' onClick={()=>this.CreateUser()}/>
         <Button content='Go To Dashboard' onClick={()=>browserHistory.push
-          ('/dashboard-dev')}/>
+          (`/profile/dev/dashboard/${this.state.user.user_id}`)}/>
       </div>
     </div>
     )
