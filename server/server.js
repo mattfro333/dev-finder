@@ -143,11 +143,6 @@ app.post('/api/email', emailCtrl.sendEmail);
 
 
 
-const PORT = config.port
-
-app.listen(PORT, function(){
-  console.log('Listening on port: '+ PORT)
-})
 
 //AWS-FineUploader Encryption
 
@@ -332,3 +327,12 @@ function callS3(type, spec, callback) {
         Key: spec.key
     }, callback)
 }
+
+
+const PORT = config.port
+
+app.listen(PORT, function(){
+  console.log('Listening on port: '+ PORT)
+})
+
+
