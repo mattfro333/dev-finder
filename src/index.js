@@ -24,17 +24,17 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App}>
-        <Route path='/dashboard-dev' component={DevDashboard} />
-        <Route path='/dashboard-company' component={CompDashboard} />
+        <Route path='/profile/dev/dashboard/:userid' component={DevDashboard} />
+        <Route path='/profile/company/dashboard/:userid' component={CompDashboard} />
         <Route path='/search' component={JobSearch} />
         <Route path='/messages' component={Messages} />
         <Route path='/watchlist' component={DevWatchlist} />
-        <Route path='/profile/dev' component={DevProfile} />
-        <Route path='/profile/company' component={CompProfile} />
+        <Route path='/profile/dev/:userid' component={DevProfile} />
+        <Route path='/profile/company/:userid' component={CompProfile} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
-        <Route path='/signup/developer' component={DevSignUp} />
-        <Route path='/signup/company' component={CompanySignUp} />
+        <Route path='/profile/dev/edit/:userid' component={DevSignUp} />
+        <Route path='/profile/company/edit/:userid' component={CompanySignUp} />
       </Route>
     </Router>
   </Provider>,

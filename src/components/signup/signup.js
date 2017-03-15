@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
+import {browserHistory, Link} from 'react-router';
 import {Input, Button, Form, Radio, Checkbox} from 'semantic-ui-react'
 import axios from 'axios'
 import './signup.scss';
@@ -55,7 +55,7 @@ class SignUp extends Component{
               onChange={this.handleChange}
             />
           </Form.Field>
-          <Button type='submit' onClick={()=>this.postUser().then(()=>this.state.value ? browserHistory.push('/signup/company') : browserHistory.push('/signup/developer'))}>Submit</Button>
+          <Button type='submit' onClick={()=>this.postUser()}><Link to="/login">Submit</Link></Button>
       </Form>
     )
   }
