@@ -3,11 +3,38 @@ import {browserHistory} from 'react-router';
 import {Menu,Input, Button} from 'semantic-ui-react'
 import FineUploaderS3 from 'fine-uploader-wrappers/s3'
 import Gallery from 'react-fine-uploader'
+import config from './../../../../server/config'
 import axios from 'axios'
 import './devSignup.css';
+import 'react-fine-uploader/gallery/gallery.css'
 
+const uploader = new FineUploaderS3({
+  options: {
+    chunking: {
+      enabled: false
+    },
+    request: {
+      endpoint: 'https://devfinder.s3.amazonaws.com',
+      accessKey: config.accessKey
+    },
+    cors: {
+       //all requests are expected to be cross-domain requests
+       expected: true,
+   },
+    retry: {
+      enableAuto: true
+    },
+    signature:{
+      endpoint: '/s3handler'
+    },
+    uploadSuccess:{
+      endpoint: '/s3handler?success=true'
+    }
+  }
+})
 
 class DevSignUp extends Component{
+
 
 constructor(){
   super();
@@ -31,6 +58,8 @@ getUserId = ()=>{
       <div>
         <h1>UpdateProfile</h1>
         <div>
+        <h2>Add Profile Image</h2>
+        <Gallery uploader={uploader} />
         <Input placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
         <Input placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
         <Input placeholder='Position' onChange={(e)=>this.devType = e.target.value}/>

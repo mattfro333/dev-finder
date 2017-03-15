@@ -1,8 +1,37 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {Menu, Input, Button} from 'semantic-ui-react'
+import FineUploaderS3 from 'fine-uploader-wrappers/s3'
+import Gallery from 'react-fine-uploader'
+import config from './../../../../server/config'
 import axios from 'axios'
 import './companySignup.css';
+import 'react-fine-uploader/gallery/gallery.css'
+
+const uploader = new FineUploaderS3({
+  options: {
+    chunking: {
+      enabled: false
+    },
+    request: {
+      endpoint: 'https://devfinder.s3.amazonaws.com',
+      accessKey: config.accessKey
+    },
+    cors: {
+       //all requests are expected to be cross-domain requests
+       expected: true,
+   },
+    retry: {
+      enableAuto: true
+    },
+    signature:{
+      endpoint: '/s3handler'
+    },
+    uploadSuccess:{
+      endpoint: '/s3handler?success=true'
+    }
+  }
+})
 
 
 class CompanySignUp extends Component{
@@ -32,6 +61,7 @@ class CompanySignUp extends Component{
     return(
       <div>
       <h1>UpdateProfile</h1>
+      <Gallery uploader={uploader} />
       <Input placeholder="Company Name" onChange={(e)=>this.compName = e.target.value}/>
       <Input placeholder="Description" onChange={(e)=>this.compDescription = e.target.value}/>
       <Input placeholder="City" onChange={(e)=>this.compCity = e.target.value}/>
