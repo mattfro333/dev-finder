@@ -19,7 +19,7 @@ class Login extends Component{
     }).then((r)=>{
       console.log(r);
       let user = r.data
-      user.company ? browserHistory.push('/dashboard-company') : browserHistory.push('/dashboard-dev')
+      user.company ? browserHistory.push(`/profile/company/edit/${user.user_id}`) : browserHistory.push(`/profile/dev/edit/${user.user_id}`)
     })
   }
   render(){
@@ -36,7 +36,7 @@ class Login extends Component{
             onChange={(e)=>this.passwordInput = e.target.value}
            />
          <Button content='Login' color="teal" onClick={()=>this.login()}/>
-          <Button content='Sign Up' color="orange" onClick={()=>browserHistory.push('/signup')} />
+         <Button content='Sign Up' color="orange" onClick={()=>browserHistory.push('/signup')} />
       </div>
     )
   }
