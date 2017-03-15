@@ -56,6 +56,7 @@ var isAuthed = function(req, res, next) {
 const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
+const devProfileCtrl = require('./controllers/devProfileCtrl');
 const devSignup = require('./controllers/devsignUpCtrl');
 
 //user endpoints
@@ -81,8 +82,15 @@ app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
 
 //applicants endpoints
-// app.get('/api/applicants', applicants.get);
-// app.delete('/api/applicants', applicants.delete);
+
+
+
+
+//app.get('/api/applicants', applicants.get);
+//app.delete('/api/applicants', applicants.delete);
+
+//devProfile endpoints
+app.get('/api/devProfile', devProfileCtrl.get);
 
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
