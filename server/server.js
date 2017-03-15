@@ -82,6 +82,10 @@ app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
 
 //applicants endpoints
+
+
+
+
 //app.get('/api/applicants', applicants.get);
 //app.delete('/api/applicants', applicants.delete);
 
@@ -90,6 +94,7 @@ app.get('/api/devProfile', devProfileCtrl.get);
 
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
+
 
 //Server
 
