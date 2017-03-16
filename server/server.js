@@ -109,6 +109,7 @@ app.get('/api/test', (req, res) => {
 app.get('/api/me', isAuthed, userCtrl.me)
 
 //watchlist endpoints
+app.post('/api/flagAJob/:jobId', watchCtrl.post)
 app.get('/api/flaggedJobs', watchCtrl.get);
 app.delete('/api/flaggedJobs', watchCtrl.delete);
 
@@ -133,7 +134,8 @@ app.post('/api/createdev', devSignup.post);
 app.post('/api/createcomp', compSignup.post);
 
 //jobsearch endpoints
-app.get('/api/jobs/:jobName', jobCtrl.get)
+app.get('/api/jobs/:jobName', jobCtrl.get);
+app.get('/api/job/:id', jobCtrl.getOne);
 
 //newjob endpoints
 app.post('/api/createjob', createJob.post);
