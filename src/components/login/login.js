@@ -36,7 +36,6 @@ class Login extends Component{
             onChange={(e)=>this.passwordInput = e.target.value}
            />
          <Button content='Login' color="teal" onClick={()=>this.login()}/>
-         <Button content='Sign Up' color="orange" onClick={()=>browserHistory.push('/signup')} />
       </div>
     )
   }

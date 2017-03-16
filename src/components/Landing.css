@@ -1,3 +1,8 @@
+.title {
+  font-size: 2.5em !important;
+  color: orange
+}
+
 p {
     text-indent: 1vw;
 }
@@ -6,7 +11,7 @@ p {
 display: flex;
 align-items: center;
 justify-content: center;
-padding: 70px
+padding: 40px
  }
  #landlogbutton {
 
@@ -16,4 +21,5 @@ padding: 70px
    width: 50% !important;
    display: flex !important;
    justify-content: space-around !important;
+   bottom: 3vh
  }
