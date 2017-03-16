@@ -14,6 +14,7 @@ class Landing extends Component{
     return(
       <div>
 
+
       <Segment inverted>
             <Divider inverted />
             <Divider color="orange" horizontal inverted className='title' >Dev-Finder</Divider>

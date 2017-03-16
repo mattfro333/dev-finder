@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     const trigger = (
       <span>
-      <Image size="mini" shape='circular' src={this.state.user.profilepic || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'} />
+      <Image size="mini" shape='circular' src={this.state.profilepic || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'} />
       </span>
     )
     return (
@@ -71,7 +71,7 @@ class App extends Component {
             </Dropdown>
           </Menu.Item>
         </Menu>
-        <div>{this.props.children}</div>
+        <div>{React.cloneElement(this.props.children, this.props)}</div>
       </div>
     );
   }
