@@ -18,5 +18,14 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  post: function(req, res){
+    db.applications.post([req.session.user.id, req.params.jobId], function(err, results){
+      if(err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }
