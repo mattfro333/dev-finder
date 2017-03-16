@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Input, Button} from 'semantic-ui-react'
-import axios from 'axios'
+import {Input, Button} from 'semantic-ui-react';
+import axios from 'axios';
 import './login.css';
 
 
