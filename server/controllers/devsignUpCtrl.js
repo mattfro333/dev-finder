@@ -4,7 +4,7 @@ module.exports = {
   post: function(req, res){
     console.log('This is the id: ', req.session.passport.user.user_id);
     var user_id=req.session.passport.user.user_id;
-    db.user.create_dev([req.body.firstname, req.body.lastname, req.body.email, req.body.city, req.body.state, req.body.desc, req.body.type, user_id, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`], function(err, results){
+    db.user.create_dev([req.body.firstname, req.body.lastname, req.body.email, req.body.city, req.body.state, req.body.desc, req.body.type, user_id, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`, req.body.github, req.body.twitter], function(err, results){
       if (err){
         console.error(err);
         return res.send(err);
