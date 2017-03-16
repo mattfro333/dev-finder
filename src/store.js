@@ -6,8 +6,8 @@ import {browserHistory} from 'react-router'
 import rootReducer from './reducers/index'
 
 const defaultState ={
-    profile: [[{}],[{}],[{}],[{}]]
-
+  user: {},
+  profile: {}
 }
 
 const store = createStore(rootReducer, defaultState)
