@@ -12,6 +12,8 @@ class Landing extends Component{
   render(){
     return(
       <div>
+
+
         <Segment inverted>
               <Divider inverted />
               <Divider horizontal inverted as="h1">Dev-Finder</Divider>
