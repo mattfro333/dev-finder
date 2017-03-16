@@ -44,7 +44,7 @@ constructor(){
 }
 CreateUser = ()=>{
   console.log('clicked');
-  return axios.post('/api/createdev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType})
+  return axios.post('/api/createdev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter})
 }
 componentWillMount(){
   this.getUserId().then((r) => this.setState({user: r.data}))
@@ -66,6 +66,8 @@ getUserId = ()=>{
         <Input placeholder='Email' onChange={(e)=>this.devEmail = e.target.value} />
         <Input placeholder='City' onChange={(e)=>this.devCity = e.target.value} />
         <Input placeholder='State' onChange={(e)=>this.devState = e.target.value} />
+        <Input placeholder='Github' onChange={(e)=>this.devGithub = e.target.value} />
+        <Input placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
         <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
         <Button content='Update' onClick={()=>this.CreateUser()}/>
         <Button content='Go To Dashboard' onClick={()=>browserHistory.push
