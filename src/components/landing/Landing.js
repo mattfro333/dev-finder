@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import {Input, Button, Container, Header, Segment, Divider, Icon, Image} from 'semantic-ui-react'
-import Logo from './../DevFinder.png'
+import Logo from './../../DevFinder.png'
 import axios from 'axios'
-import Canvas from "./canvas/canvas.js"
+import Canvas from "./../canvas/canvas.js"
 import './Landing.css';
 
 

@@ -17,6 +17,7 @@ import CompProfile from './components/profile/compProfile/compProfile'
 import CreateJob from './components/createjob/createjob'
 import Login from './components/login/login'
 import SignUp from './components/signup/signup'
+import JobDetails from './components/jobDetailView/jobDetailView'
 import DevSignUp from './components/signup/devSignup/devSignup'
 import CompanySignUp from './components/signup/companySignup/companySignup'
 import './index.scss';
@@ -34,6 +35,7 @@ ReactDOM.render(
         <Route path='/search' component={JobSearch} />
         <Route path='/messages' component={Messages} />
         <Route path='/watchlist' component={DevWatchlist} />
+        <Route path='/jobdetails/:id' component={JobDetails} />
         <Route path='/profile/dev/:userid' component={DevProfile} />
         <Route path='/profile/company/:userid' component={CompProfile} />
         <Route path='/login' component={Login} />
