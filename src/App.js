@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import DevFinder from './reducers'
-import {Menu, Icon, Image} from 'semantic-ui-react'
-
+import {Menu, Icon, Image, Dropdown} from 'semantic-ui-react'
+import axios from 'axios'
+import Logo from './DevFinder.png'
 import './App.css';
 
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state= {
+      user: {}
+    }
+  }
+  getProfile = () => {
+    return axios.get('/api/me').then((r)=>this.setState({user: r}))
+  }
+  componentWillMount(){
+
+  }
   render() {
+    const trigger = (
+      <span>
+      <Image size="mini" shape='circular' src={this.state.profilepic || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'} />
+      </span>
+    )
     return (
       <div>
-        <Menu className='navbar'color='teal' inverted borderless icon>
+        <Menu className='navbar' color='grey' inverted borderless icon secondary>
+          <Menu.Item
+            name='logo'
+            onClick={()=>browserHistory.push('/dashboard')}
+          >
+            <Image src={Logo} size="mini"/>
+          </Menu.Item>
           <Menu.Item
             position="left"
             name='devFinder'
@@ -37,14 +61,17 @@ class App extends Component {
           >
             <Icon name='mail' />
           </Menu.Item>
-          <Menu.Item
-            name='profile'
-            onClick={()=>browserHistory.push('/profile')}
-          >
-            <Image src='http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg' size="mini" shape="circular" />
+          <Menu.Item>
+            <Dropdown trigger={trigger} icon={null} >
+              <Dropdown.Menu>
+                <Dropdown.Item content='Profile' icon='user'/>
+                <Dropdown.Item content='Edit Profile' icon='settings'/>
+                <Dropdown.Item content='Log Out' icon='sign out'/>
+              </Dropdown.Menu>
+            </Dropdown>
           </Menu.Item>
         </Menu>
-        <div>{this.props.children}</div>
+        <div>{React.cloneElement(this.props.children, this.props)}</div>
       </div>
     );
   }
