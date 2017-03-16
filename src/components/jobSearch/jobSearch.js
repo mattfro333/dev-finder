@@ -7,7 +7,7 @@ import './jobSearch.scss';
 class JobSearch extends Component{
   render(){
     return(
-      <h1>Job Search</h1>
+  <div>JobSearch</div>
     )
   }
 }
