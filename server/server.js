@@ -133,7 +133,8 @@ app.post('/api/createdev', devSignup.post);
 app.post('/api/createcomp', compSignup.post);
 
 //jobsearch endpoints
-app.get('/api/jobs/:jobName', jobCtrl.get)
+app.get('/api/jobs/:jobName', jobCtrl.get);
+app.get('/api/job/:id', jobCtrl.getOne);
 
 //newjob endpoints
 app.post('/api/createjob', createJob.post);
@@ -340,5 +341,3 @@ const PORT = config.port
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)
 })
-
-
