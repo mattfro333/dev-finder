@@ -35,7 +35,7 @@ class Login extends Component {
                     console.log(r)
                     profile = r.data
                     this.props.addProfileInfo(profile)
-                    if (!profile[0][0]) {
+                    if (!profile[0]) {
                         browserHistory.push(`/profile/dev/edit/${user.user_id}`)
                     } else {
                         browserHistory.push(`/profile/dev/dashboard/${user.user_id}`)
