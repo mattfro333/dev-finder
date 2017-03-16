@@ -114,6 +114,7 @@ app.delete('/api/flaggedJobs', watchCtrl.delete);
 
 
 //applications endpoints
+app.post('/api/application/:jobId', applicationsCtrl.post)
 app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
 
