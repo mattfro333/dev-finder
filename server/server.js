@@ -109,6 +109,7 @@ app.get('/api/test', (req, res) => {
 app.get('/api/me', isAuthed, userCtrl.me)
 
 //watchlist endpoints
+app.post('/api/flagAJob/:jobId', watchCtrl.post)
 app.get('/api/flaggedJobs', watchCtrl.get);
 app.delete('/api/flaggedJobs', watchCtrl.delete);
 

@@ -12,6 +12,7 @@ class JobSearch extends Component{
     }
     this.getJob=this.getJob.bind(this)
     this.applyJob=this.applyJob.bind(this)
+    this.watchJob=this.watchJob.bind(this)
   }
   getJob = function(){
     return axios.get('/api/jobs/'+this.myJob)
@@ -25,6 +26,9 @@ class JobSearch extends Component{
   applyJob = function(jobId){
     return axios.post('/api/application/'+jobId)
     .then(r=>console.log(r))
+  }
+  watchJob = function(jobId){
+    return axios.post('/api/flagAJob/'+jobId)
   }
   render(){ 
     return(
@@ -48,13 +52,18 @@ class JobSearch extends Component{
          {this.state.jobs.map((j, i)=>{
            return(
              <div>
-                 <h1>{j.job_title}</h1> 
+                   <h1 type='link' 
+                   onClick={()=>browserHistory.push(`/jobdetails/${j.id}`)}
+                   >{j.job_title}</h1> 
                  <h2>{j.name}</h2>
                  <p>{j.job_description}</p>
                  <p>{j.location}</p>
                  <Button
                   onClick={()=>this.applyJob(j.id)}
                   >Apply</Button>
+                   <Button
+                  onClick={()=>this.watchJob(j.id)}
+                  >Save</Button>
                   <hr/>
              </div>
           
