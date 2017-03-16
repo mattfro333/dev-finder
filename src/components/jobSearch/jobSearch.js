@@ -11,6 +11,7 @@ class JobSearch extends Component{
       jobs:[]
     }
     this.getJob=this.getJob.bind(this)
+    this.applyJob=this.applyJob.bind(this)
   }
   getJob = function(){
     return axios.get('/api/jobs/'+this.myJob)
@@ -21,7 +22,11 @@ class JobSearch extends Component{
       })
     })
   }
-  render(){
+  applyJob = function(jobId){
+    return axios.post('/api/application/'+jobId)
+    .then(r=>console.log(r))
+  }
+  render(){ 
     return(
      <div className='jobSearch'>
        <div className='left-pane white'>
@@ -32,8 +37,8 @@ class JobSearch extends Component{
           onChange={(e)=>this.myJob = e.target.value}
          icon='search' 
          placeholder='Search...' 
-         fluid
-         />
+         fluid   
+         />    
          <Button 
          onClick={()=>this.getJob()}
          primary>Find my Job!</Button>
@@ -44,8 +49,13 @@ class JobSearch extends Component{
            return(
              <div>
                  <h1>{j.job_title}</h1> 
+                 <h2>{j.name}</h2>
                  <p>{j.job_description}</p>
                  <p>{j.location}</p>
+                 <Button
+                  onClick={()=>this.applyJob(j.id)}
+                  >Apply</Button>
+                  <hr/>
              </div>
           
            )
