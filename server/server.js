@@ -90,7 +90,9 @@ const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
 const devProfileCtrl = require('./controllers/devProfileCtrl');
 const devSignup = require('./controllers/devsignUpCtrl');
+const companyProfileCtrl = require('./controllers/companyProfileCtrl')
 const compSignup = require('./controllers/compSignUpCtrl')
+const createJob = require('./controllers/createjob')
 
 //user endpoints
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
@@ -115,20 +117,21 @@ app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
 
 //applicants endpoints
-
-
-
-
 //app.get('/api/applicants', applicants.get);
 //app.delete('/api/applicants', applicants.delete);
 
 //devProfile endpoints
-app.get('/api/devProfile', devProfileCtrl.get);
+app.get('/api/devProfile/:id', devProfileCtrl.get);
+
+//CopmanyProfile Endooints
+app.get('/api/companyProfile/:id', companyProfileCtrl.get);
 
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
+app.post('/api/createcomp', compSignup.post);
 
-app.post('/api/createcomp', compSignup.post)
+//newjob endpoints
+app.post('/api/createjob', createJob.post);
 
 //Server
 
@@ -141,11 +144,6 @@ app.post('/api/email', emailCtrl.sendEmail);
 
 
 
-const PORT = config.port
-
-app.listen(PORT, function(){
-  console.log('Listening on port: '+ PORT)
-})
 
 //AWS-FineUploader Encryption
 
@@ -330,3 +328,12 @@ function callS3(type, spec, callback) {
         Key: spec.key
     }, callback)
 }
+
+
+const PORT = config.port
+
+app.listen(PORT, function(){
+  console.log('Listening on port: '+ PORT)
+})
+
+

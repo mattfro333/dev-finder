@@ -4,6 +4,7 @@ import {Router, Route, browserHistory} from 'react-router';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import DevFinder from './reducers'
+import Landing from './components/Landing'
 import App from './App';
 import DevDashboard from './components/dashboard/devDashboard/devDashboard'
 import CompDashboard from './components/dashboard/compDashboard/compDashboard'
@@ -12,6 +13,7 @@ import Messages from './components/messages/messages'
 import DevWatchlist from './components/devWatchlist/devWatchlist'
 import DevProfile from './components/profile/devProfile/devProfile'
 import CompProfile from './components/profile/compProfile/compProfile'
+import CreateJob from './components/createjob/createjob'
 import Login from './components/login/login'
 import SignUp from './components/signup/signup'
 import DevSignUp from './components/signup/devSignup/devSignup'
@@ -23,9 +25,11 @@ let store = createStore(DevFinder)
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App}>
+    <Route path='/' component={Landing}/>
+      <Route path='/app' component={App}>
         <Route path='/profile/dev/dashboard/:userid' component={DevDashboard} />
         <Route path='/profile/company/dashboard/:userid' component={CompDashboard} />
+        <Route path='/newjob' component={CreateJob} />
         <Route path='/search' component={JobSearch} />
         <Route path='/messages' component={Messages} />
         <Route path='/watchlist' component={DevWatchlist} />

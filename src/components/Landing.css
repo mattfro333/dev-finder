@@ -1,0 +1,19 @@
+p {
+    text-indent: 1vw;
+}
+ #landsignbutton {
+
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 70px
+ }
+ #landlogbutton {
+
+ }
+
+ .landingbuttoncontainer{
+   width: 50% !important;
+   display: flex !important;
+   justify-content: space-around !important;
+ }

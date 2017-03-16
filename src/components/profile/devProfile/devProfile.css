@@ -1,0 +1,67 @@
+.devProfile{
+margin: 0 10vw;
+}
+.devProfile .topContainer .profilePic{
+width: 90%;
+height:220px;
+margin: 0 5%;
+border: 2px solid rgb(173, 173, 173);
+border-radius:100%;
+float:left;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+clear:both;
+margin-top:15px;
+}
+.topContainer {
+clear:both;
+}
+.devPic{
+    height:100%;
+    clear:both;
+}
+.portfolioPic{
+    height:200px;
+}
+.devInfo{
+    float:left;
+    padding:0 20px;
+    height:500px;
+    border-radius:10px;
+    width:23%;
+    position:fixed;
+}
+.devbottom{
+    clear:both;
+}
+.leftInfoBar{
+    padding:15px;
+    margin-top:15px;
+    margin-right:1%;
+    border-radius:10px;
+    width:23%;
+    float:left;
+}
+.rightResume{
+    
+    border-radius:10px;
+    width:70%;
+    float:right;
+    padding:20px;
+}
+.center{
+    text-align:center;
+}
+.portfolioPieces{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.white{
+    background-color:white;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
