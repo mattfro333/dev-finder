@@ -38,6 +38,7 @@ class Landing extends Component{
   </Segment>
 </div>
 
+
       </div>
     )
   }
