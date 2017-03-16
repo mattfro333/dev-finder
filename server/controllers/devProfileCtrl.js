@@ -32,5 +32,14 @@ module.exports = {
             })
         })
     })
-}
+  },
+  getProfile: (req, res, next) => {
+    db.devProfile.get_profile([req.params.id], (err, profile) =>{
+      if (err) {
+          console.log('get profile err: ', err);
+          return res.status(500).send(err);
+      }
+      res.status(200).send(profile)
+    })
+  }
 }

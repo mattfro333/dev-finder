@@ -335,5 +335,3 @@ const PORT = config.port
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)
 })
-
-
