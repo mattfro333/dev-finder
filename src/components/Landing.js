@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import {Input, Button, Container, Header, Segment, Divider, Icon, Image} from 'semantic-ui-react'
-import Logo from './../../DevFinder.png'
+import Logo from './../DevFinder.png'
 import axios from 'axios'
-import Canvas from "./../canvas/canvas.js"
+import Canvas from "./canvas/canvas.js"
 import './Landing.css';
 
 
@@ -14,16 +14,15 @@ class Landing extends Component{
     return(
       <div>
 
-
       <Segment inverted>
             <Divider inverted />
-            <Divider color="orange" horizontal inverted className='title' >Dev-Finder</Divider>
+            <Divider color="orange" horizontal inverted className='landtitle' >Dev-Finder</Divider>
           </Segment>
       <Header textAlign='center'>
         <Image src={Logo} size='tiny'/>
       </Header>
       <Container text>
-        <p>Dev-Finder is designed to connect developers to companies. This site allows developers and companies to both create profiles. The idea is that developers can search through company profiles and communicate with them and vice versa.
+        <p>Dev-Finder is designed to connect developers to companies. This site allows developers and companies to create unique profiles. The idea is that developers can search through company profiles communicate with them and vice versa.
         Our goal is to weed out all the flashy distractions that most social networking mediums have, and just leave a seemless line of communication aimed at matching developers with companies
         that accent their strengths. This will bolster the companies worth and output.</p>
         <p>Some of the highlights of Dev-Finder are a responsive watchlist, quick messaging, e-mailing capabilities, google analytics, and grouping of specific skill sets. We promise a simple solution
