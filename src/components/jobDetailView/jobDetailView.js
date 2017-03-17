@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu} from 'semantic-ui-react';
+import {Menu, Button, Icon} from 'semantic-ui-react';
 import { getjob } from './../../services/jobinfo'
 import './jobDetailView.css';
+import axios from 'axios';
 
 class jobDetails extends Component{
 
@@ -13,31 +14,56 @@ class jobDetails extends Component{
     this.state = {
       job: [{}]
     }
+    this.applyJob=this.applyJob.bind(this)
+    this.watchJob=this.watchJob.bind(this)
   }
-
+ applyJob = function(jobId){
+    return axios.post('/api/application/'+jobId)
+    .then(r=>console.log(r))
+  }
+  watchJob = function(jobId){
+    return axios.post('/api/flagAJob/'+jobId)
+  }
   render(){
 
     return (
-      <div>
-        <h1>Job Details</h1>
-          <div className='topContainer'>
+      <div className =''>
+          <div className=' jobBox topJobContainer white'>
             <div>
-              <img src={this.state.job.picture}/>
-              <p className='jobtitle'>{this.state.job.job_title}</p>
-              <p className='companyName'>{this.state.job.name}</p>
+              <img className = 'jobPic'src={this.state.job.picture}/>
+              <div className = 'basicJobInfo'>
+                  <h1 className='companyName'>{this.state.job.name}</h1>
+              <h2 className='jobtitle'>{this.state.job.job_title}</h2>
+        <h3>
+          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3> 
+           <Button
+           onClick={()=>this.applyJob(this.state.job.id)}>
+           Apply
+           </Button>
+           <Button
+             onClick={()=>this.watchJob(this.state.job.id)}>
+             Save
+             </Button>
+             <Button>
+               Message
+               </Button>
+           <br/>
+           <h4> This job was listed on {this.state.job.timestamped}</h4>
+              </div>
+            
+              
             </div>
           </div>
-          <div>
+      
+      <div className = ' jobBox white'>
+<h1 className = 'center'>
+  Job Description
+</h1>
 
-          job created:{this.state.job.timestamped}
-           company founded: {this.state.job.founded}
-          job description: {this.state.job.job_description}
-          state: {this.state.job.state}
-          city: {this.state.job.city}
-          company description: {this.state.job.description}
-          job location {this.state.job.location}
-          </div>
+        <h4>{this.state.job.job_description}</h4>
       </div>
+          
+          </div>
     )
   }
   componentDidMount() {
