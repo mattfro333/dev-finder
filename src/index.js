@@ -28,9 +28,11 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={Landing}/>
+      <Route path='/signup' component={SignUp} />
       <Route path='/app' component={ConnectApp}>
         <Route path='/profile/dev/dashboard/:userid' component={DevDashboard} />
         <Route path='/profile/company/dashboard/:userid' component={CompDashboard} />
+        <Route path='/login' component={Login} />
         <Route path='/newjob' component={CreateJob} />
         <Route path='/search' component={JobSearch} />
         <Route path='/messages' component={Messages} />
@@ -38,8 +40,6 @@ ReactDOM.render(
         <Route path='/jobdetails/:id' component={JobDetails} />
         <Route path='/profile/dev/:userid' component={DevProfile} />
         <Route path='/profile/company/:userid' component={CompProfile} />
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={SignUp} />
         <Route path='/profile/dev/edit/:userid' component={DevSignUp} />
         <Route path='/profile/company/edit/:userid' component={CompanySignUp} />
       </Route>
