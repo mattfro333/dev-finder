@@ -1,0 +1,12 @@
+.right {
+  text-align: right;
+  clear: both;
+}
+.roomslist {
+  width: 100px;
+}
+.thread {
+  width: 300px;
+  background-color: white;
+  border-radius: 5px;
+}
