@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Table, Icon, Header, Image} from 'semantic-ui-react';
+import {Table, Icon, Header, Image, Item, Divider} from 'semantic-ui-react';
 import axios from 'axios';
 import './devDashboard.css';
 
@@ -36,33 +36,48 @@ class DevDashboard extends Component {
       <div className="companyDashboardPage">
         <div className="companyDashboardContainer">
           <div className='devDashboardFlaggedJobsContainer'>
-            <h1>Flagged Jobs</h1>
+            <h2>WatchList</h2>
               {this.state.flagged.map((f, i) => {
                 return (
-                  <div className='oneJob'>
-                  <p> company name: {f.name}</p>
-                  <p> job title: {f.job_title}</p>
-                  <p> location: {f.location}</p>
-                  <hr/>
-                  </div>
-                       )
-                     })}
-          </div>
-          <div className='devDashboardApplicationsContainer'>
-            <h1>applied jobs</h1>
-              {this.state.apps.map((a, i) => {
-                return (
-                  <div className='oneJob'>
-                  <p> job title: {a.job_title}</p>
-                  <p> location: {a.location}</p>
-                  <p> date posted: {a.timestamped}</p>
-                  <hr/>
-                  </div>
+                  <Header as='h3'>
+                     <Icon name='pin'  />
+                     <Header.Content onclick={()=>browserHistory.push(`/jobdetails/${f.id}`)}>
+                       {f.job_title}
+                       <Header.Subheader>
+                         {f.name}
+                       </Header.Subheader>
+                     </Header.Content>
+                   </Header>
                        )
                      })}
           </div>
           <div className='devDashboardNewJobsContainer'>
-            <h1>new job postings</h1>
+            <h2>New Postings</h2>
+            <Item.Group>
+              {this.state.newjobs.map((a, i) => {
+                return (
+                  <Item key={i}>
+                      <Item.Image size='tiny' src={a.picture} />
+
+                      <Item.Content>
+                        <Item.Header>{a.job_title}</Item.Header>
+                        <Item.Meta>
+                          <span>{a.name}</span>
+                          <span>{a.location}</span>
+                        </Item.Meta>
+                        <Item.Description>Description</Item.Description>
+                      </Item.Content>
+                      <Divider />
+                    </Item>
+
+                  )
+                }
+              )}
+            </Item.Group>
+                 <a className="companyDashboardBottomPageLink">See all Listings</a>
+          </div>
+          <div className='devDashboardApplicationsContainer'>
+            <h2>Current Applications</h2>
             <Table celled striped >
               <Table.Header>
                 <Table.Row>
@@ -73,7 +88,7 @@ class DevDashboard extends Component {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-              {this.state.newjobs.map((a, i) => {
+              {this.state.apps.map((a, i) => {
                 return (
                   <Table.Row key={i}>
                     <Table.Cell>
@@ -98,6 +113,9 @@ class DevDashboard extends Component {
                      })}
                    </Table.Body>
                  </Table>
+                     <a className="companyDashboardBottomPageLink">See all Applications</a>
+              <h2>Recent Messages</h2>
+              <a className="companyDashboardBottomPageLink">See all Messages</a>
           </div>
         </div>
       </div>
