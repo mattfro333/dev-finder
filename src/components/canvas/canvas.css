@@ -4,9 +4,10 @@ canvas {
 position: relative;
 top:17.1%;
 left:46%;
-
+color: #b8bdc4;
 width:16vmin;
 height:16.3vmin;
 overflow:hidden;
+border-radius: 0px !important
 
 }

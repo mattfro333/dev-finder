@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Input, Button} from 'semantic-ui-react';
+import {Input, Button, Header, Segment, Divider, Image} from 'semantic-ui-react';
+import Logo from './../../DevFinder.png'
 import axios from 'axios';
 import './login.css';
 
@@ -45,12 +46,22 @@ class Login extends Component {
     }
     render() {
         return (
-            <div>
-                <h1>Login</h1>
-                <Input placeholder='Username' onChange={(e) => this.usernameInput = e.target.value}/>
-                <Input type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
-                <Button content='Login' color="teal" onClick={() => this.login()}/>
-            </div>
+            <div className="loginMove">
+                <h1 className="loginMove">Login</h1>
+                <Input className="loginMove" placeholder='Username' onChange={(e) => this.usernameInput = e.target.value}/>
+                <Input className="loginMove"  type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
+                <Button className="loginMove"  content='Login' color="teal" onClick={() => this.login()}/>
+   <footer className="logfooter">
+            <Segment inverted className="logfooter">
+                  <inverted />
+                  <Divider  color="orange" horizontal inverted className='dottitle' >.</Divider>
+                </Segment>
+                </footer>
+                <Header textAlign='center'>
+                    <Image className="loginvert" src={Logo} size='tiny'/>
+                  </Header>
+     </div>
+
         )
     }
 }
