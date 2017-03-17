@@ -25,7 +25,7 @@ class Landing extends Component{
         <p>Dev-Finder is designed to connect developers to companies. This site allows developers and companies to both create profiles. The idea is that developers can search through company profiles and communicate with them and vice versa.
         Our goal is to weed out all the flashy distractions that most social networking mediums have, and just leave a seemless line of communication aimed at matching developers with companies
         that accent their strengths. This will bolster the companies worth and output.</p>
-        <p>Some of the higlights of Dev-Finder are a responsive watchlist, quick messaging, e-mailing capabilities, google analytics, and grouping of specific skill sets. We promise a simple solution
+        <p>Some of the highlights of Dev-Finder are a responsive watchlist, quick messaging, e-mailing capabilities, google analytics, and grouping of specific skill sets. We promise a simple solution
         to the issue of finding an employee, or an employer. So signup, login, and find
         the company, or developer that best fits you!</p>
       </Container>
