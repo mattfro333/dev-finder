@@ -56,7 +56,6 @@ class JobSearch extends Component{
                    onClick={()=>browserHistory.push(`/jobdetails/${j.id}`)}
                    >{j.job_title}</h1> 
                  <h2>{j.name}</h2>
-                 <p>{j.job_description}</p>
                  <p>{j.location}</p>
                  <Button
                   onClick={()=>this.applyJob(j.id)}

@@ -94,6 +94,7 @@ const companyProfileCtrl = require('./controllers/companyProfileCtrl')
 const compSignup = require('./controllers/compSignUpCtrl')
 const createJob = require('./controllers/createjob')
 const jobCtrl = require('./controllers/jobCtrl')
+const devDashCtrl = require('./controllers/devDashCtrl')
 
 //user endpoints
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
@@ -118,6 +119,7 @@ app.delete('/api/flaggedJobs', watchCtrl.delete);
 app.post('/api/application/:jobId', applicationsCtrl.post)
 app.get('/api/applications', applicationsCtrl.get);
 app.delete('/api/applications', applicationsCtrl.delete);
+app.get('/api/company/applications/:company_id', applicationsCtrl.companyGet);
 
 //applicants endpoints
 //app.get('/api/applicants', applicants.get);
@@ -126,6 +128,9 @@ app.delete('/api/applications', applicationsCtrl.delete);
 //devProfile endpoints
 app.get('/api/devProfile/:id', devProfileCtrl.get);
 
+//devDashboard endpoints
+app.get('/api/newjobs', devDashCtrl.newjobs);
+
 //CopmanyProfile Endooints
 app.get('/api/companyProfile/:id', companyProfileCtrl.get);
 
@@ -133,9 +138,10 @@ app.get('/api/companyProfile/:id', companyProfileCtrl.get);
 app.post('/api/createdev', devSignup.post);
 app.post('/api/createcomp', compSignup.post);
 
-//jobsearch endpoints
+//job endpoints
 app.get('/api/jobs/:jobName', jobCtrl.get);
 app.get('/api/job/:id', jobCtrl.getOne);
+app.get('/api/companyJobListings/:id', jobCtrl.getListings)
 
 //newjob endpoints
 app.post('/api/createjob', createJob.post);
