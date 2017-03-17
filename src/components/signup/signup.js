@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
-import {Input, Button, Form, Radio, Checkbox} from 'semantic-ui-react'
+import {Input, Button, Form, Radio, Checkbox, Header, Segment, Divider, Icon, Image} from 'semantic-ui-react'
+import Logo from './../../DevFinder.png'
 import axios from 'axios'
-import './signup.scss';
+import './signup.css';
 
 
 class SignUp extends Component{
@@ -21,7 +22,8 @@ class SignUp extends Component{
   }
   render(){
     return(
-      <Form>
+        <div>
+      <Form className="signupMove">
           <Form.Field>
             <label>Username</label>
             <input
@@ -36,9 +38,11 @@ class SignUp extends Component{
               type="password"
               onChange={(e)=>this.passwordInput = e.target.value}
               />
+
           </Form.Field>
+          <div className="radioButtons">
           <Form.Field>
-          <Radio
+          <Radio className="radioDev"
             label='Company'
             name='company'
             value={true}
@@ -47,7 +51,7 @@ class SignUp extends Component{
           />
           </Form.Field>
           <Form.Field>
-            <Radio
+            <Radio className="radioCom"
               label='Developer'
               name='company'
               value={false}
@@ -55,8 +59,20 @@ class SignUp extends Component{
               onChange={this.handleChange}
             />
           </Form.Field>
+          </div>
           <Button type='submit' onClick={()=>this.postUser()}><Link to="/login">Submit</Link></Button>
       </Form>
+
+      <footer className="signfooter">
+               <Segment inverted className="signfooter">
+                     <inverted />
+                     <Divider horizontal inverted className='dottitle' >.</Divider>
+                   </Segment>
+                   </footer>
+                   <Header textAlign='center'>
+                       <Image className="signinvert" src={Logo} size='tiny'/>
+                 </Header>
+</div>
     )
   }
 }
