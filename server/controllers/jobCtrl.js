@@ -19,5 +19,15 @@ module.exports = {
             }
             res.send(results)
         })
+    },
+    getListings: (req, res) => {
+      db.jobs.get_company_listings([req.params.id], (err, results)=>{
+        console.log('called')
+        if(err){
+            console.error(err);
+            return res.send(err);
+        }
+        res.status(200).send(results)
+      })
     }
 }

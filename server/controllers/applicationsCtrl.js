@@ -4,10 +4,10 @@ module.exports = {
   get: function(req, res){
     db.applications.get([req.session.passport.user.user_id], function(err, results){
       if (err){
-        console.error(err);
-        return res.send(err);
-      }
-      res.send(results);
+      console.error(err);
+      return res.send(err);
+    }
+    res.send(results);
     })
   },
   delete: function(req, res){
@@ -27,6 +27,14 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  companyGet: function(req, res){
+    db.applications.company_get([req.params.company_id], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }
- 
