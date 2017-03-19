@@ -19,6 +19,7 @@ class Messaging extends Component{
     this.getRooms = this.getRooms.bind(this);
     this.getthread = this.getthread.bind(this);
     this.sendmessage = this.sendmessage.bind(this);
+    this.update = this.update.bind(this);
 
   }
   getRooms = ()=>{
@@ -47,6 +48,9 @@ class Messaging extends Component{
       self.getthread(self.state.threads[0].room_id);
     })
   }
+  update = ()=>{
+    this.getthread(this.state.threads[0].room_id);
+  }
 
 
   render(){
@@ -73,10 +77,15 @@ class Messaging extends Component{
         <div className='thread'>
         <h1>Room</h1>
         {this.state.threads.map((t, i) => {
+          let messageSide = '';
+          if (t.sender_id == this.state.user.user_id){
+            messageSide = 'right';
+          }else {
+            messageSide = 'left';
+          }
           return (
-            <div className='rooms '>
-            <p> message: {t.message} </p>
-            <hr/>
+            <div className='rooms'>
+            <p className= {messageSide} > {t.message} </p>
             </div>
                 )
               })}
@@ -92,7 +101,7 @@ class Messaging extends Component{
         this.setState({rooms: rooms.data})
         this.getUser()
       })
-      setInterval(this.getthread, 5000);
+      setInterval(this.update, 5000);
     }
 }
 
