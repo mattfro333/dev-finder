@@ -2,12 +2,34 @@
 
 canvas {
 position: relative;
-top:17.1%;
-left:46%;
-color: #b8bdc4;
+top:3vh;
+left:45.3vw;
 width:16vmin;
 height:16.3vmin;
 overflow:hidden;
-border-radius: 0px !important
+border-radius: 70px !important
 
+}
+
+@media only screen and (max-width: 1277px) {
+    canvas {
+        left: 44vw;
+    }
+}
+
+@media only screen and (max-width: 1120px) {
+    canvas {
+        left: 42.5vw;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    canvas {
+        left: 40.5vw;
+    }
+}
+@media only screen and (max-width: 750px) {
+    canvas {
+        left: 39.5vw;
+    }
 }
