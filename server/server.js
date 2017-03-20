@@ -128,6 +128,9 @@ app.get('/api/company/applications/:company_id', applicationsCtrl.companyGet);
 
 //devProfile endpoints
 app.get('/api/devProfile/:id', devProfileCtrl.get);
+// app.post('/api/addPortfolio', devSignup.addPortfolio);
+// app.post('/api/addEducation', devSignup.addEducation);
+// app.post('/api/addExperience', devSignup.addExperience);
 
 //devDashboard endpoints
 app.get('/api/newjobs', devDashCtrl.newjobs);
@@ -138,6 +141,7 @@ app.get('/api/companyProfile/:id', companyProfileCtrl.get);
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);
+app.put('/api/updatepic', devSignup.updatepic);
 app.post('/api/createcomp', compSignup.post);
 
 //job endpoints
