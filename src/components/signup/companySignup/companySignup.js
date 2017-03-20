@@ -59,19 +59,24 @@ class CompanySignUp extends Component{
   }
   render(){
     return(
-      <div>
+      <div className="comSignupbody">
       <h1>UpdateCompanyProfile</h1>
       <h2>Add Profile Image</h2>
+      <div className="comEditUploader">
       <Gallery uploader={uploader} />
+      </div>
+      <div className="comEditInputs1">
       <Input placeholder="Company Name" onChange={(e)=>this.compName = e.target.value}/>
       <Input placeholder="Description" onChange={(e)=>this.compDescription = e.target.value}/>
       <Input placeholder="City" onChange={(e)=>this.compCity = e.target.value}/>
       <Input placeholder="State" onChange={(e)=>this.compState = e.target.value}/>
       <Input placeholder="Industry" onChange={(e)=>this.compIndustry = e.target.value}/>
+</div>
       <Button content="Submit" onClick={()=>this.CreateCompany()}/>
       <Button content='Go To Dashboard' onClick={()=>browserHistory.push
         (`/profile/company/dashboard/${this.state.user.user_id}`)}/>
      </div>
+
   )
   }
 }
