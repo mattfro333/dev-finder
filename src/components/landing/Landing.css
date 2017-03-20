@@ -1,25 +1,42 @@
-.title {
-  font-size: 2.5em !important;
-  color: orange
-}
+.landingbody {
 
+  background-image: url("http://jpda.net/sites/default/files/LR_office_wLines.jpg");
+  background-size:cover;
+  background-position: center;
+
+
+}
+ #landtitle {
+   color:white !important;
+   font-size: 2em
+ }
 p {
     text-indent: 1vw;
 }
  #landsignbutton {
-
 display: flex;
 align-items: center;
 justify-content: center;
-padding: 40px
+padding: 70px
+
  }
  #landlogbutton {
 
  }
 
  .landingbuttoncontainer{
+   top:-2vh!important;
    width: 50% !important;
    display: flex !important;
-   justify-content: space-around !important;
-   bottom: 3vh
+   justify-content: space-around !important
+
+ }
+
+ .blurb {
+   position: relative;
+   height: 100%;
+   background-color: white;
+   margin: 0 25vw;
+   border-radius: 40px
+
  }

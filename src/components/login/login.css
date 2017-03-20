@@ -10,8 +10,8 @@
 }
 
 .logfooter {
-  top:20vh !important;
-  position: relative;
+  position: fixed;
+  bottom: 0px;
   border-radius: 0px !important
 
 
@@ -23,8 +23,24 @@
 }
 
   .loginvert{
-    left:.3vw;
-    top: 24.5vh;
+    left:.4vw;
+    top: 46vh;
     filter: invert(100%);
 
+
   }
+  /*.happy1 {
+    position:fixed;
+    float:right;
+    right: 8vw;
+    top: 35vh;
+    border-radius: 10em;
+  }
+  .happy2 {
+    position:fixed;
+    float:left;
+    left: 8vw;
+    top: 10vh;
+    border-radius: 10em;
+    transform: scale(-1, 1);
+  }*/
