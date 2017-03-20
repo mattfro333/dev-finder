@@ -23,6 +23,7 @@ class SignUp extends Component{
   render(){
     return(
         <div>
+        <h1 className="signTitle">SignUp</h1>
       <Form className="signupMove">
           <Form.Field>
             <label>Username</label>
@@ -60,7 +61,7 @@ class SignUp extends Component{
             />
           </Form.Field>
           </div>
-          <Button type='submit' onClick={()=>this.postUser()}><Link to="/login">Submit</Link></Button>
+          <Button color="black" type='submit' onClick={()=>this.postUser()}><Link to="/login">Submit</Link></Button>
       </Form>
 
       <footer className="signfooter">
