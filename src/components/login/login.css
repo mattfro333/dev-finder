@@ -1,3 +1,9 @@
+.logTitle {
+  position:relative;
+  top:15vh;
+  text-align: center;
+
+}
 
 .loginMove {
   top:9vh;
@@ -24,7 +30,7 @@
 
   .loginvert{
     left:.4vw;
-    top: 46vh;
+    top: 47vh;
     filter: invert(100%);
 
 

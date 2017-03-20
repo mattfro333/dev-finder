@@ -39,9 +39,9 @@ class Landing extends Component{
           <div id='landsignbutton'>
             <Segment className='landingbuttoncontainer' padded>
               <Button id='landlogbutton' color="teal" content='Login' onClick={()=>browserHistory.push('/login')} />
-
+              <div className="or">
               <Divider vertical>Or</Divider>
-
+              </div>
               <Button color="orange" content='Sign Up' onClick={()=>browserHistory.push('/signup')} />
             </Segment>
           </div>

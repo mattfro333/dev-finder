@@ -4,14 +4,15 @@
   background-size:cover;
   background-position: center;
 
-
 }
  #landtitle {
    color:white !important;
    font-size: 2em
  }
 p {
+
     text-indent: 1vw;
+
 }
  #landsignbutton {
 display: flex;
@@ -37,6 +38,11 @@ padding: 70px
    height: 100%;
    background-color: white;
    margin: 0 25vw;
-   border-radius: 40px
+   border-radius: 5px
 
+ }
+ @media only screen and (max-width: 800px) {
+   .or {
+     visibility: hidden
+   }
  }
