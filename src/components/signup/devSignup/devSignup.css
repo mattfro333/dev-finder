@@ -1,6 +1,6 @@
 .devSignupbody {
 text-align:center;
-background-color: #ADD8E6
+
 }
 
 .devEditUploader {
@@ -11,4 +11,8 @@ background-color: #ADD8E6
   display: flex;
   justify-content: space-around;
   margin: 3em;
+}
+.signupButton {
+  background-color: #00abc7 !important;
+  color: white !important;
 }

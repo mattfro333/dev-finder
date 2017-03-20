@@ -11,5 +11,15 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  update: function(req, res){
+    var user_id=req.session.passport.user.user_id;
+    db.user.update_dev([req.body.firstname, req.body.lastname, req.body.email, req.body.city, req.body.state, req.body.desc, req.body.type, user_id, req.body.github, req.body.twitter, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }
