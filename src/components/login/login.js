@@ -46,20 +46,25 @@ class Login extends Component {
     }
     render() {
         return (
+            <div>
             <div className="loginMove">
                 <h1 className="loginMove">Login</h1>
                 <Input className="loginMove" placeholder='Username' onChange={(e) => this.usernameInput = e.target.value}/>
                 <Input className="loginMove"  type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
                 <Button className="loginMove"  content='Login' color="teal" onClick={() => this.login()}/>
-   <footer className="logfooter">
-            <Segment inverted className="logfooter">
-                  <inverted />
+            </div>
+                <div className='footerContainer'>
+                <footer className="logfooter">
+                <Segment inverted className="logfooter">
+
                   <Divider  color="orange" horizontal inverted className='dottitle' >.</Divider>
+
                 </Segment>
                 </footer>
-                <Header textAlign='center'>
+
                     <Image className="loginvert" src={Logo} size='tiny'/>
-                  </Header>
+
+                  </div>
      </div>
 
         )

@@ -20,7 +20,7 @@ class Landing extends Component{
             <Divider color="orange" horizontal inverted className='title' >Dev-Finder</Divider>
           </Segment>
       <Header textAlign='center'>
-        <Image src={Logo} size='tiny'/>
+        <Image src={Logo} size='large'/>
       </Header>
       <Container text>
         <p>Dev-Finder is designed to connect developers to companies. This site allows developers and companies to both create profiles. The idea is that developers can search through company profiles and communicate with them and vice versa.

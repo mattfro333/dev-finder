@@ -10,7 +10,7 @@
 }
 
 .logfooter {
-  top:20vh !important;
+  top:0px !important;
   position: relative;
   border-radius: 0px !important
 
@@ -23,8 +23,20 @@
 }
 
   .loginvert{
-    left:.3vw;
-    top: 24.5vh;
+    left:0px;
+    bottom: 0px;
     filter: invert(100%);
 
   }
+.footerContainer {
+  position: absolute;
+  bottom: 0px;
+}
+.ui.image {
+  position: inherit;
+}
+.ui.tiny.image {
+  margin: auto !important;
+  position: absolute;
+  right: 0%;
+}

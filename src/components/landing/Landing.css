@@ -23,3 +23,6 @@ padding: 40px
    justify-content: space-around !important;
    bottom: 3vh
  }
+.ui.large.image {
+  width: 100px;
+}
