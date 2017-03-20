@@ -8,6 +8,5 @@ state = COALESCE($5, state),
 description = COALESCE($6, description),
 type = COALESCE($7, type),
 github = COALESCE($9, github),
-twitter = COALESCE($10, twitter),
-profilepic = COALESCE($11, profilepic)
+twitter = COALESCE($10, twitter)
 WHERE user_id = $8;
