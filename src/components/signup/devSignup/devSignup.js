@@ -56,7 +56,7 @@ getUserId = ()=>{
   render(){
     return(
       <div className="devSignupbody">
-        <h1>UpdateDevProfile</h1>
+        <h1>Update DevProfile</h1>
         <div>
         <h2>Add Profile Image</h2>
         <div className="devEditUploader">
@@ -77,8 +77,8 @@ getUserId = ()=>{
 </div>
 <div className="devEditInputs">
 
-        <Button content='Update' onClick={()=>this.CreateUser()}/>
-        <Button content='Go To Dashboard' onClick={()=>browserHistory.push
+        <Button className='signupButton' content='Update' onClick={()=>this.CreateUser()}/>
+        <Button className='signupButton' content='Go To Dashboard' onClick={()=>browserHistory.push
           (`/profile/dev/dashboard/${this.state.user.user_id}`)}/>
           </div>
       </div>
