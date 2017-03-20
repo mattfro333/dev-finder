@@ -1,5 +1,7 @@
-SELECT  applications.user_id, applications.job_id, applications.timestamp, jobs.company_id, jobs.job_description, jobs.job_title, jobs.location, jobs.timestamped
+SELECT  *
 FROM applications
 INNER JOIN jobs
 ON applications.job_id = jobs.id
-WHERE user_id = $1
+INNER JOIN companys
+ON companys.company_id = jobs.company_id
+WHERE applications.user_id = $1
