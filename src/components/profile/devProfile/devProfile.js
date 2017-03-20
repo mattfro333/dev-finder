@@ -49,14 +49,19 @@ class DevProfile extends Component{
     this.EditUser = this.EditUser.bind(this);
     this.getUserId = this.getUserId.bind(this);
     this.changePhoto = this.changePhoto.bind(this);
-    //this.addPortfolio = this.addPortfolio.bind(this);
+    this.addPortfolio = this.addPortfolio.bind(this);
   }
 
   EditUser = ()=>{
-    var self = this
+    var self = this;
     return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter}).then(function(response) {
+      getprofile(self.props.params.userid).then(dev => {
+        self.setState({
+          dev: dev
 
-  })
+        })
+      })
+    })
 }
 changePhoto = ()=>{
   console.log('clicked')
@@ -65,16 +70,17 @@ changePhoto = ()=>{
     this.close()
   })
 }
-// addPortfolio = ()=>{
-//   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
-//     this.getprofile(this.props.params.userid).then(dev => {
-//       this.setState({
-//         dev: dev
-//
-//       })
-//   })
-// })
-// }
+addPortfolio = ()=>{
+  var self = this;
+  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
+    getprofile(self.props.params.userid).then(dev => {
+      self.setState({
+        dev: dev
+
+      })
+  })
+})
+}
 // addPortfolio = ()=>{
 //   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
 //     this.getprofile(this.props.params.userid).then(dev => {
