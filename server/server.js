@@ -96,6 +96,7 @@ const createJob = require('./controllers/createjob')
 const jobCtrl = require('./controllers/jobCtrl')
 const devDashCtrl = require('./controllers/devDashCtrl')
 const messagingCtrl = require('./controllers/messagingCtrl')
+const skillsCtrl = require('./controllers/skillsCtrl')
 
 //user endpoints
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
@@ -151,6 +152,9 @@ app.post('/api/createjob', createJob.post);
 app.get('/api/rooms', messagingCtrl.getRooms);
 app.put('/api/threads', messagingCtrl.getThreads);
 app.post('/api/sendmessage', messagingCtrl.sendMessage);
+
+//skills endpoints
+app.get('/api/skills', skillsCtrl.getSkills)
 
 //Server
 
