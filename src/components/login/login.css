@@ -1,6 +1,7 @@
 .logTitle {
   position:relative;
-  top:15vh;
+  top:20vh;
+  z-index: 1;
   text-align: center;
 
 }
@@ -29,11 +30,21 @@
 }
 
   .loginvert{
-    left:.4vw;
-    top: 47vh;
+    left:.3vw;
+    top:29vh;
+    height: 20vh;
     filter: invert(100%);
 
+  }
 
+  .logContainer {
+    left: 40vw;
+    height: 40vh;
+    width: 20vw;
+    background-color: white;
+    border-radius: 5px;
+    padding-bottom: 9vh;
+    z-index: -1
   }
   /*.happy1 {
     position:fixed;
