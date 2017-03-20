@@ -6,7 +6,8 @@
   white-space: pre-line;
   word-wrap: break-word;
   line-height:20px;
-  
+  display: inline-block;
+  float: right;
   
 }
 .roomslist {
