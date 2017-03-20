@@ -64,8 +64,11 @@ class DevProfile extends Component{
     })
 }
 changePhoto = ()=>{
-  return axios.put('/api/updatepic').then(function(response) {
-})
+  console.log('clicked')
+  return axios.put('/api/updatepic').then((r)=>{
+    console.log(r)
+    this.close()
+  })
 }
 addPortfolio = ()=>{
   var self = this;

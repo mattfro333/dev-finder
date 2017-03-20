@@ -17,7 +17,7 @@ export default class Canvas extends React.Component {
 
       function aaa(){
           var a,b,c,max,pt,p,r;
-          ctx.fillStyle="rgb(229, 229, 229)";
+          ctx.fillStyle="rgb(255,250,250)";
           ctx.fillRect(0,0,canvas.width,canvas.height);
           ctx.lineWidth=2;
           if(count>=200)count=0;

@@ -18,7 +18,6 @@ class DevDashboard extends Component {
     this.getApplications = this.getApplications.bind(this);
     this.getJobs = this.getJobs.bind(this);
   }
-
   getFlagged = ()=>{
     return axios.get(`/api/flaggedJobs`).then(flagged => flagged.data)
   }
@@ -100,7 +99,7 @@ class DevDashboard extends Component {
                         </Header.Content>
                       </Header>
                     </Table.Cell>
-                    <Table.Cell onClick={()=>browserHistory.push(`/jobdetails/${a.id}`)}>
+                    <Table.Cell onClick={()=>browserHistory.push(`/jobdetails/${a.job_id}`)}>
                     <Header as='h4'>
                       <Header.Content>
                         {a.job_title}
@@ -125,15 +124,12 @@ class DevDashboard extends Component {
 componentDidMount() {
     this.getFlagged().then(flagged => {
       this.setState({flagged: flagged})
-      console.log(flagged)
     })
     this.getApplications().then((apps) => {
       this.setState({apps: apps})
-      console.log(apps);
     })
     this.getJobs().then((newjobs) => {
       this.setState({newjobs: newjobs})
-      console.log(newjobs);
     })
   }
 }

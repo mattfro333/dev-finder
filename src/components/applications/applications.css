@@ -1,0 +1,11 @@
+.applications-page{
+    margin: 0 10vw;
+}
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.card:hover{
+    background-color:#eee;
+}

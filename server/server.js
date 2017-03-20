@@ -84,7 +84,7 @@ app.post("/s3handler", function(req, res) {
         signRequest(req, res);
     }
 });
-
+  
 const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
@@ -96,18 +96,19 @@ const createJob = require('./controllers/createjob')
 const jobCtrl = require('./controllers/jobCtrl')
 const devDashCtrl = require('./controllers/devDashCtrl')
 const messagingCtrl = require('./controllers/messagingCtrl')
-
+const applicants = require('./controllers/applicantsCtrl')
+const skillsCtrl = require('./controllers/skillsCtrl')
 //user endpoints
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
 	successRedirect: '/api/me'
 }));
-
+  
 app.get('/api/test', (req, res) => {
 	console.log('working')
 	res.status(200).send('test')
 })
 
-
+ 
 app.get('/api/me', isAuthed, userCtrl.me)
 
 //watchlist endpoints
@@ -123,7 +124,8 @@ app.delete('/api/applications', applicationsCtrl.delete);
 app.get('/api/company/applications/:company_id', applicationsCtrl.companyGet);
 
 //applicants endpoints
-//app.get('/api/applicants', applicants.get);
+
+app.get('/api/applicants', applicants.get);
 //app.delete('/api/applicants', applicants.delete);
 
 //devProfile endpoints
@@ -134,10 +136,10 @@ app.post('/api/addPortfolio', devSignup.addPortfolio);
 
 //devDashboard endpoints
 app.get('/api/newjobs', devDashCtrl.newjobs);
-
+  
 //CopmanyProfile Endooints
 app.get('/api/companyProfile/:id', companyProfileCtrl.get);
-
+   
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);
@@ -156,6 +158,9 @@ app.post('/api/createjob', createJob.post);
 app.get('/api/rooms', messagingCtrl.getRooms);
 app.put('/api/threads', messagingCtrl.getThreads);
 app.post('/api/sendmessage', messagingCtrl.sendMessage);
+
+//skills endpoints
+app.get('/api/skills', skillsCtrl.getSkills)
 
 //Server
 

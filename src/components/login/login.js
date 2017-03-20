@@ -46,8 +46,9 @@ class Login extends Component {
     }
     render() {
         return (
+
             <div>
-            <div className="loginMove">
+            <div className="loginMove"> // logTitle (Matt Class)
                 <h1 className="loginMove">Login</h1>
                 <Input className="loginMove" placeholder='Username' onChange={(e) => this.usernameInput = e.target.value}/>
                 <Input className="loginMove"  type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
@@ -57,14 +58,17 @@ class Login extends Component {
                 <footer className="logfooter">
                 <Segment inverted className="logfooter">
 
+
                   <Divider  color="orange" horizontal inverted className='dottitle' >.</Divider>
 
                 </Segment>
                 </footer>
 
+
                     <Image className="loginvert" src={Logo} size='tiny'/>
 
                   </div>
+
      </div>
 
         )
