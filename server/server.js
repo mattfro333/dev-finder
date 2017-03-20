@@ -84,7 +84,7 @@ app.post("/s3handler", function(req, res) {
         signRequest(req, res);
     }
 });
-
+  
 const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
@@ -101,13 +101,13 @@ const applicants = require('./controllers/applicantsCtrl')
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
 	successRedirect: '/api/me'
 }));
-
+  
 app.get('/api/test', (req, res) => {
 	console.log('working')
 	res.status(200).send('test')
 })
 
-
+ 
 app.get('/api/me', isAuthed, userCtrl.me)
 
 //watchlist endpoints
@@ -132,10 +132,10 @@ app.get('/api/devProfile/:id', devProfileCtrl.get);
 
 //devDashboard endpoints
 app.get('/api/newjobs', devDashCtrl.newjobs);
-
+  
 //CopmanyProfile Endooints
 app.get('/api/companyProfile/:id', companyProfileCtrl.get);
-
+   
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);

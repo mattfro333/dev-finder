@@ -25,4 +25,4 @@ this.getApplicants = this.getApplicants.bind(this)
      this.getApplicants().then(r=>console.log(r))
  }
 }
-export default Applicants
+export default Applicants  
