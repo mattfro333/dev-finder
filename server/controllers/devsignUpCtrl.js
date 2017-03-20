@@ -31,5 +31,15 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  addPortfolio: function(req, res){
+    var user_id=req.session.passport.user.user_id;
+    db.user.create_portfolio([user_id, req.body.title, req.body.description, req.body.image, req.body.link], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }
