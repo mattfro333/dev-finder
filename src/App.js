@@ -91,14 +91,14 @@ class App extends Component {
             <Icon name='search' />
           </Menu.Item>
           <Menu.Item
-            onClick={()=>browserHistory.push('/watchlist')}
+            onClick={()=>browserHistory.push(this.state.links.watchAdd)}
             name='watchlist'
           >
             <Icon name={this.state.links.watchAddIcon} />
           </Menu.Item>
           <Menu.Item
             name='messages'
-            onClick={()=>browserHistory.push(this.state.links.watchAdd)}
+            onClick={()=>browserHistory.push('/messaging')}
           >
             <Icon name='mail' />
           </Menu.Item>
