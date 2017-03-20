@@ -17,7 +17,9 @@ class App extends Component {
         profile: '',
         editProfile: '',
         search: '',
-        profilepic: ''
+        profilepic: '',
+        watchAdd: '',
+        watchAddIcon: 'star'
       }
     }
     this.setLinks = this.setLinks.bind(this)
@@ -30,7 +32,7 @@ class App extends Component {
     return axios.get('/api/logout')
   }
   setLinks = () => {
-    console.log('user', this.props.user.user.user_id)
+
     if(this.props.user.user.user_id){
       if(this.props.user.user.company == true) {
       this.setState({links:{
@@ -38,7 +40,9 @@ class App extends Component {
         profile: `/profile/company/${this.props.user.user.user_id}`,
         editProfile: `/profile/company/edit/${this.props.user.user.user_id}`,
         search: `/search`,
-        profilepic: this.props.profile.profile[0].picture
+        profilepic: this.props.profile.profile[0].picture,
+        watchAdd: '/newjob',
+        watchAddIcon:'plus square'
       }})
     } else{
       this.setState({links:{
@@ -46,11 +50,13 @@ class App extends Component {
         profile: `/profile/dev/${this.props.user.user.user_id}`,
         editProfile: `/profile/dev/edit/${this.props.user.user.user_id}`,
         search: `/search`,
-        profilepic: this.props.profile.profile[0][0].profilepic
+        profilepic: this.props.profile.profile[0][0].profilepic,
+        watchAdd: '/watchlist',
+        watchAddIcon: 'star'
       }})
     }
     }
-    console.log('links', this.state.links)
+
   }
   componentWillMount(){
 
@@ -85,14 +91,14 @@ class App extends Component {
             <Icon name='search' />
           </Menu.Item>
           <Menu.Item
-            onClick={()=>browserHistory.push('/watchlist')}
+            onClick={()=>browserHistory.push(this.state.links.watchAdd)}
             name='watchlist'
           >
-            <Icon name='star' />
+            <Icon name={this.state.links.watchAddIcon} />
           </Menu.Item>
           <Menu.Item
             name='messages'
-            onClick={()=>browserHistory.push('/messages')}
+            onClick={()=>browserHistory.push('/messaging')}
           >
             <Icon name='mail' />
           </Menu.Item>
