@@ -100,7 +100,7 @@ class DevDashboard extends Component {
                         </Header.Content>
                       </Header>
                     </Table.Cell>
-                    <Table.Cell onClick={()=>browserHistory.push(`/jobdetails/${a.id}`)}>
+                    <Table.Cell onClick={()=>browserHistory.push(`/jobdetails/${a.job_id}`)}>
                     <Header as='h4'>
                       <Header.Content>
                         {a.job_title}
