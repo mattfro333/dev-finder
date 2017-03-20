@@ -21,6 +21,8 @@ import JobDetails from './components/jobDetailView/jobDetailView'
 import DevSignUp from './components/signup/devSignup/devSignup'
 import Messaging from './components/messaging/messaging'
 import CompanySignUp from './components/signup/companySignup/companySignup'
+import Applications from './components/applications/applications'
+import Applicants from './components/applicants/applicants'
 import './index.scss';
 
 let store = createStore(DevFinder)
@@ -40,6 +42,8 @@ ReactDOM.render(
         <Route path='/messaging' component={Messaging} />
         <Route path='/watchlist' component={DevWatchlist} />
         <Route path='/jobdetails/:id' component={JobDetails} />
+        <Route path='/applications' component={Applications} />
+        <Route path='/applicants' component={Applicants}/>
         <Route path='/profile/dev/:userid' component={DevProfile} />
         <Route path='/profile/company/:userid' component={CompProfile} />
         <Route path='/profile/dev/edit/:userid' component={DevSignUp} />
