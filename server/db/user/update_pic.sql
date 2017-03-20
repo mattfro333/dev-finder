@@ -1,4 +1,4 @@
 UPDATE devs
 SET
-profilepic = COALESCE($2, profilepic),
+profilepic = $2
 WHERE user_id = $1;

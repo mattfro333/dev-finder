@@ -24,6 +24,7 @@ module.exports = {
   },
   updatepic: function(req, res){
     var user_id=req.session.passport.user.user_id;
+    console.log(req.session.imageInfo.key)
     db.user.update_pic([user_id, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`], function(err, results){
       if (err){
         console.error(err);
