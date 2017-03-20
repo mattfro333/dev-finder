@@ -1,12 +1,37 @@
-.right {
+.right-message {
   text-align: right;
   clear: both;
+  border:1px solid black;
+  border-radius:10px;
+  white-space: pre-line;
+  word-wrap: break-word;
+  line-height:20px;
+  display: inline-block;
+  float: right;
+  
 }
 .roomslist {
-  width: 100px;
+  width: 29%;
+  float:left;
+  border-radius:10px;
+  padding:20px;
 }
 .thread {
-  width: 300px;
-  background-color: white;
-  border-radius: 5px;
+  width: 70%;
+  float:right;
+  border-radius:10px;
+  padding:20px
+}
+.messaging{
+  margin: 0 10vw;
+  
+}
+.left-message{
+  border:1px solid black;
+  border-radius:10px;
+  white-space: pre-line;
+  word-wrap: break-word;
+  line-height:20px;
+  display:inline-block;
+  max-width:70%;
 }

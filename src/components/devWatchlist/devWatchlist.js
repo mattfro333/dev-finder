@@ -18,20 +18,21 @@ constructor(){
   }
   render(){ 
     return(
-      <div>
+      <div className = 'watchlistPage'>
       <h1>Dev Watchlist</h1>
-      <hr/>
+    <div className = 'watchedJobs'>
       {this.state.watchlist.map((j,i)=>{
           return(
-              <div>
+              <div className ='white watchlistBox'>
                   <h1>{j.job_title}</h1>
                   <h2>{j.name}</h2>
-                 <p>{j.job_description}</p>
-                 <p>{j.location}</p>
-                 <hr/>
+                 <h3>{j.location}</h3>
+                
               </div>
           )
       })}
+      <div className = 'white watchlistBox'><h1>Find more Jobs</h1></div>
+      </div>
       </div>
     )
   }

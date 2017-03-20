@@ -1,0 +1,14 @@
+.comSignupbody {
+text-align:center;
+background-color: #ADD8E6
+}
+
+.comEditUploader {
+  margin: 0 20vw
+}
+
+.comEditInputs1 {
+  display: flex;
+  justify-content: space-around;
+  margin: 3em;
+}
