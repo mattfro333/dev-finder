@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {browserHistory} from 'react-router';
 import {Input, Button} from 'semantic-ui-react'
 import './messaging.css';
@@ -33,6 +34,7 @@ class Messaging extends Component{
       this.setState({threads: threads.data})
       console.log('hello its me');
     })
+    
   }
 
   getUser = ()=>{
@@ -43,23 +45,29 @@ class Messaging extends Component{
   sendmessage = ()=>{
     var currentDate = new Date()
     var self = this;
+    this.scrollBottom();
     return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.threads[0].room_id, createdtime: currentDate}).then(
       function(){
         self.setState({message: ''});
-      self.getthread(self.state.threads[0].room_id);
+      self.getthread(self.state.threads[0].room_id, this.currentChat);
     })
+    
   }
   update = ()=>{
     this.getthread(this.state.threads[0].room_id, this.currentChat);
   }
 
-
+  scrollBottom = ()=>{
+    const node =ReactDOM.findDOMNode(this.refs.dms);
+    node.scrollTop=node.scrollHeight;
+  }
   render(){
     return(
       <div className = 'messaging'>
-        <h1>Messaging Section</h1>
+        <h1>Your Inbox</h1>
           <div className='roomslist white'>
-            <h1>Threads</h1>
+            <h1>Contacts</h1>
+            <hr/>
               {this.state.rooms.map((r, i) => {
                 let roomName = '';
                 if (r.user1_id == this.state.user.user_id){
@@ -68,15 +76,16 @@ class Messaging extends Component{
                   roomName = r.user1_name
                 }
                 return (
-                  <div className='rooms '>
-                  <Button onClick={()=>this.getthread(r.room_id, roomName)}> {roomName} </Button>
-                  <hr/>
+                  <div className='rooms'>
+                  <Button fluid onClick={()=>{
+                    this.getthread(r.room_id, roomName).then(()=>this.scrollBottom())}}>{roomName} </Button>
                   </div>
                       )
                     })}
           </div>
         <div className='thread white'>
         <h1>{this.currentChat}</h1>
+        <div className = 'dms' ref='dms'> 
         {this.state.threads.map((t, i) => {
           let messageSide = '';
           if (t.sender_id == this.state.user.user_id){
@@ -95,8 +104,11 @@ class Messaging extends Component{
             </div>
                 )
               })}
-      <Input placeholder='Message' value={this.state.message} onChange={(e)=>this.setState({message: e.target.value})} />
-      <Button content='Send' onClick={()=>this.sendmessage()}/>
+              <div ref={(el) => { this.messagesEnd = el}}>
+              </div>
+              </div>
+      <Input  className= 'messageInput' placeholder='Message' value={this.state.message} onChange={(e)=>this.setState({message: e.target.value})} />
+      <Button  className= 'sendBtn'content='Send' onClick={()=>this.sendmessage()}/>
         </div>
       </div>
     )
@@ -107,7 +119,7 @@ class Messaging extends Component{
         this.setState({rooms: rooms.data})
         this.getUser()
       })
-      setInterval(this.update, 5000);
+      setInterval(this.update, 2500);
     }
 }
 
