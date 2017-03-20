@@ -55,25 +55,35 @@ getUserId = ()=>{
 
   render(){
     return(
-      <div>
+      <div className="devSignupbody">
         <h1>UpdateDevProfile</h1>
         <div>
         <h2>Add Profile Image</h2>
+        <div className="devEditUploader">
         <Gallery uploader={uploader} />
+        </div>
+        <div className="devEditInputs1">
         <Input placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
         <Input placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
         <Input placeholder='Position' onChange={(e)=>this.devType = e.target.value}/>
         <Input placeholder='Email' onChange={(e)=>this.devEmail = e.target.value} />
+</div>
+  <div className="devEditInputs1">
         <Input placeholder='City' onChange={(e)=>this.devCity = e.target.value} />
         <Input placeholder='State' onChange={(e)=>this.devState = e.target.value} />
         <Input placeholder='Github' onChange={(e)=>this.devGithub = e.target.value} />
         <Input placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
         <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
+</div>
+<div className="devEditInputs">
+
         <Button content='Update' onClick={()=>this.CreateUser()}/>
         <Button content='Go To Dashboard' onClick={()=>browserHistory.push
           (`/profile/dev/dashboard/${this.state.user.user_id}`)}/>
+          </div>
       </div>
     </div>
+
     )
   }
 }

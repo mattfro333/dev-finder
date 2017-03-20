@@ -8,7 +8,7 @@ module.exports = {
                 console.error(err);
                 return res.send(err);
             }
-            res.send(results)
+            return res.send(results)
         })
     },
     getOne: function(req, res){
@@ -17,7 +17,7 @@ module.exports = {
                 console.error(err);
                 return res.send(err);
             }
-            res.send(results)
+           return res.send(results)
         })
     },
     getListings: (req, res) => {
@@ -27,7 +27,7 @@ module.exports = {
             console.error(err);
             return res.send(err);
         }
-        res.status(200).send(results)
+        return res.status(200).send(results)
       })
     }
 }

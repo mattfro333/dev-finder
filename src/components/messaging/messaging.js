@@ -27,7 +27,8 @@ class Messaging extends Component{
     return axios.get(`/api/rooms`)
   }
 
-  getthread = (id)=>{
+  getthread = (id, currentRoom)=>{
+    this.currentChat = currentRoom
     return axios.put(`/api/threads`, {id: id}).then(threads => {
       this.setState({threads: threads.data})
       console.log('hello its me');
@@ -49,15 +50,15 @@ class Messaging extends Component{
     })
   }
   update = ()=>{
-    this.getthread(this.state.threads[0].room_id);
+    this.getthread(this.state.threads[0].room_id, this.currentChat);
   }
 
 
   render(){
     return(
-      <div>
+      <div className = 'messaging'>
         <h1>Messaging Section</h1>
-          <div className='roomslist'>
+          <div className='roomslist white'>
             <h1>Threads</h1>
               {this.state.rooms.map((r, i) => {
                 let roomName = '';
@@ -68,24 +69,29 @@ class Messaging extends Component{
                 }
                 return (
                   <div className='rooms '>
-                  <Button onClick={()=>this.getthread(r.room_id)}> {roomName} </Button>
+                  <Button onClick={()=>this.getthread(r.room_id, roomName)}> {roomName} </Button>
                   <hr/>
                   </div>
                       )
                     })}
           </div>
-        <div className='thread'>
-        <h1>Room</h1>
+        <div className='thread white'>
+        <h1>{this.currentChat}</h1>
         {this.state.threads.map((t, i) => {
           let messageSide = '';
           if (t.sender_id == this.state.user.user_id){
-            messageSide = 'right';
+            messageSide = 'right-message';
           }else {
-            messageSide = 'left';
+            messageSide = 'left-message';
           }
           return (
-            <div className='rooms'>
-            <p className= {messageSide} > {t.message} </p>
+           
+            <div className= 'message'>
+               <div className= {messageSide}>
+            <p > {t.message} </p>
+          
+            </div>
+            <br/>
             </div>
                 )
               })}
