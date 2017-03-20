@@ -1,6 +1,6 @@
 .signfooter {
-  top:22.5vh !important;
-  position: relative;
+  position: fixed;
+  bottom: 0px;
   border-radius: 0px !important
 
 }
@@ -10,8 +10,9 @@
 }
 
   .signinvert{
+    position:absolute;
     left:.3vw;
-    top: 29.6vh;
+    top: 54.6vh;
     filter: invert(100%);
 
   }

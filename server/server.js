@@ -97,6 +97,7 @@ const jobCtrl = require('./controllers/jobCtrl')
 const devDashCtrl = require('./controllers/devDashCtrl')
 const messagingCtrl = require('./controllers/messagingCtrl')
 const applicants = require('./controllers/applicantsCtrl')
+const skillsCtrl = require('./controllers/skillsCtrl')
 //user endpoints
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
 	successRedirect: '/api/me'
@@ -129,6 +130,9 @@ app.get('/api/applicants', applicants.get);
 
 //devProfile endpoints
 app.get('/api/devProfile/:id', devProfileCtrl.get);
+// app.post('/api/addPortfolio', devSignup.addPortfolio);
+// app.post('/api/addEducation', devSignup.addEducation);
+// app.post('/api/addExperience', devSignup.addExperience);
 
 //devDashboard endpoints
 app.get('/api/newjobs', devDashCtrl.newjobs);
@@ -139,6 +143,7 @@ app.get('/api/companyProfile/:id', companyProfileCtrl.get);
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);
+app.put('/api/updatepic', devSignup.updatepic);
 app.post('/api/createcomp', compSignup.post);
 
 //job endpoints
@@ -153,6 +158,9 @@ app.post('/api/createjob', createJob.post);
 app.get('/api/rooms', messagingCtrl.getRooms);
 app.put('/api/threads', messagingCtrl.getThreads);
 app.post('/api/sendmessage', messagingCtrl.sendMessage);
+
+//skills endpoints
+app.get('/api/skills', skillsCtrl.getSkills)
 
 //Server
 

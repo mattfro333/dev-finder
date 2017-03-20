@@ -48,11 +48,53 @@ class DevProfile extends Component{
 
     this.EditUser = this.EditUser.bind(this);
     this.getUserId = this.getUserId.bind(this);
+    this.changePhoto = this.changePhoto.bind(this);
+    //this.addPortfolio = this.addPortfolio.bind(this);
   }
 
   EditUser = ()=>{
-    return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter})
-  }
+    var self = this
+    return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter}).then(function(response) {
+
+  })
+}
+changePhoto = ()=>{
+  console.log('clicked')
+  return axios.put('/api/updatepic').then((r)=>{
+    console.log(r)
+    this.close()
+  })
+}
+// addPortfolio = ()=>{
+//   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
+//     this.getprofile(this.props.params.userid).then(dev => {
+//       this.setState({
+//         dev: dev
+//
+//       })
+//   })
+// })
+// }
+// addPortfolio = ()=>{
+//   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
+//     this.getprofile(this.props.params.userid).then(dev => {
+//       this.setState({
+//         dev: dev
+//
+//       })
+//   })
+// })
+// }
+// addPortfolio = ()=>{
+//   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
+//     this.getprofile(this.props.params.userid).then(dev => {
+//       this.setState({
+//         dev: dev
+//
+//       })
+//   })
+// })
+// }
 
   componentWillMount(){
     this.getUserId().then((r) => this.setState({user: r.data}))
@@ -135,10 +177,10 @@ var portfolio=this.state.dev[3].map(function(piece){
             </div>
             <Button className='add' icon="plus"/>
             <Input placeholder='Title' onChange={(e)=>this.portTitle = e.target.value} />
-            <Input placeholder='Description' onChange={(e)=>this.portTitle = e.target.value} />
+            <Input placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
             <Input placeholder='Image Url' onChange={(e)=>this.portImg = e.target.value} />
             <Input placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
-            <Button className='signupButton' content='Add Portfolio'/>
+            <Button className='signupButton' content='Add Portfolio' onClick={()=>this.addPortfolio()}/>
           </div>
           <hr/>
           <h1 className='center'>Education</h1>
@@ -179,7 +221,7 @@ var portfolio=this.state.dev[3].map(function(piece){
             <Button color='black' onClick={this.close}>
               Nope
             </Button>
-            <Button positive icon='checkmark' labelPosition='right' content="Use This Photo" onClick={this.close} />
+            <Button positive icon='checkmark' labelPosition='right' content="Use This Photo" onClick={()=>this.changePhoto()} />
           </Modal.Actions>
         </Modal>
       </div>
