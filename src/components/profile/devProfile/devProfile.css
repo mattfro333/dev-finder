@@ -5,8 +5,8 @@ margin: 0 10vw;
 width: 90%;
 height:220px;
 margin: 0 5%;
-border: 2px solid rgb(173, 173, 173);
-border-radius:100%;
+/*border: 2px solid rgb(173, 173, 173);*/
+border-radius:6%;
 float:left;
 display:flex;
 align-items:center;
@@ -28,10 +28,31 @@ clear:both;
 .devInfo{
     float:left;
     padding:0 20px;
-    height:500px;
     border-radius:10px;
     width:23%;
     position:fixed;
+    height: 90vh;
+    overflow-y: scroll;
+}
+.devInfo::-webkit-scrollbar-track
+{
+    width: 0px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5 ;
+}
+
+.devInfo::-webkit-scrollbar
+{
+    width: 0px;
+    background-color: #F5F5F5 ;
+}
+
+.devInfo::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #767676 ;
 }
 .devbottom{
     clear:both;
@@ -45,7 +66,7 @@ clear:both;
     float:left;
 }
 .rightResume{
-    
+
     border-radius:10px;
     width:70%;
     float:right;
@@ -64,4 +85,16 @@ clear:both;
 .white{
     background-color:white;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+.react-fine-uploader-gallery-dropzone {
+  width: 80% !important;
+  margin: auto !important;
+}
+.canvas {
+display: none;
+}
+.react-fine-uploader-gallery-file{
+  width: auto !important;
+  padding: 8px !important;
+  height: 200px !important;
 }

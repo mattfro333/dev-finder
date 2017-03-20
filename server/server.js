@@ -137,6 +137,7 @@ app.get('/api/companyProfile/:id', companyProfileCtrl.get);
 
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
+app.put('/api/updatedev', devSignup.update);
 app.post('/api/createcomp', compSignup.post);
 
 //job endpoints
