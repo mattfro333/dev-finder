@@ -49,7 +49,7 @@ class Login extends Component {
 
             <div>
               <h1 className="logTitle">Login</h1>
-                <div className="logContainer loginMove">
+                <div className="loginMove">
                 <Input className="loginMove" placeholder='Username' onChange={(e) => this.usernameInput = e.target.value}/>
                 <Input className="loginMove"  type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
                 <Button className="loginMove"  content='Login' color="teal" onClick={() => this.login()}/>
