@@ -5,53 +5,6 @@
   width: 100vw;
   height: calc(100vh - 70px);
 }
-<<<<<<< HEAD
- #landtitle {
-   color:white !important;
-   font-size: 2em
- }
-p {
-
-    text-indent: 1vw;
-
-}
- #landsignbutton {
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 70px
-
- }
- #landlogbutton {
-
- }
-
- .landingbuttoncontainer{
-   top:-2vh!important;
-   width: 50% !important;
-   display: flex !important;
-   justify-content: space-around !important
-
- }
-
-
- .blurb {
-   position: relative;
-   height: 100%;
-   background-color: white;
-   margin: 0 25vw;
-   border-radius: 5px
-
- }
- @media only screen and (max-width: 800px) {
-   .or {
-     visibility: hidden
-   }
- }
-.ui.large.image {
-  width: 100px;
-}
-=======
 .black-shadow{
   width: 100vw;
   height: 100%;
@@ -92,4 +45,3 @@ padding: 70px
     color:#00b5ad;
   }
   
->>>>>>> master
