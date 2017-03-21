@@ -53,6 +53,7 @@ class Login extends Component {
     }
     render() {
         return (
+
             <div className= 'login-page landing-page'>
                 <div className='black-shadow center-login'>
                 <div className = 'logIn white'>
