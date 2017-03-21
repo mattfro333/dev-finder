@@ -39,6 +39,8 @@ app.use(session({
 	resave: false
 }));
 
+
+
 //Set up Database
 const massiveInstance = massive.connectSync({
   connectionString: config.massiveUri
@@ -46,7 +48,16 @@ const massiveInstance = massive.connectSync({
 app.set('db', massiveInstance);
 var db = app.get('db')
 
-
+//Initialize the Tables for the Database
+function initDb(){
+    db.init.create_tables([], function(err, results){
+      if (err){
+        console.error(err);
+      }
+      console.log(results)
+    })
+}
+initDb();
 
 //AUTHENTICATION
  //Set up Passport

@@ -70,19 +70,12 @@ class App extends Component {
     return (
       <div>
         <Menu className='navbar' color='grey' inverted borderless icon secondary>
-          <Menu.Item
-            name='logo'
+          <div
+            className='logo'
             onClick={()=>browserHistory.push(this.state.links.dashboard)}
           >
-            <Image src={Logo} size="mini"/>
-          </Menu.Item>
-          <Menu.Item
-            position="left"
-            name='devFinder'
-            onClick={()=>browserHistory.push(this.state.links.dashboard)}
-          >
-            Dev Finder
-          </Menu.Item>
+          </div>
+          
           <Menu.Item
             position="right"
             name='search'
