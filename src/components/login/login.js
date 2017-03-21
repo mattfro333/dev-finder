@@ -61,14 +61,22 @@ class Login extends Component {
                 <Input className="loginMove"  type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
                 <Button className="loginMove"  content='Login' color="teal" onClick={() => this.login()}/>
             </div>
+<<<<<<< HEAD
             <footer className="logfooter">
                 <div className='footerContainer'>
                 <footer className="logfooter">
                 <Segment inverted className="logfooter">
+=======
+                <div className='footerContainer'>
+                <footer className="logfooter">
+                <Segment inverted className="logfooter">
+
+>>>>>>> master
 
                   <Divider  color="orange" horizontal inverted className='dottitle' >.</Divider>
 
                 </Segment>
+<<<<<<< HEAD
                </footer>
                 <Header textAlign='center'>
                     <Image className="loginvert" src={Logo} size='tiny'/>
@@ -78,6 +86,14 @@ class Login extends Component {
 
 
                     <Image className="loginvert" src={Logo} size='tiny'/>
+=======
+                </footer>
+
+
+                    <Image className="loginvert" src={Logo} size='tiny'/>
+
+                  </div>
+>>>>>>> master
 
      </div>
 
