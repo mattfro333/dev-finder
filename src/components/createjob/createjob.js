@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
 import axios from 'axios'
-import {Input, Button, Form, Radio, Checkbox} from 'semantic-ui-react'
+import {Input, Button, Form, Radio, Checkbox, Dropdown} from 'semantic-ui-react'
 import './createjob.css';
 
 class CreateJob extends Component{
@@ -17,7 +17,7 @@ class CreateJob extends Component{
     CreateJob = ()=>{
       var currentDate = new Date()
       console.log(currentDate);
-      return axios.post('/api/createjob', {jobtitle: this.jobtitle, jobdesc: this.jobdesc, location: this.location, time: currentDate})
+      return axios.post('/api/createjob', {jobtitle: this.jobtitle, jobdesc: this.jobdesc, location: this.location, time: currentDate, skills: this.jobSkills})
     }
 
   render(){
@@ -29,6 +29,10 @@ class CreateJob extends Component{
           <Input placeholder='Job Title' onChange={(e)=>this.jobtitle = e.target.value} />
           <Input placeholder='Job Desc' onChange={(e)=>this.jobdesc = e.target.value}/>
           <Input placeholder='Location' onChange={(e)=>this.location = e.target.value}/>
+          <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+            this.jobSkills = {skills: d.value}
+            console.log(this.jobSkills);
+          }}/>
           <Button content='Create Job' onClick={()=>this.CreateJob()}/>
           <Button content='Go To Dashboard' onClick={()=>browserHistory.push
             (`/profile/company/dashboard/${this.state.user.user_id}`)}/>

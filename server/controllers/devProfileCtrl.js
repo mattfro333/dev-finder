@@ -9,13 +9,11 @@ module.exports = {
                 console.log('get profile err: ', err);
                 return res.status(500).send(err);
             }
-            console.log(results);
             db.devProfile.get_education([req.params.id], function(err, results_education) {
                 if (err) {
                     console.log('get education err: ', err);
                     return res.status(500).send(err);
                 }
-                console.log(results_education);
                 db.devProfile.get_jobs([req.params.id], function(err, results_jobs) {
                     if (err) {
                         console.log('get job err: ', err);
@@ -26,7 +24,6 @@ module.exports = {
                             console.log('get job err: ', err);
                             return res.status(500).send(err);
                         }
-                    console.log(results_jobs);
                     res.status(200).send([results, results_education, results_jobs, results_portfolios])
                 })
             })
