@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Input, Button} from 'semantic-ui-react'
+import {Input, Button, Dropdown} from 'semantic-ui-react'
 import FineUploaderS3 from 'fine-uploader-wrappers/s3'
 import Gallery from 'react-fine-uploader'
 import config from './../../../../server/config'
@@ -44,10 +44,11 @@ constructor(){
 }
 CreateUser = ()=>{
   console.log('clicked');
-  return axios.post('/api/createdev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter})
+  return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter, skills: this.devSkills})
 }
 componentWillMount(){
   this.getUserId().then((r) => this.setState({user: r.data}))
+  console.log(this.props.skills.skills)
 }
 getUserId = ()=>{
   return axios.get('/api/me')
@@ -74,6 +75,10 @@ getUserId = ()=>{
         <Input placeholder='Github' onChange={(e)=>this.devGithub = e.target.value} />
         <Input placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
         <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
+        <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+          this.devSkills = {skills: d.value}
+          console.log(this.devSkills);
+        }}/>
 </div>
 <div className="devEditInputs">
 

@@ -1,4 +1,4 @@
-function profile(state={profile:[[{}],[{}],[{}]]}, action){
+function profile(state={profile:[[{profilepic:undefined}],[{}],[{}]]}, action){
   switch (action.type){
     case 'ADD_PROFILE_INFO':
       console.log('called')

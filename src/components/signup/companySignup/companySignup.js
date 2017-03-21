@@ -43,7 +43,7 @@ class CompanySignUp extends Component{
     this.getUserId = this.getUserId.bind(this);
   }
   CreateCompany=()=>{
-    return axios.post('/api/createcomp', {
+    return axios.post('/api/updatecomp', {
       name: this.compName,
       description: this.compDescription,
       city: this.compCity,
