@@ -13,7 +13,7 @@ module.exports = {
   },
   update: function(req, res){
     var user_id=req.session.passport.user.user_id;
-    db.user.update_dev([req.body.firstname, req.body.lastname, req.body.email, req.body.city, req.body.state, req.body.desc, req.body.type, user_id, req.body.github, req.body.twitter], function(err, results){
+    db.user.update_dev([req.body.firstname, req.body.lastname, req.body.email, req.body.city, req.body.state, req.body.desc, req.body.type, user_id, req.body.github, req.body.twitter, req.body.skills], function(err, results){
       if (err){
         console.error(err);
         return res.send(err);

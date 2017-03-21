@@ -10,5 +10,14 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  put: (req, res)=>{
+    db.user.update_company([req.body.name, req.body.city, req.body.state, req.body.description, user_id], (err, results) =>{
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results)
+    })
   }
 }

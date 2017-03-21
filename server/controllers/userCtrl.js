@@ -16,26 +16,31 @@ module.exports = {
 
 	// REGISTER USER //
 	register: function(req, res, next) {
-		var user = req.body;
-
-
+		let userID
 		// Hash the users password for security
-		user.password = hashPassword(user.password);
+		req.body.password = hashPassword(req.body.password);
 
-		user.username = user.username.toLowerCase();
-		db.user.insert([user.username, user.password, user.company], function(err, user) {
+		req.body.username = req.body.username.toLowerCase();
+		db.user.insert([req.body.username, req.body.password, req.body.company], function(err, user) {
 			// If err, send err
 			if (err) {
 				console.log('Registration error: ', err);
 
-				return res.status(500)
-					.send(err);
+				return res.status(500).send(err);
 			}
-
-			delete user.password;
-
-			res.status(200)
-				.send(user);
+			else{
+				delete user.password;
+				userID = user[0].user_id
+				if(req.body.company === true){
+					db.user.create_company([userID],(err, user)=>{
+						res.status(200).send(user)
+					})
+				}else{
+					db.user.create_dev([userID], (err, user)=>{
+						res.status(200).send(user)
+					})
+				}
+			}
 		});
 	},
 

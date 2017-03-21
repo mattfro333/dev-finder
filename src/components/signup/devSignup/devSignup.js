@@ -44,7 +44,7 @@ constructor(){
 }
 CreateUser = ()=>{
   console.log('clicked');
-  return axios.post('/api/createdev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter, skills: this.devSkills})
+  return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter, skills: this.devSkills})
 }
 componentWillMount(){
   this.getUserId().then((r) => this.setState({user: r.data}))
@@ -76,7 +76,7 @@ getUserId = ()=>{
         <Input placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
         <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
         <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
-          this.devSkills = d.value
+          this.devSkills = {skills: d.value}
           console.log(this.devSkills);
         }}/>
 </div>

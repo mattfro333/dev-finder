@@ -10,6 +10,13 @@ class Login extends Component {
         super()
         this.state = {}
         this.login = this.login.bind(this)
+        this.getSkills = this.getSkills.bind(this)
+    }
+    getSkills = ()=>{
+      return axios.get('/api/skills').then((r)=>{
+         let skills = r.data
+         this.props.addSkills(skills)
+      })
     }
     login = () => {
         return axios.post('/api/login', {
@@ -58,21 +65,17 @@ class Login extends Component {
                 <div className='footerContainer'>
                 <footer className="logfooter">
                 <Segment inverted className="logfooter">
-
-
                   <Divider  color="orange" horizontal inverted className='dottitle' >.</Divider>
-
                 </Segment>
                 </footer>
-
-
                     <Image className="loginvert" src={Logo} size='tiny'/>
-
                   </div>
-
      </div>
 
         )
+    }
+    componentDidMount(){
+      this.getSkills()
     }
 }
 

@@ -156,6 +156,7 @@ app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);
 app.put('/api/updatepic', devSignup.updatepic);
 app.post('/api/createcomp', compSignup.post);
+app.put('/api/updatecomp', compSignup.put);
 
 //job endpoints
 app.get('/api/jobs/:jobName', jobCtrl.get);
