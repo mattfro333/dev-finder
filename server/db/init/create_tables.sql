@@ -10,7 +10,7 @@ id SERIAL PRIMARY KEY,
 company_id INTEGER,
 rating INTEGER,
 user_id INTEGER,
-review TEXT 
+review TEXT
 );
 
 CREATE TABLE IF NOT EXISTS companys(
