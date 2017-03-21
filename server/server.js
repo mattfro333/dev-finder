@@ -145,6 +145,7 @@ app.post('/api/addPortfolio', devSignup.addPortfolio);
 app.post('/api/addEducation', devSignup.addEducation);
 app.post('/api/addExperience', devSignup.addExperience);
 app.post('/api/deletePortfolio', devSignup.deletePortfolio);
+app.post('/api/deleteExperience', devSignup.deleteExperience);
 
 //devDashboard endpoints
 app.get('/api/newjobs', devDashCtrl.newjobs);

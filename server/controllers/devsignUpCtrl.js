@@ -62,8 +62,17 @@ module.exports = {
     })
   },
   deletePortfolio: function(req, res){
-    console.log(req.body.id);
     db.user.delete_portfolio([req.body.id], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
+  },
+  deleteExperience: function(req, res){
+    console.log(req.body.id);
+    db.user.delete_experience([req.body.id], function(err, results){
       if (err){
         console.error(err);
         return res.send(err);
