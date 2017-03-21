@@ -21,7 +21,7 @@ this.getApplicants = this.getApplicants.bind(this)
 
            {this.state.applicants.map((a,i)=>{
              return(
-               <div clasName = 'white card'>{a.firstname}{a.lastname}</div>
+               <div className = 'white card'>{a.firstname}{a.lastname}</div>
              )}
            )};
         </div>
