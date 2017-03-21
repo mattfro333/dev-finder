@@ -12,6 +12,7 @@ class Landing extends Component{
 
 
   render(){
+
     return(
     <div>
      <div className= 'land-nav'>
@@ -30,7 +31,8 @@ class Landing extends Component{
           </div>
         </div>
       </div>
-      </div>
+
+     </div>
   
     )
   }

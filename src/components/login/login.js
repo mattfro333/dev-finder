@@ -68,7 +68,7 @@ class Login extends Component {
                 color="teal" 
                 onClick={() => this.login()}/>
                 </div>
-                </div>
+               </div>
             </div>
         )
     }
