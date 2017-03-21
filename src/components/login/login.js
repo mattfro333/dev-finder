@@ -53,10 +53,6 @@ class Login extends Component {
     }
     render() {
         return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> master
             <div className= 'login-page landing-page'>
                 <div className='black-shadow center-login'>
                 <div className = 'logIn white'>

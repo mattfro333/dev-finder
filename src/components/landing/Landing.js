@@ -12,10 +12,6 @@ class Landing extends Component{
 
 
   render(){
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     return(
     <div>
      <div className= 'land-nav'>
@@ -28,7 +24,7 @@ class Landing extends Component{
       <div className= 'landing-page'>
         <div className= 'black-shadow'>
           <div className = 'landing-text'>
-                <h1>{'{'}<span className='blue'>employment</span>=<span className='orange'>true</span>}</h1>
+                <h1>{'{'}<span className='blue'>employed</span>=<span className='orange'>true</span>}</h1>
         <h2>By Developers. For Developers.</h2>
         <h3>Sign up today to find your next employment opportunity.</h3>
           </div>
