@@ -35,7 +35,7 @@ class jobDetails extends Component{
                   <h1 className='companyName'>{this.state.job.name}</h1>
               <h2 className='jobtitle'>{this.state.job.job_title}</h2>
         <h3>
-          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3> 
+          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3>
            <Button
            onClick={()=>this.applyJob(this.state.job.id)}>
            Apply
@@ -49,12 +49,16 @@ class jobDetails extends Component{
                </Button>
            <br/>
            <h4> This job was listed on {this.state.job.timestamped}</h4>
+           {this.state.job.skills? this.state.job.skills.skills.map((s,i)=>{
+
+             return(<div>{s}</div>)
+           }) :''}
               </div>
-            
-              
+
+
             </div>
           </div>
-      
+
       <div className = ' jobBox white'>
 <h1 className = 'center'>
   Job Description
@@ -62,7 +66,7 @@ class jobDetails extends Component{
 
         <h4>{this.state.job.job_description}</h4>
       </div>
-          
+
           </div>
     )
   }
