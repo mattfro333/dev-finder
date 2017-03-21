@@ -39,6 +39,8 @@ app.use(session({
 	resave: false
 }));
 
+
+
 //Set up Database
 const massiveInstance = massive.connectSync({
   connectionString: config.massiveUri
@@ -46,7 +48,16 @@ const massiveInstance = massive.connectSync({
 app.set('db', massiveInstance);
 var db = app.get('db')
 
-
+//Initialize the Tables for the Database
+function initDb(){
+    db.init.create_tables([], function(err, results){
+      if (err){
+        console.error(err);
+      }
+      console.log(results)
+    })
+}
+initDb();
 
 //AUTHENTICATION
  //Set up Passport
@@ -84,7 +95,7 @@ app.post("/s3handler", function(req, res) {
         signRequest(req, res);
     }
 });
-  
+
 const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
@@ -102,13 +113,13 @@ const skillsCtrl = require('./controllers/skillsCtrl')
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
 	successRedirect: '/api/me'
 }));
-  
+
 app.get('/api/test', (req, res) => {
 	console.log('working')
 	res.status(200).send('test')
 })
 
- 
+
 app.get('/api/me', isAuthed, userCtrl.me)
 
 //watchlist endpoints
@@ -130,16 +141,16 @@ app.get('/api/applicants', applicants.get);
 
 //devProfile endpoints
 app.get('/api/devProfile/:id', devProfileCtrl.get);
-// app.post('/api/addPortfolio', devSignup.addPortfolio);
-// app.post('/api/addEducation', devSignup.addEducation);
-// app.post('/api/addExperience', devSignup.addExperience);
+app.post('/api/addPortfolio', devSignup.addPortfolio);
+app.post('/api/addEducation', devSignup.addEducation);
+app.post('/api/addExperience', devSignup.addExperience);
 
 //devDashboard endpoints
 app.get('/api/newjobs', devDashCtrl.newjobs);
-  
+
 //CopmanyProfile Endooints
 app.get('/api/companyProfile/:id', companyProfileCtrl.get);
-   
+
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);

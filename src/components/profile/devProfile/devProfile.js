@@ -49,14 +49,20 @@ class DevProfile extends Component{
     this.EditUser = this.EditUser.bind(this);
     this.getUserId = this.getUserId.bind(this);
     this.changePhoto = this.changePhoto.bind(this);
-    //this.addPortfolio = this.addPortfolio.bind(this);
+    this.addPortfolio = this.addPortfolio.bind(this);
+    this.addEducation = this.addEducation.bind(this);
   }
 
   EditUser = ()=>{
-    var self = this
+    var self = this;
     return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter}).then(function(response) {
+      getprofile(self.props.params.userid).then(dev => {
+        self.setState({
+          dev: dev
 
-  })
+        })
+      })
+    })
 }
 changePhoto = ()=>{
   console.log('clicked')
@@ -65,36 +71,39 @@ changePhoto = ()=>{
     this.close()
   })
 }
-// addPortfolio = ()=>{
-//   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
-//     this.getprofile(this.props.params.userid).then(dev => {
-//       this.setState({
-//         dev: dev
-//
-//       })
-//   })
-// })
-// }
-// addPortfolio = ()=>{
-//   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
-//     this.getprofile(this.props.params.userid).then(dev => {
-//       this.setState({
-//         dev: dev
-//
-//       })
-//   })
-// })
-// }
-// addPortfolio = ()=>{
-//   return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
-//     this.getprofile(this.props.params.userid).then(dev => {
-//       this.setState({
-//         dev: dev
-//
-//       })
-//   })
-// })
-// }
+addPortfolio = ()=>{
+  var self = this;
+  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
+    getprofile(self.props.params.userid).then(dev => {
+      self.setState({
+        dev: dev
+
+      })
+  })
+})
+}
+addEducation = ()=>{
+  var self = this;
+  return axios.post('/api/addEducation', {school: this.eduCompany, description: this.eduDesc, start_month: this.eduSMonth, start_year: this.eduSYear, end_month: this.eduEMonth, end_year: this.eduEYear}).then(function(response) {
+    getprofile(self.props.params.userid).then(dev => {
+      self.setState({
+        dev: dev
+
+      })
+  })
+})
+}
+addExperience = ()=>{
+  var self = this;
+  return axios.post('/api/addExperience', {company: this.jobCompany, title: this.jobTitle, description: this.jobDesc, start_month: this.jobSMonth, start_year: this.jobSYear, end_month: this.jobEMonth, end_year: this.jobEYear}).then(function(response) {
+    getprofile(self.props.params.userid).then(dev => {
+      self.setState({
+        dev: dev
+
+      })
+  })
+})
+}
 
   componentWillMount(){
     this.getUserId().then((r) => this.setState({user: r.data}))
@@ -111,6 +120,7 @@ changePhoto = ()=>{
   return (
 
     <div>
+    <Button className='DeleteButton' content='X' />
       <h1>{job.title}</h1>
       {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
     <h2>{job.description}</h2>
@@ -122,6 +132,7 @@ var education=this.state.dev[1].map(function(school){
   return (
 
     <div>
+    <Button className='DeleteButton' content='X' />
       <h1>{school.title}</h1>
       {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
     <h2>{school.description}</h2>
@@ -133,6 +144,7 @@ var portfolio=this.state.dev[3].map(function(piece){
   return (
 
     <div>
+    <Button className='DeleteButton' content='X' />
       <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
       <img className='portfolioPic'src={piece.img_url}/>
     <h2>{piece.desc}</h2>
@@ -194,7 +206,7 @@ var portfolio=this.state.dev[3].map(function(piece){
           <Input placeholder='Start Year' onChange={(e)=>this.eduSYear = e.target.value} />
           <Input placeholder='End Month' onChange={(e)=>this.eduEMonth = e.target.value} />
           <Input placeholder='End Year' onChange={(e)=>this.eduEYear = e.target.value} />
-          <Button className='signupButton' content='Add Education'/>
+          <Button className='signupButton' content='Add Education' onClick={()=>this.addEducation()}/>
           <hr/>
            <h1 className='center'>Work Experience</h1>
           <div className='workSection'>
@@ -208,7 +220,7 @@ var portfolio=this.state.dev[3].map(function(piece){
           <Input placeholder='Start Year' onChange={(e)=>this.jobSYear = e.target.value} />
           <Input placeholder='End Month' onChange={(e)=>this.jobEMonth = e.target.value} />
           <Input placeholder='End Year' onChange={(e)=>this.jobEYear = e.target.value} />
-          <Button className='signupButton' content='Add Job Experience' />
+          <Button className='signupButton' content='Add Job Experience' onClick={()=>this.addExperience()}/>
           <hr/>
         </div>
         </div>

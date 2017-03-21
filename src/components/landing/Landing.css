@@ -1,49 +1,47 @@
-.landingbody {
-
-  background-image: url("http://jpda.net/sites/default/files/LR_office_wLines.jpg");
+.landing-page{
+  background-image: url('../../land-background.jpg');
   background-size:cover;
-  background-position: center;
-
+  background-position:center;
+  width: 100vw;
+  height: calc(100vh - 70px);
 }
- #landtitle {
-   color:white !important;
-   font-size: 2em
- }
-p {
-
-    text-indent: 1vw;
-
-}
- #landsignbutton {
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 70px
-
- }
- #landlogbutton {
-
- }
-
- .landingbuttoncontainer{
-   top:-2vh!important;
-   width: 50% !important;
-   display: flex !important;
-   justify-content: space-around !important
-
- }
-
-
- .blurb {
-   position: relative;
-   height: 100%;
-   background-color: white;
-   margin: 0 25vw;
-   border-radius: 5px
-
- }
- @media only screen and (max-width: 800px) {
-   .or {
-     visibility: hidden
-   }
- }
+.black-shadow{
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4)
+  }
+  .land-nav{
+    height: 70px;
+    width: 100%;
+    background-color:#444;
+    padding: 0 10vw;
+  }
+  .logo{
+    background-image: url('../../eistrue.png');
+    background-size: cover;
+    background-position:center;
+    height:50px;
+    width:200px;
+    float:left;
+    margin-top: 10px;
+  }
+  .landing-buttons{
+    float:right;
+    margin-top:20px;
+  }
+  .landing-text{
+    color:white;
+    text-align:center;
+    padding-top:15%;
+  }
+  .landing-text h1{
+    font-size:30px;
+      font-family:Courier, monospace
+  }
+  .orange{
+    color:#c66525
+  }
+  .blue{
+    color:#00b5ad;
+  }
+  
