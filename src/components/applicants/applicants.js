@@ -18,6 +18,12 @@ this.getApplicants = this.getApplicants.bind(this)
     return(
         <div className = 'applicants-page'>
            <h1>Your applicants:</h1>
+
+           {this.state.applicants.map((a,i)=>{
+             return(
+               <div clasName = 'white card'>{a.firstname}{a.lastname}</div>
+             )}
+           )};
         </div>
     )
  };
@@ -25,4 +31,4 @@ this.getApplicants = this.getApplicants.bind(this)
      this.getApplicants().then(r=>console.log(r))
  }
 }
-export default Applicants  
+export default Applicants   
