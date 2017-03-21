@@ -67,8 +67,7 @@ job_id INTEGER
 CREATE TABLE IF NOT EXISTS job_skills(
 id SERIAL PRIMARY KEY,
 job_id INTEGER,
-skill_id INTEGER,
-
+skill_id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS jobs(
