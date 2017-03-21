@@ -40,5 +40,25 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  addEducation: function(req, res){
+    var user_id=req.session.passport.user.user_id;
+    db.user.create_education([user_id, req.body.school, req.body.description, req.body.start_month, req.body.start_year, req.body.end_month, req.body.end_year], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
+  },
+  addExperience: function(req, res){
+    var user_id=req.session.passport.user.user_id;
+    db.user.create_experience([user_id, req.body.company, req.body.title, req.body.description, req.body.start_month, req.body.start_year, req.body.end_month, req.body.end_year], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }
