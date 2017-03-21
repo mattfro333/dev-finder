@@ -3,12 +3,14 @@ var db = app.get('db');
 
 module.exports = {
   getSkills: (req, res) => {
+
     db.skills.GET_SKILLS((err, skills)=>{
       if (err){
         console.error(err);
         return res.send(err);
       }
-      res.send(200).send(skills)
+      console.log('skills grabbed');
+      res.send(skills)
     })
   }
 }

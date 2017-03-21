@@ -6,7 +6,8 @@ import App from './App';
 function mapStatetoProps(state){
   return {
     user: state.user,
-    profile: state.profile
+    profile: state.profile,
+    skills: state.skills
   }
 }
 

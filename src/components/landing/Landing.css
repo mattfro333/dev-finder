@@ -33,6 +33,7 @@ padding: 70px
 
  }
 
+
  .blurb {
    position: relative;
    height: 100%;
@@ -46,3 +47,6 @@ padding: 70px
      visibility: hidden
    }
  }
+.ui.large.image {
+  width: 100px;
+}

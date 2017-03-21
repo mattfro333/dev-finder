@@ -23,7 +23,6 @@ module.exports = {
 		user.password = hashPassword(user.password);
 
 		user.username = user.username.toLowerCase();
-		console.log('creating user', user)
 		db.user.insert([user.username, user.password, user.company], function(err, user) {
 			// If err, send err
 			if (err) {

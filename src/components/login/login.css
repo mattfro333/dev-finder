@@ -1,6 +1,7 @@
 .logTitle {
   position:relative;
-  top:15vh;
+  top:20vh;
+  z-index: 1;
   text-align: center;
 
 }
@@ -16,8 +17,8 @@
 }
 
 .logfooter {
-  position: fixed;
-  bottom: 0px;
+  top:0px !important;
+  position: relative;
   border-radius: 0px !important
 
 
@@ -29,24 +30,32 @@
 }
 
   .loginvert{
-    left:.4vw;
-    top: 47vh;
+
+    left:0px;
+    bottom: 0px;
     filter: invert(100%);
 
+  }
+.footerContainer {
+  position: absolute;
+  bottom: 0px;
+}
+.ui.image {
+  position: inherit;
+}
+.ui.tiny.image {
+  margin: auto !important;
+  position: absolute;
+  right: 0%;
+}
 
+
+  .logContainer {
+    left: 40vw;
+    height: 40vh;
+    width: 20vw;
+    background-color: white;
+    border-radius: 5px;
+    padding-bottom: 9vh;
+    z-index: -1
   }
-  /*.happy1 {
-    position:fixed;
-    float:right;
-    right: 8vw;
-    top: 35vh;
-    border-radius: 10em;
-  }
-  .happy2 {
-    position:fixed;
-    float:left;
-    left: 8vw;
-    top: 10vh;
-    border-radius: 10em;
-    transform: scale(-1, 1);
-  }*/

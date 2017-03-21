@@ -1,3 +1,10 @@
+.signTitle {
+  position:relative;
+  top:15vh;
+  z-index: 1;
+  text-align: center;
+
+}
 .signfooter {
   position: fixed;
   bottom: 0px;
@@ -11,8 +18,9 @@
 
   .signinvert{
     position:absolute;
+    bottom:0px;
     left:.3vw;
-    top: 54.6vh;
+    top: 48.6vh;
     filter: invert(100%);
 
   }

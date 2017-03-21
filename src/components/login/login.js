@@ -10,6 +10,13 @@ class Login extends Component {
         super()
         this.state = {}
         this.login = this.login.bind(this)
+        this.getSkills = this.getSkills.bind(this)
+    }
+    getSkills = ()=>{
+      return axios.get('/api/skills').then((r)=>{
+         let skills = r.data
+         this.props.addSkills(skills)
+      })
     }
     login = () => {
         return axios.post('/api/login', {
@@ -48,27 +55,38 @@ class Login extends Component {
         return (
 
             <div>
-                <h1 className="logTitle">Login</h1>
-                <div className="white" className="loginMove">
+            <div className="loginMove"> // logTitle (Matt Class)
+                <h1 className="loginMove">Login</h1>
                 <Input className="loginMove" placeholder='Username' onChange={(e) => this.usernameInput = e.target.value}/>
                 <Input className="loginMove"  type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
                 <Button className="loginMove"  content='Login' color="teal" onClick={() => this.login()}/>
-</div>
-   <footer className="logfooter">
+            </div>
+            <footer className="logfooter">
+                <div className='footerContainer'>
+                <footer className="logfooter">
+                <Segment inverted className="logfooter">
 
-            <Segment inverted className="logfooter">
-                  <inverted />
                   <Divider  color="orange" horizontal inverted className='dottitle' >.</Divider>
+
                 </Segment>
-                </footer>
+               </footer>
                 <Header textAlign='center'>
                     <Image className="loginvert" src={Logo} size='tiny'/>
-                  </Header>
+                </Header>
+              </div>
+                </footer>
+
+
+                    <Image className="loginvert" src={Logo} size='tiny'/>
 
      </div>
 
         )
     }
+    componentDidMount(){
+      this.getSkills()
+    }
+
 }
 
 export default Login
