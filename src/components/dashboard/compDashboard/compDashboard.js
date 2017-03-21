@@ -46,7 +46,7 @@ class CompDashboard extends Component {
             <a className="companyDashboardBottomPageLink">See All Listings</a>
           </div>
           <div className="companyDashboardNewApplicantsContainer">
-            <h2>New Applicaints</h2>
+            <h2>New Applicants</h2>
             <Divider />
             <Table celled striped >
               <Table.Header>
@@ -79,7 +79,7 @@ class CompDashboard extends Component {
                 })}
               </Table.Body>
             </Table>
-            <a className="companyDashboardBottomPageLink">See All Applications</a>
+            <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applications</a>
           </div>
         </div>
       </div>

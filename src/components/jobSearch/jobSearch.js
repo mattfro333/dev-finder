@@ -57,12 +57,12 @@ class JobSearch extends Component{
                    >{j.job_title}</h1> 
                  <h2>{j.name}</h2>
                  <p>{j.location}</p>
-                 <Button
+                 <Button color='teal'
                   onClick={()=>this.applyJob(j.id)}
                   >Apply</Button>
                    <Button
                   onClick={()=>this.watchJob(j.id)}
-                  >Save</Button>
+                  >Pin</Button>
                   <hr/>
              </div>
           

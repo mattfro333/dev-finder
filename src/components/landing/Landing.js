@@ -12,7 +12,8 @@ class Landing extends Component{
 
 
   render(){
-    return(<div>
+    return(
+    <div>
      <div className= 'land-nav'>
        <div className='logo'></div>
        <div className = 'landing-buttons'>
@@ -27,11 +28,10 @@ class Landing extends Component{
         <h2>By Developers. For Developers.</h2>
         <h3>Sign up today to find your next employment opportunity.</h3>
           </div>
-    
-
         </div>
       </div>
       </div>
+  
     )
   }
 }
