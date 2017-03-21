@@ -12,6 +12,10 @@ class Landing extends Component{
 
 
   render(){
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     return(
     <div>
      <div className= 'land-nav'>

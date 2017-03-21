@@ -36,8 +36,8 @@ const uploader = new FineUploaderS3({
 
 class DevProfile extends Component{
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       dev: [[{}],[{}],[{}],[{}]],
@@ -51,6 +51,8 @@ class DevProfile extends Component{
     this.changePhoto = this.changePhoto.bind(this);
     this.addPortfolio = this.addPortfolio.bind(this);
     this.addEducation = this.addEducation.bind(this);
+    this.deletePortfolio = this.deletePortfolio.bind(this);
+    this.deleteExperience = this.deleteExperience.bind(this);
   }
 
   EditUser = ()=>{
@@ -104,6 +106,29 @@ addExperience = ()=>{
   })
 })
 }
+deletePortfolio = (id)=>{
+  var self = this;
+  return axios.post('/api/deletePortfolio', {id: id}).then(function(response) {
+    getprofile(self.props.params.userid).then(dev => {
+      self.setState({
+        dev: dev
+
+      })
+  })
+})
+}
+deleteExperience = (id)=>{
+  var self = this;
+  console.log(id);
+  return axios.post('/api/deleteExperience', {id: id}).then(function(response) {
+    getprofile(self.props.params.userid).then(dev => {
+      self.setState({
+        dev: dev
+
+      })
+  })
+})
+}
 
   componentWillMount(){
     this.getUserId().then((r) => this.setState({user: r.data}))
@@ -113,14 +138,14 @@ addExperience = ()=>{
   }
 
   render(){
-
+    var self = this;
     const { open, dimmer } = this.state
 
-    var workex=this.state.dev[2].map(function(job){
+    var workex=this.state.dev[2].map(function(job, i){
   return (
 
-    <div>
-    <Button className='DeleteButton' content='X' />
+    <div key={i}>
+    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
       <h1>{job.title}</h1>
       {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
     <h2>{job.description}</h2>
@@ -128,11 +153,11 @@ addExperience = ()=>{
 
   );
 })
-var education=this.state.dev[1].map(function(school){
+var education=this.state.dev[1].map(function(school, i){
   return (
 
-    <div>
-    <Button className='DeleteButton' content='X' />
+    <div key={i}>
+    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
       <h1>{school.title}</h1>
       {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
     <h2>{school.description}</h2>
@@ -140,11 +165,11 @@ var education=this.state.dev[1].map(function(school){
 
   );
 })
-var portfolio=this.state.dev[3].map(function(piece){
-  return (
+var portfolio=this.state.dev[3].map(function(piece, i){
 
-    <div>
-    <Button className='DeleteButton' content='X' />
+  return (
+    <div key={i}>
+    <Button className='DeleteButton' content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
       <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
       <img className='portfolioPic'src={piece.img_url}/>
     <h2>{piece.desc}</h2>

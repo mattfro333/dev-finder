@@ -10,6 +10,13 @@ class Login extends Component {
         super()
         this.state = {}
         this.login = this.login.bind(this)
+        this.getSkills = this.getSkills.bind(this)
+    }
+    getSkills = ()=>{
+      return axios.get('/api/skills').then((r)=>{
+         let skills = r.data
+         this.props.addSkills(skills)
+      })
     }
     login = () => {
         return axios.post('/api/login', {
@@ -47,6 +54,9 @@ class Login extends Component {
     render() {
         return (
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
             <div className= 'login-page landing-page'>
                 <div className='black-shadow center-login'>
                 <div className = 'logIn white'>
@@ -69,9 +79,12 @@ class Login extends Component {
                 color="teal" 
                 onClick={() => this.login()}/>
                 </div>
-                </div>
+               </div>
             </div>
         )
+    }
+    componentDidMount(){
+      this.getSkills()
     }
 }
 
