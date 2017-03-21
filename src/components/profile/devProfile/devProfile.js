@@ -52,6 +52,7 @@ class DevProfile extends Component{
     this.addPortfolio = this.addPortfolio.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.deletePortfolio = this.deletePortfolio.bind(this);
+    this.deleteExperience = this.deleteExperience.bind(this);
   }
 
   EditUser = ()=>{
@@ -116,7 +117,18 @@ deletePortfolio = (id)=>{
   })
 })
 }
+deleteExperience = (id)=>{
+  var self = this;
+  console.log(id);
+  return axios.post('/api/deleteExperience', {id: id}).then(function(response) {
+    getprofile(self.props.params.userid).then(dev => {
+      self.setState({
+        dev: dev
 
+      })
+  })
+})
+}
 
   componentWillMount(){
     this.getUserId().then((r) => this.setState({user: r.data}))
@@ -132,8 +144,8 @@ deletePortfolio = (id)=>{
     var workex=this.state.dev[2].map(function(job, i){
   return (
 
-    <div>
-    <Button className='DeleteButton' content='X' />
+    <div key={i}>
+    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
       <h1>{job.title}</h1>
       {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
     <h2>{job.description}</h2>
@@ -144,8 +156,8 @@ deletePortfolio = (id)=>{
 var education=this.state.dev[1].map(function(school, i){
   return (
 
-    <div>
-    <Button className='DeleteButton' content='X' />
+    <div key={i}>
+    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
       <h1>{school.title}</h1>
       {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
     <h2>{school.description}</h2>
