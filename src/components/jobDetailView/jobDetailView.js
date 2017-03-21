@@ -12,10 +12,13 @@ class jobDetails extends Component{
 
 
     this.state = {
-      job: [{}]
+      job: [{}],
+      user: ""
+
     }
     this.applyJob=this.applyJob.bind(this)
     this.watchJob=this.watchJob.bind(this)
+    this.getUserId=this.getUserId.bind(this)
   }
  applyJob = function(jobId){
     return axios.post('/api/application/'+jobId)
@@ -24,8 +27,18 @@ class jobDetails extends Component{
   watchJob = function(jobId){
     return axios.post('/api/flagAJob/'+jobId)
   }
+  getUserId = ()=>{
+    var self = this;
+    return axios.get('/api/me').then(response => {
+      console.log(this.state.job.user_id);
+        self.setState({
+          user: response.data.user_id
+        })
+    })
+  }
+  
   render(){
-
+    var self = this;
     return (
       <div className =''>
           <div className=' jobBox topJobContainer white'>
@@ -35,7 +48,7 @@ class jobDetails extends Component{
                   <h1 className='companyName'>{this.state.job.name}</h1>
               <h2 className='jobtitle'>{this.state.job.job_title}</h2>
         <h3>
-          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3> 
+          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3>
            <Button
            onClick={()=>this.applyJob(this.state.job.id)}>
            Apply
@@ -44,17 +57,17 @@ class jobDetails extends Component{
              onClick={()=>this.watchJob(this.state.job.id)}>
              Save
              </Button>
-             <Button>
+             <Button onClick={()=>self.getUserId()}>
                Message
                </Button>
            <br/>
            <h4> This job was listed on {this.state.job.timestamped}</h4>
               </div>
-            
-              
+
+
             </div>
           </div>
-      
+
       <div className = ' jobBox white'>
 <h1 className = 'center'>
   Job Description
@@ -62,7 +75,7 @@ class jobDetails extends Component{
 
         <h4>{this.state.job.job_description}</h4>
       </div>
-          
+
           </div>
     )
   }
