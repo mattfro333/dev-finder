@@ -4,6 +4,7 @@
   background-position:center;
   width: 100vw;
   height: calc(100vh - 70px);
+
 }
 .black-shadow{
   width: 100vw;
@@ -36,7 +37,7 @@
     padding-top:15%;
   }
   .landing-text h1{
-    font-size:30px;
+    font-size:45px;
       font-family:Courier, monospace
   }
   .orange{
