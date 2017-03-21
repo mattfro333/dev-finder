@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import { getprofile } from '../../../services/devProfile';
-import {Menu, Input, Button, Popup, Header, Image, Modal} from 'semantic-ui-react';
+import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown} from 'semantic-ui-react';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
 import config from './../../../../server/config'
@@ -57,7 +57,7 @@ class DevProfile extends Component{
 
   EditUser = ()=>{
     var self = this;
-    return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter}).then(function(response) {
+    return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter, skills: this.devSkills}).then(function(response) {
       getprofile(self.props.params.userid).then(dev => {
         self.setState({
           dev: dev
@@ -75,7 +75,7 @@ changePhoto = ()=>{
 }
 addPortfolio = ()=>{
   var self = this;
-  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
+  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink, skills: this.portfolioSkills}).then(function(response) {
     getprofile(self.props.params.userid).then(dev => {
       self.setState({
         dev: dev
@@ -173,6 +173,10 @@ var portfolio=this.state.dev[3].map(function(piece, i){
       <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
       <img className='portfolioPic'src={piece.img_url}/>
     <h2>{piece.desc}</h2>
+    {piece.skills? piece.skills.skills.map((s,i)=>{
+      return(<div>{s}</div>)
+    }) :''}
+
     </div>
 
   );
@@ -200,6 +204,13 @@ var portfolio=this.state.dev[3].map(function(piece, i){
           <Input placeholder='Github' onChange={(e)=>this.devGithub = e.target.value} />
           <div className=''><a href={this.state.dev[0][0].twitter}>Twitter</a></div>
           <Input placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
+          <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+            this.devSkills = {skills: d.value}
+            console.log(this.devSkills);
+          }}/>
+          {this.state.dev[0][0].skills? this.state.dev[0][0].skills.skills.map((s,i)=>{
+            return(<div>{s}</div>)
+          }) :''}
           <Button className='signupButton' content='Update' onClick={()=>this.EditUser()}/>
           <div className='technologies'>
             <ul>
@@ -217,6 +228,10 @@ var portfolio=this.state.dev[3].map(function(piece, i){
             <Input placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
             <Input placeholder='Image Url' onChange={(e)=>this.portImg = e.target.value} />
             <Input placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
+            <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+              this.portfolioSkills = {skills: d.value}
+              console.log(this.portfolioSkills);
+            }}/>
             <Button className='signupButton' content='Add Portfolio' onClick={()=>this.addPortfolio()}/>
           </div>
           <hr/>
