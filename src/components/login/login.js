@@ -10,6 +10,13 @@ class Login extends Component {
         super()
         this.state = {}
         this.login = this.login.bind(this)
+        this.getSkills = this.getSkills.bind(this)
+    }
+    getSkills = ()=>{
+      return axios.get('/api/skills').then((r)=>{
+         let skills = r.data
+         this.props.addSkills(skills)
+      })
     }
     login = () => {
         return axios.post('/api/login', {
@@ -47,33 +54,35 @@ class Login extends Component {
     render() {
         return (
 
-            <div>
+            <div className= 'login-page landing-page'>
+                <div className='black-shadow center-login'>
+                <div className = 'logIn white'>
+                    <h1>Log In</h1>
+                <Input
+                className='username-input'
+                placeholder='Username'
+                onChange={(e) => this.usernameInput = e.target.value}
+                />
+                <br/>
+                <Input
+                 className='password-input'
+                type='password'
+                placeholder='Password'
+                onChange={(e) => this.passwordInput = e.target.value}
+                />
+                <br/>
+                <Button className='login-button'
+                content='Log In'
+                color="teal"
+                onClick={() => this.login()}/>
+                </div>
+               </div>
 
-            <div className="loginMove">
-                <h1 className="loginMove">Login</h1>
-
-                <Input className="loginMove" placeholder='Username' onChange={(e) => this.usernameInput = e.target.value}/>
-                <Input className="loginMove"  type='password' placeholder='Password' onChange={(e) => this.passwordInput = e.target.value}/>
-                <Button className="loginMove"  content='Login' color="teal" onClick={() => this.login()}/>
             </div>
-                <div className='footerContainer'>
-                <footer className="logfooter">
-                <Segment inverted className="logfooter">
-
-
-                  <Divider  color="orange" horizontal inverted className='dottitle' >.</Divider>
-
-                </Segment>
-                </footer>
-
-
-                    <Image className="loginvert" src={Logo} size='tiny'/>
-
-                  </div>
-
-     </div>
-
         )
+    }
+    componentDidMount(){
+      this.getSkills()
     }
 }
 

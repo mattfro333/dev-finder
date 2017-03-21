@@ -19,19 +19,26 @@ constructor(){
   render(){ 
     return(
       <div className = 'watchlistPage'>
-      <h1>Dev Watchlist</h1>
+      <h1>Your Pinned Jobs:</h1>
     <div className = 'watchedJobs'>
       {this.state.watchlist.map((j,i)=>{
           return(
               <div className ='white watchlistBox'>
-                  <h1>{j.job_title}</h1>
-                  <h2>{j.name}</h2>
+                <div className =''>
+                  <h1 onClick={()=> browserHistory.push(`/jobdetails/${j.id}`)}>
+                    {j.job_title}
+                    </h1>
+                </div>
+                  <div className=''>
+                    <h2 onClick={()=> browserHistory.push(`/profile/company/${j.company_id}`)}>{j.name}
+                    </h2>
+                  </div>
                  <h3>{j.location}</h3>
                 
               </div>
           )
       })}
-      <div className = 'white watchlistBox'><h1>Find more Jobs</h1></div>
+      <div  onClick={()=> browserHistory.push('/search')}className = 'white watchlistBox'><h1>Find more Jobs</h1></div>
       </div>
       </div>
     )
