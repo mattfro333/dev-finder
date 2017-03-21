@@ -35,7 +35,7 @@ class DevDashboard extends Component {
       <div className="companyDashboardPage">
         <div className="companyDashboardContainer">
           <div className='devDashboardFlaggedJobsContainer'>
-            <h2>WatchList</h2>
+            <h2>Pinned Jobs</h2>
               {this.state.flagged.map((f, i) => {
                 return (
                   <Header as='h3'>
@@ -112,9 +112,10 @@ class DevDashboard extends Component {
                      })}
                    </Table.Body>
                  </Table>
-                     <a className="companyDashboardBottomPageLink">See all Applications</a>
-              <h2>Recent Messages</h2>
-              <a className="companyDashboardBottomPageLink">See all Messages</a>
+                     <a onClick={()=>browserHistory.push(`/applications`)}
+                       className="companyDashboardBottomPageLink">
+                       See all Applications
+                       </a>
           </div>
         </div>
       </div>
