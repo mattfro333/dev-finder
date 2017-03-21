@@ -140,7 +140,7 @@ deleteExperience = (id)=>{
   render(){
     var self = this;
     const { open, dimmer } = this.state
-
+    console.log(this.state.dev[0][0].skills)
     var workex=this.state.dev[2].map(function(job, i){
   return (
 
@@ -208,9 +208,17 @@ var portfolio=this.state.dev[3].map(function(piece, i){
             this.devSkills = {skills: d.value}
             console.log(this.devSkills);
           }}/>
-          {this.state.dev[0][0].skills? this.state.dev[0][0].skills.skills.map((s,i)=>{
-            return(<div>{s}</div>)
-          }) :''}
+          <div>{this.state.dev[0][0].skills? this.state.dev[0][0].skills.skills.map((s,i)=>{
+            let image
+            for(let i = 0; i < this.props.skills.skills.length; i++){
+              if(s === this.props.skills.skills[i].value){
+                image = this.props.skills.skills[i].icon_url
+                console.log('value',this.props.skills.skills[i].value)
+              }
+            }
+
+            return(<Image src={image} size='mini' />)
+          }) :''}</div>
           <Button className='signupButton' content='Update' onClick={()=>this.EditUser()}/>
           <div className='technologies'>
             <ul>
