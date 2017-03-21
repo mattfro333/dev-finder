@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Input, Button} from 'semantic-ui-react';
+import {Menu, Input, Button, Form, Radio} from 'semantic-ui-react';
 import './jobSearch.css';
 import axios from 'axios';
 
@@ -30,20 +30,52 @@ class JobSearch extends Component{
   watchJob = function(jobId){
     return axios.post('/api/flagAJob/'+jobId)
   }
-  render(){ 
+  render(){
     return(
      <div className='jobSearch'>
        <div className='left-pane white'>
         <h1>Refine your Search</h1>
+          <Form>
+            <Form.Field>
+              Selected value: <b>{this.state.value}</b>
+            </Form.Field>
+            <Form.Field>
+              <Radio
+                label="Developers"
+                name="radioGroup"
+                value='this'
+                checked={this.state.value === 'this'}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <Radio
+                label="Companys"
+                name='radioGroup'
+                value='that'
+                checked={this.state.value === 'that'}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <Radio
+                label="Jobs"
+                name='radioGroup'
+                value='other'
+                checked={this.state.value === 'other'}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+          </Form>
        </div>
        <div className='white right-pane'>
-         <Input 
+         <Input
           onChange={(e)=>this.myJob = e.target.value}
-         icon='search' 
-         placeholder='Search...' 
-         fluid   
-         />    
-         <Button 
+         icon='search'
+         placeholder='Search...'
+         fluid
+         />
+         <Button
          onClick={()=>this.getJob()}
          primary>Find my Job!</Button>
        </div>
@@ -52,9 +84,9 @@ class JobSearch extends Component{
          {this.state.jobs.map((j, i)=>{
            return(
              <div>
-                   <h1 type='link' 
+                   <h1 type='link'
                    onClick={()=>browserHistory.push(`/jobdetails/${j.id}`)}
-                   >{j.job_title}</h1> 
+                   >{j.job_title}</h1>
                  <h2>{j.name}</h2>
                  <p>{j.location}</p>
                  <Button color='teal'
@@ -65,10 +97,10 @@ class JobSearch extends Component{
                   >Pin</Button>
                   <hr/>
              </div>
-          
+
            )
          })}
-     
+
 
        </div>
       </div>
