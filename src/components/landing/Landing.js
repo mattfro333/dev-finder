@@ -41,7 +41,7 @@ class Landing extends Component{
     <Button color="orange" content='Sign Up' onClick={()=>browserHistory.push('/signup')} />
   </Segment>
 </div>
-
+    </div>
       </div>
     )
   }
