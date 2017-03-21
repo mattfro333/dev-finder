@@ -38,8 +38,8 @@ ReactDOM.render(
         <Route path='/login' component={Login} />
         <Route path='/newjob' component={CreateJob} />
         <Route path='/search' component={JobSearch} />
-        <Route path='/messages' component={Messages} />
-        <Route path='/messaging' component={Messaging} />
+        <Route path='/nodemailer' component={Messages} />
+        <Route path='/messages' component={Messaging} />
         <Route path='/watchlist' component={DevWatchlist} />
         <Route path='/jobdetails/:id' component={JobDetails} />
         <Route path='/applications' component={Applications} />
