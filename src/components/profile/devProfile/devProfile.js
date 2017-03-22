@@ -42,9 +42,10 @@ class DevProfile extends Component{
     this.state = {
       dev: [[{}],[{}],[{}],[{}]],
       open: false,
-      mine: 'hide',
-      theirs: 'hide',
-      session_id: ""
+      mine: '',
+      theirs: '',
+      session_id: "",
+      edit: "hide"
     }
     this.show = (dimmer) => () => this.setState({ dimmer, open: true })
     this.close = () => this.setState({ open: false })
@@ -56,13 +57,38 @@ class DevProfile extends Component{
     this.addEducation = this.addEducation.bind(this);
     this.deletePortfolio = this.deletePortfolio.bind(this);
     this.deleteExperience = this.deleteExperience.bind(this);
-    this.getUserId = this.getUserId.bind(this);
+    this.getUser = this.getUser.bind(this);
     this.whosProfile = this.whosProfile.bind(this);
+    this.editProfile = this.editProfile.bind(this);
+    this.finishEdit = this.finishEdit.bind(this);
   }
 
   whosProfile = ()=>{
+    var self = this;
       console.log(this.state.dev[0][0].user_id, this.state.session_id);
-
+      if (this.state.dev[0][0].user_id == this.state.session_id){
+        self.setState({
+          mine: "",
+          theirs: "hide"
+        })
+      } else {
+        self.setState({
+          mine: "hide",
+          theirs: ""
+        })
+      }
+  }
+  editProfile = ()=>{
+    var self = this;
+        self.setState({
+          edit: ""
+        })
+  }
+  finishEdit = ()=>{
+    var self = this;
+        self.setState({
+          edit: "hide"
+        })
   }
 
 //this.state is profile that we are viewing
@@ -77,7 +103,7 @@ class DevProfile extends Component{
       })
     })
 }
-getUserId = ()=>{
+getUser = ()=>{
   var self = this;
   console.log('running');
   return axios.get('/api/me').then(response => {
@@ -163,7 +189,7 @@ deleteExperience = (id)=>{
         return (
 
           <div key={i}>
-          <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
+          <Button className={self.state.edit + ' DeleteButton'} content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
             <h1>{job.title}</h1>
             {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
           <h2>{job.description}</h2>
@@ -175,7 +201,7 @@ deleteExperience = (id)=>{
       return (
 
         <div key={i}>
-        <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
+        <Button className={self.state.edit + ' DeleteButton'} content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
           <h1>{school.title}</h1>
           {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
         <h2>{school.description}</h2>
@@ -187,7 +213,7 @@ deleteExperience = (id)=>{
 
     return (
       <div key={i}>
-      <Button className='DeleteButton' content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
+      <Button className={self.state.edit + ' DeleteButton'} content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
         <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
         <img className='portfolioPic'src={piece.img_url}/>
       <h2>{piece.desc}</h2>
@@ -221,28 +247,28 @@ deleteExperience = (id)=>{
     return(
       <div className='devProfile'>
         <div  className='topContainer'>
-          <Button className={this.state.mine}>Edit</Button>
-          <Button onClick={()=>this.whosProfile()}>test</Button>
+          <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
+          <Button className={this.state.edit} onClick={()=>this.finishEdit()}>Finish Changes</Button>
           <div className='devInfo white'>
             <div className='profilePic'>
             <img onClick={this.show('blurring')} className='devPic' src={this.state.dev[0][0].profilepic}/>
           </div>
             <h1>{this.state.dev[0][0].firstname + ' ' + this.state.dev[0][0].lastname}</h1>
-            <Input placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
-            <Input placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
+            <Input className={this.state.edit} placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
+            <Input className={this.state.edit} placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
               <h3>Im from {this.state.dev[0][0].city}, {this.state.dev[0][0].state}.</h3>
-              <Input placeholder='City' onChange={(e)=>this.devCity = e.target.value} />
-                <Input placeholder='State' onChange={(e)=>this.devState = e.target.value} />
+              <Input className={this.state.edit} placeholder='City' onChange={(e)=>this.devCity = e.target.value} />
+                <Input className={this.state.edit} placeholder='State' onChange={(e)=>this.devState = e.target.value} />
             <h4>{this.state.dev[0][0].description}</h4>
-            <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
+            <Input className={this.state.edit} placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
           <div className=''><a><Button className={this.state.theirs}>Message</Button></a></div>
            <div className=''><a>{this.state.dev[0][0].email || 'Loading'}</a></div>
-           <Input placeholder='Email' onChange={(e)=>this.devEmail = e.target.value} />
+           <Input className={this.state.edit} placeholder='Email' onChange={(e)=>this.devEmail = e.target.value} />
           <div className=''><a href={this.state.dev[0][0].github}>Github</a></div>
-          <Input placeholder='Github' onChange={(e)=>this.devGithub = e.target.value} />
+          <Input className={this.state.edit} placeholder='Github' onChange={(e)=>this.devGithub = e.target.value} />
           <div className=''><a href={this.state.dev[0][0].twitter}>Twitter</a></div>
-          <Input placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
-          <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+          <Input className={this.state.edit} placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
+          <Dropdown className={this.state.edit} placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
             this.devSkills = {skills: d.value}
             console.log(this.devSkills);
           }}/>
@@ -269,7 +295,7 @@ deleteExperience = (id)=>{
         )
           })}</div> :''}
         </div>
-          <Button className='signupButton' content='Update' onClick={()=>this.EditUser()}/>
+          <Button className={this.state.edit + ' signupButton'} content='Update' onClick={()=>this.EditUser()}/>
           <div className='technologies'>
             <ul>
             </ul>
@@ -281,44 +307,44 @@ deleteExperience = (id)=>{
             <div className='portfolioPieces'>
             <div>{portfolio || 'This user does not have a portfolio yet.'}</div>
             </div>
-            <Button className='add' icon="plus"/>
-            <Input placeholder='Title' onChange={(e)=>this.portTitle = e.target.value} />
-            <Input placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
-            <Input placeholder='Image Url' onChange={(e)=>this.portImg = e.target.value} />
-            <Input placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
-            <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+            <Button className={this.state.edit + ' add'}  icon="plus"/>
+            <Input className={this.state.edit} placeholder='Title' onChange={(e)=>this.portTitle = e.target.value} />
+            <Input className={this.state.edit} placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
+            <Input className={this.state.edit} placeholder='Image Url' onChange={(e)=>this.portImg = e.target.value} />
+            <Input className={this.state.edit} placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
+            <Dropdown className={this.state.edit} placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
               this.portfolioSkills = {skills: d.value}
               console.log(this.portfolioSkills);
             }}/>
-            <Button className='signupButton' content='Add Portfolio' onClick={()=>this.addPortfolio()}/>
+            <Button className={this.state.edit + ' signupButton'} content='Add Portfolio' onClick={()=>this.addPortfolio()}/>
           </div>
           <hr/>
           <h1 className='center'>Education</h1>
           <div className='educationSection'>
             {education}
           </div>
-          <Button className='add' icon="plus"/>
-          <Input placeholder='School' onChange={(e)=>this.eduCompany = e.target.value} />
-          <Input placeholder='Description' onChange={(e)=>this.eduDesc = e.target.value} />
-          <Input placeholder='Start Month' onChange={(e)=>this.eduSMonth = e.target.value} />
-          <Input placeholder='Start Year' onChange={(e)=>this.eduSYear = e.target.value} />
-          <Input placeholder='End Month' onChange={(e)=>this.eduEMonth = e.target.value} />
-          <Input placeholder='End Year' onChange={(e)=>this.eduEYear = e.target.value} />
-          <Button className='signupButton' content='Add Education' onClick={()=>this.addEducation()}/>
+          <Button className={this.state.edit + ' add'} icon="plus"/>
+          <Input className={this.state.edit} placeholder='School' onChange={(e)=>this.eduCompany = e.target.value} />
+          <Input className={this.state.edit} placeholder='Description' onChange={(e)=>this.eduDesc = e.target.value} />
+          <Input className={this.state.edit} placeholder='Start Month' onChange={(e)=>this.eduSMonth = e.target.value} />
+          <Input className={this.state.edit} placeholder='Start Year' onChange={(e)=>this.eduSYear = e.target.value} />
+          <Input className={this.state.edit} placeholder='End Month' onChange={(e)=>this.eduEMonth = e.target.value} />
+          <Input className={this.state.edit} placeholder='End Year' onChange={(e)=>this.eduEYear = e.target.value} />
+          <Button className={this.state.edit + ' signupButton'} content='Add Education' onClick={()=>this.addEducation()}/>
           <hr/>
            <h1 className='center'>Work Experience</h1>
           <div className='workSection'>
             {workex}
           </div>
-          <Button className='add' icon="plus"/>
-          <Input placeholder='Company' onChange={(e)=>this.jobCompany = e.target.value} />
-          <Input placeholder='Job Title' onChange={(e)=>this.jobTitle = e.target.value} />
-          <Input placeholder='Description' onChange={(e)=>this.jobDesc = e.target.value} />
-          <Input placeholder='Start Month' onChange={(e)=>this.jobSMonth = e.target.value} />
-          <Input placeholder='Start Year' onChange={(e)=>this.jobSYear = e.target.value} />
-          <Input placeholder='End Month' onChange={(e)=>this.jobEMonth = e.target.value} />
-          <Input placeholder='End Year' onChange={(e)=>this.jobEYear = e.target.value} />
-          <Button className='signupButton' content='Add Job Experience' onClick={()=>this.addExperience()}/>
+          <Button className={this.state.edit + ' add'} icon="plus"/>
+          <Input className={this.state.edit} placeholder='Company' onChange={(e)=>this.jobCompany = e.target.value} />
+          <Input className={this.state.edit} placeholder='Job Title' onChange={(e)=>this.jobTitle = e.target.value} />
+          <Input className={this.state.edit} placeholder='Description' onChange={(e)=>this.jobDesc = e.target.value} />
+          <Input className={this.state.edit} placeholder='Start Month' onChange={(e)=>this.jobSMonth = e.target.value} />
+          <Input className={this.state.edit} placeholder='Start Year' onChange={(e)=>this.jobSYear = e.target.value} />
+          <Input className={this.state.edit} placeholder='End Month' onChange={(e)=>this.jobEMonth = e.target.value} />
+          <Input className={this.state.edit} placeholder='End Year' onChange={(e)=>this.jobEYear = e.target.value} />
+          <Button className={this.state.edit + ' signupButton'} content='Add Job Experience' onClick={()=>this.addExperience()}/>
           <hr/>
         </div>
         </div>
@@ -338,14 +364,21 @@ deleteExperience = (id)=>{
     )
   }
   componentDidMount() {
+    var self = this;
     getprofile(this.props.params.userid).then(dev => {
+
       this.setState({
         dev: dev
 
       })
       console.log(this.state.dev);
-    })
-    this.getUserId();
+    }).then(function(response) {
+      self.getUser().then(function(response) {
+        self.whosProfile();
+      });
+    });
+
+
   }
 }
 
