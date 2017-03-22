@@ -98,3 +98,6 @@ display: none;
   padding: 8px !important;
   height: 200px !important;
 }
+.hide {
+  display: none;
+}

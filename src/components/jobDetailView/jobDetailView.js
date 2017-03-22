@@ -13,12 +13,15 @@ class jobDetails extends Component{
 
     this.state = {
       job: [{}],
-      user: ""
+      id: "",
+      userName: ""
 
     }
     this.applyJob=this.applyJob.bind(this)
     this.watchJob=this.watchJob.bind(this)
     this.getUserId=this.getUserId.bind(this)
+    this.getUserName = this.getUserName.bind(this)
+    this.createRoom = this.createRoom.bind(this)
   }
  applyJob = function(jobId){
     return axios.post('/api/application/'+jobId)
@@ -30,13 +33,28 @@ class jobDetails extends Component{
   getUserId = ()=>{
     var self = this;
     return axios.get('/api/me').then(response => {
-      console.log(this.state.job.user_id);
+      console.log(response.data.user_id, this.state.job, this.state.job.name);
         self.setState({
-          user: response.data.user_id
+          id: response.data.user_id
         })
     })
   }
-  
+  getUserName = ()=>{
+    var self = this;
+    return axios.post('/api/name').then(response => {
+      console.log(response.data[0].firstname + " " + response.data[0].lastname);
+      self.setState({
+        userName: response.data[0].firstname + " " + response.data[0].lastname
+      })
+    })
+  }
+  createRoom = ()=>{
+    var self = this;
+    return axios.post('/api/newRoom', {user1_id: this.state.id, user2_id: this.state.job.id, user1_name: this.state.userName, user2_name: this.state.job.name}).then(response => {
+        browserHistory.push('/messages')
+    })
+  }
+
   render(){
     var self = this;
     return (
@@ -57,7 +75,7 @@ class jobDetails extends Component{
              onClick={()=>this.watchJob(this.state.job.id)}>
              Save
              </Button>
-             <Button onClick={()=>self.getUserId()}>
+             <Button onClick={()=>self.createRoom()}>
                Message
                </Button>
            <br/>
@@ -90,6 +108,8 @@ class jobDetails extends Component{
 
       })
     })
+    this.getUserName();
+    this.getUserId();
     }
 }
 

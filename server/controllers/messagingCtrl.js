@@ -29,5 +29,14 @@ module.exports = {
             }
             res.send(results)
         })
-    }
+    },
+    createRoom: function(req, res){
+        db.messaging.create_room([req.body.user1_id, req.body.user2_id, req.body.user1_name, req.body.user2_name],function(err, results){
+            if(err){
+                console.error(err);
+                return res.send(err);
+            }
+            res.send(results)
+        })
+    },
 }
