@@ -156,7 +156,9 @@ getDevelopers=function(){
                    <h1 type='link'
                    onClick={()=>browserHistory.push(`/jobdetails/${j.id}`)}
                    >{j.job_title}</h1>
-                 <h2>{j.name}</h2>
+                 <h2
+                 onClick={()=>browserHistory.push(`/profile/company/${j.user_id}`)}
+                 >{j.name}</h2>
                  <p>{j.location}</p>
                  <Button color='teal'
                   onClick={()=>{
@@ -177,7 +179,7 @@ getDevelopers=function(){
            this.state.companies.map((c, i)=>{
             return(
               <div>
-                {c.name}
+                <h1 onClick={()=>browserHistory.push(`/profile/company/${c.user_id}`)}>{c.name}</h1>
               </div>
             )
            })
