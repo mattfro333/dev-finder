@@ -188,7 +188,7 @@ getDevelopers=function(){
            this.state.devs.map((d, i)=>{
              return(
                <div>
-                 {d.firstname} {d.lastname}
+                 <h1 onClick={()=>browserHistory.push(`/profile/dev/${d.user_id}`)}>{d.firstname} {d.lastname}</h1>
                </div>
              )
            })
