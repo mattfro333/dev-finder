@@ -12,10 +12,13 @@ class jobDetails extends Component{
 
 
     this.state = {
-      job: [{}]
+      job: [{}],
+      user: ""
+
     }
     this.applyJob=this.applyJob.bind(this)
     this.watchJob=this.watchJob.bind(this)
+    this.getUserId=this.getUserId.bind(this)
   }
  applyJob = function(jobId){
     return axios.post('/api/application/'+jobId)
@@ -24,8 +27,18 @@ class jobDetails extends Component{
   watchJob = function(jobId){
     return axios.post('/api/flagAJob/'+jobId)
   }
+  getUserId = ()=>{
+    var self = this;
+    return axios.get('/api/me').then(response => {
+      console.log(this.state.job.user_id);
+        self.setState({
+          user: response.data.user_id
+        })
+    })
+  }
+  
   render(){
-
+    var self = this;
     return (
       <div className =''>
           <div className=' jobBox topJobContainer white'>
@@ -44,7 +57,7 @@ class jobDetails extends Component{
              onClick={()=>this.watchJob(this.state.job.id)}>
              Save
              </Button>
-             <Button>
+             <Button onClick={()=>self.getUserId()}>
                Message
                </Button>
            <br/>
