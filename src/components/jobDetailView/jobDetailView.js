@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Button, Icon} from 'semantic-ui-react';
+import {Menu, Button, Icon, Image, Popup} from 'semantic-ui-react';
 import { getjob } from './../../services/jobinfo'
 import './jobDetailView.css';
 import axios from 'axios';
@@ -36,7 +36,7 @@ class jobDetails extends Component{
         })
     })
   }
-  
+
   render(){
     var self = this;
     return (
@@ -62,10 +62,27 @@ class jobDetails extends Component{
                </Button>
            <br/>
            <h4> This job was listed on {this.state.job.timestamped}</h4>
-           {this.state.job.skills? this.state.job.skills.skills.map((s,i)=>{
-
-             return(<div>{s}</div>)
-           }) :''}
+           {this.state.job.skills? <div>{this.state.job.skills.skills.map((s,i)=>{
+             let image
+             let name
+             const style = {
+               borderRadius: 2,
+               opacity: 0.8,
+               height: 40
+             }
+             for(let i = 0; i < this.props.skills.skills.length; i++){
+               if(s === this.props.skills.skills[i].value){
+                 image = this.props.skills.skills[i].icon_url
+                 name = this.props.skills.skills[i].text
+                 console.log('value',this.props.skills.skills[i].value)
+               }
+             }
+             return(
+               <Popup inverted style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} />}
+               content={name}
+             />
+             )
+           })}</div> :''}
               </div>
 
 
