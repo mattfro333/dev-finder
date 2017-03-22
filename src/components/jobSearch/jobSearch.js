@@ -3,11 +3,14 @@ import {browserHistory} from 'react-router';
 import {Menu, Input, Button, Form, Radio} from 'semantic-ui-react';
 import './jobSearch.css';
 import axios from 'axios';
+import Alert from '../SweetAlert/SweetAlert'
 
 class JobSearch extends Component{
   constructor(){
     super()
     this.state={
+      showApplyAlert: false,
+      showPinAlert: false,
       jobs:[]
     }
     this.getJob=this.getJob.bind(this)
@@ -90,10 +93,14 @@ class JobSearch extends Component{
                  <h2>{j.name}</h2>
                  <p>{j.location}</p>
                  <Button color='teal'
-                  onClick={()=>this.applyJob(j.id)}
+                  onClick={()=>{
+                    this.setState({showApplyAlert: true})
+                    this.applyJob(j.id)}}
                   >Apply</Button>
                    <Button
-                  onClick={()=>this.watchJob(j.id)}
+                  onClick={()=>{
+                    this.setState({showPinAlert: true})
+                    this.watchJob(j.id)}}
                   >Pin</Button>
                   <hr/>
              </div>
@@ -101,7 +108,17 @@ class JobSearch extends Component{
            )
          })}
 
+<Alert 
+  onConfirm={()=>this.setState({showApplyAlert:false})} 
+  show={this.state.showApplyAlert} 
+  alertTitle='Congratulations!' 
+  alertText="You've applied for this job"/>
 
+  <Alert 
+  onConfirm={()=>this.setState({showPinAlert:false})} 
+  show={this.state.showPinAlert} 
+  alertTitle='Pinned!' 
+  alertText="This job is now on your dashboard."/>
        </div>
       </div>
     )

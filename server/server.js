@@ -50,15 +50,16 @@ var db = app.get('db')
 
 //Initialize the Tables for the Database
 function initDb(){
+    console.log('creating tables')
     db.init.create_tables([], function(err, results){
       if (err){
         console.error(err);
       }
       console.log(results)
-    })
+    })  
 }
 initDb();
-
+  
 //AUTHENTICATION
  //Set up Passport
 var passport = require('./services/passport');
