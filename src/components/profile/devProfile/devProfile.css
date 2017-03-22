@@ -98,3 +98,24 @@ display: none;
   padding: 8px !important;
   height: 200px !important;
 }
+
+.ProfileSkillsContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.ProfileSkillsImage{
+  height: 50px;
+  margin: 5px;
+}
+
+
+.ProfilePortfolioPieceSkillsContainer{
+ margin: 8px;
+}
+.ProfilePortfolioPieceSkillsImage{
+ height: 40px;
+}

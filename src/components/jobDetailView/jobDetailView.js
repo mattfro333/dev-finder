@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Button, Icon} from 'semantic-ui-react';
+import {Menu, Button, Icon, Image, Popup} from 'semantic-ui-react';
 import { getjob } from './../../services/jobinfo'
 import './jobDetailView.css';
 import axios from 'axios';
@@ -12,10 +12,13 @@ class jobDetails extends Component{
 
 
     this.state = {
-      job: [{}]
+      job: [{}],
+      user: ""
+
     }
     this.applyJob=this.applyJob.bind(this)
     this.watchJob=this.watchJob.bind(this)
+    this.getUserId=this.getUserId.bind(this)
   }
  applyJob = function(jobId){
     return axios.post('/api/application/'+jobId)
@@ -24,8 +27,18 @@ class jobDetails extends Component{
   watchJob = function(jobId){
     return axios.post('/api/flagAJob/'+jobId)
   }
-  render(){
+  getUserId = ()=>{
+    var self = this;
+    return axios.get('/api/me').then(response => {
+      console.log(this.state.job.user_id);
+        self.setState({
+          user: response.data.user_id
+        })
+    })
+  }
 
+  render(){
+    var self = this;
     return (
       <div className =''>
           <div className=' jobBox topJobContainer white'>
@@ -35,7 +48,7 @@ class jobDetails extends Component{
                   <h1 className='companyName'>{this.state.job.name}</h1>
               <h2 className='jobtitle'>{this.state.job.job_title}</h2>
         <h3>
-          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3> 
+          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3>
            <Button
            onClick={()=>this.applyJob(this.state.job.id)}>
            Apply
@@ -44,17 +57,38 @@ class jobDetails extends Component{
              onClick={()=>this.watchJob(this.state.job.id)}>
              Save
              </Button>
-             <Button>
+             <Button onClick={()=>self.getUserId()}>
                Message
                </Button>
            <br/>
            <h4> This job was listed on {this.state.job.timestamped}</h4>
+           {this.state.job.skills? <div>{this.state.job.skills.skills.map((s,i)=>{
+             let image
+             let name
+             const style = {
+               borderRadius: 2,
+               opacity: 0.8,
+               height: 40
+             }
+             for(let i = 0; i < this.props.skills.skills.length; i++){
+               if(s === this.props.skills.skills[i].value){
+                 image = this.props.skills.skills[i].icon_url
+                 name = this.props.skills.skills[i].text
+                 console.log('value',this.props.skills.skills[i].value)
+               }
+             }
+             return(
+               <Popup inverted style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} />}
+               content={name}
+             />
+             )
+           })}</div> :''}
               </div>
-            
-              
+
+
             </div>
           </div>
-      
+
       <div className = ' jobBox white'>
 <h1 className = 'center'>
   Job Description
@@ -62,7 +96,7 @@ class jobDetails extends Component{
 
         <h4>{this.state.job.job_description}</h4>
       </div>
-          
+
           </div>
     )
   }
