@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import { getprofile } from '../../../services/devProfile';
-import {Menu, Input, Button, Popup, Header, Image, Modal} from 'semantic-ui-react';
+import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown} from 'semantic-ui-react';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
 import config from './../../../../server/config'
@@ -57,7 +57,7 @@ class DevProfile extends Component{
 
   EditUser = ()=>{
     var self = this;
-    return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter}).then(function(response) {
+    return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter, skills: this.devSkills}).then(function(response) {
       getprofile(self.props.params.userid).then(dev => {
         self.setState({
           dev: dev
@@ -75,7 +75,7 @@ changePhoto = ()=>{
 }
 addPortfolio = ()=>{
   var self = this;
-  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink}).then(function(response) {
+  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink, skills: this.portfolioSkills}).then(function(response) {
     getprofile(self.props.params.userid).then(dev => {
       self.setState({
         dev: dev
@@ -140,43 +140,66 @@ deleteExperience = (id)=>{
   render(){
     var self = this;
     const { open, dimmer } = this.state
-
+    console.log(this.state.dev[0][0].skills)
     var workex=this.state.dev[2].map(function(job, i){
-  return (
+        return (
 
-    <div key={i}>
-    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
-      <h1>{job.title}</h1>
-      {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
-    <h2>{job.description}</h2>
-    </div>
+          <div key={i}>
+          <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
+            <h1>{job.title}</h1>
+            {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
+          <h2>{job.description}</h2>
+          </div>
 
-  );
-})
-var education=this.state.dev[1].map(function(school, i){
-  return (
+        );
+        })
+    var education=this.state.dev[1].map(function(school, i){
+      return (
 
-    <div key={i}>
-    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
-      <h1>{school.title}</h1>
-      {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
-    <h2>{school.description}</h2>
-    </div>
+        <div key={i}>
+        <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
+          <h1>{school.title}</h1>
+          {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
+        <h2>{school.description}</h2>
+        </div>
 
-  );
-})
-var portfolio=this.state.dev[3].map(function(piece, i){
+      );
+    })
+  var portfolio=this.state.dev[3].map(function(piece, i){
 
-  return (
-    <div key={i}>
-    <Button className='DeleteButton' content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
-      <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
-      <img className='portfolioPic'src={piece.img_url}/>
-    <h2>{piece.desc}</h2>
-    </div>
+    return (
+      <div key={i}>
+      <Button className='DeleteButton' content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
+        <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
+        <img className='portfolioPic'src={piece.img_url}/>
+      <h2>{piece.desc}</h2>
+      {piece.skills? <div className="ProfilePortfolioPieceSkillsContainer">{piece.skills.skills.map((s,i)=>{
+        let image
+        let name
+        const style = {
+          borderRadius: 2,
+          opacity: 0.8,
+          height: 40
+        }
+        for(let i = 0; i < self.props.skills.skills.length; i++){
+          if(s === self.props.skills.skills[i].value){
+            image = self.props.skills.skills[i].icon_url
+            name = self.props.skills.skills[i].text
+            console.log('value',self.props.skills.skills[i].value)
+          }
+        }
+        return(
+          <Popup inverted size='tiny' style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} />}
+          content={<p>{name}</p>}
+        />
+        )
+      })}</div> :''}
 
-  );
-  })
+      </div>
+
+    );
+    })
+
     return(
       <div className='devProfile'>
         <div  className='topContainer'>
@@ -200,6 +223,33 @@ var portfolio=this.state.dev[3].map(function(piece, i){
           <Input placeholder='Github' onChange={(e)=>this.devGithub = e.target.value} />
           <div className=''><a href={this.state.dev[0][0].twitter}>Twitter</a></div>
           <Input placeholder='Twitter' onChange={(e)=>this.devTwitter = e.target.value} />
+          <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+            this.devSkills = {skills: d.value}
+            console.log(this.devSkills);
+          }}/>
+        <div>
+            {this.state.dev[0][0].skills? <div className="ProfileSkillsContainer">{this.state.dev[0][0].skills.skills.map((s,i)=>{
+            let image
+            let name
+            for(let i = 0; i < this.props.skills.skills.length; i++){
+              if(s === this.props.skills.skills[i].value){
+                image = this.props.skills.skills[i].icon_url
+                name = this.props.skills.skills[i].text
+                console.log('value',this.props.skills.skills[i].value)
+              }
+            }
+            const style = {
+              borderRadius: 2,
+              opacity: 0.8,
+              height: 40
+            }
+            return(
+            <Popup inverted style={style} trigger={<img className="ProfileSkillsImage" src={image} />}
+              content={name}
+            />
+        )
+          })}</div> :''}
+        </div>
           <Button className='signupButton' content='Update' onClick={()=>this.EditUser()}/>
           <div className='technologies'>
             <ul>
@@ -217,6 +267,10 @@ var portfolio=this.state.dev[3].map(function(piece, i){
             <Input placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
             <Input placeholder='Image Url' onChange={(e)=>this.portImg = e.target.value} />
             <Input placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
+            <Dropdown placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
+              this.portfolioSkills = {skills: d.value}
+              console.log(this.portfolioSkills);
+            }}/>
             <Button className='signupButton' content='Add Portfolio' onClick={()=>this.addPortfolio()}/>
           </div>
           <hr/>
