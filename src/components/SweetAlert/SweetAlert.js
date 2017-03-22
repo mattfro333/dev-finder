@@ -19,8 +19,8 @@ render() {
       <button onClick={() => this.setState({ show: true })}>Alert</button>
       <SweetAlert
         show={this.state.show}
-        title="Demo"
-        text="SweetAlert in React"
+        title={this.props.alertTitle}
+        text={this.props.alertText}
         onConfirm={() => this.setState({ show: false})}
       />
     </div>
