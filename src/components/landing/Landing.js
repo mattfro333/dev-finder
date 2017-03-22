@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router';
 import {Input, Button, Container, Header, Segment, Divider, Icon, Image} from 'semantic-ui-react'
 import axios from 'axios'
 import './Landing.css';
+import Piechart from '../d3/Piechart.js'
 
 
 

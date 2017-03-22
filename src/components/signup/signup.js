@@ -6,6 +6,7 @@ import axios from 'axios'
 import './signup.css';
 
 
+
 class SignUp extends Component{
   constructor(){
     super()
@@ -73,6 +74,7 @@ class SignUp extends Component{
                    <Header textAlign='center'>
                        <Image className="signinvert" src={Logo} size='tiny'/>
                  </Header>
+
 </div>
     )
   }

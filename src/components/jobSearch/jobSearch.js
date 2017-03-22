@@ -5,6 +5,7 @@ import './jobSearch.css';
 import axios from 'axios';
 import Alert from '../SweetAlert/SweetAlert'
 
+
 class JobSearch extends Component{
   constructor(){
     super()
@@ -108,16 +109,16 @@ class JobSearch extends Component{
            )
          })}
 
-<Alert 
-  onConfirm={()=>this.setState({showApplyAlert:false})} 
-  show={this.state.showApplyAlert} 
-  alertTitle='Congratulations!' 
+<Alert
+  onConfirm={()=>this.setState({showApplyAlert:false})}
+  show={this.state.showApplyAlert}
+  alertTitle='Congratulations!'
   alertText="You've applied for this job"/>
 
-  <Alert 
-  onConfirm={()=>this.setState({showPinAlert:false})} 
-  show={this.state.showPinAlert} 
-  alertTitle='Pinned!' 
+  <Alert
+  onConfirm={()=>this.setState({showPinAlert:false})}
+  show={this.state.showPinAlert}
+  alertTitle='Pinned!'
   alertText="This job is now on your dashboard."/>
        </div>
       </div>

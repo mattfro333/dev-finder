@@ -91,7 +91,7 @@ class App extends Component {
           </Menu.Item>
           <Menu.Item
             name='messages'
-            onClick={()=>browserHistory.push('/messaging')}
+            onClick={()=>browserHistory.push('/messages')}
           >
             <Icon name='mail' />
           </Menu.Item>
