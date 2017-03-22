@@ -15,7 +15,8 @@ class Messaging extends Component{
       name: {},
       rooms: [],
       threads: [],
-      user: {}
+      user: {},
+      currentRoom: 0
     }
     this.getRooms = this.getRooms.bind(this);
     this.getthread = this.getthread.bind(this);
@@ -34,7 +35,7 @@ class Messaging extends Component{
       this.setState({threads: threads.data})
       console.log('hello its me');
     })
-    
+
   }
 
   getUser = ()=>{
@@ -45,16 +46,17 @@ class Messaging extends Component{
   sendmessage = ()=>{
     var currentDate = new Date()
     var self = this;
+    console.log(this.state.currentRoom);
     this.scrollBottom();
-    return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.threads[0].room_id, createdtime: currentDate}).then(
+    return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.currentRoom, createdtime: currentDate}).then(
       function(){
         self.setState({message: ''});
-      self.getthread(self.state.threads[0].room_id, this.currentChat);
+      self.getthread(self.state.currentRoom, self.currentChat);
     })
-    
+
   }
   update = ()=>{
-    this.getthread(this.state.threads[0].room_id, this.currentChat);
+    this.getthread(this.state.currentRoom, this.currentChat);
   }
 
   scrollBottom = ()=>{
@@ -78,6 +80,9 @@ class Messaging extends Component{
                 return (
                   <div className='rooms'>
                   <Button fluid onClick={()=>{
+                    this.setState({
+                      currentRoom: r.room_id
+                    })
                     this.getthread(r.room_id, roomName).then(()=>this.scrollBottom())}}>{roomName} </Button>
                   </div>
                       )
@@ -85,7 +90,7 @@ class Messaging extends Component{
           </div>
         <div className='thread white'>
         <h1>{this.currentChat}</h1>
-        <div className = 'dms' ref='dms'> 
+        <div className = 'dms' ref='dms'>
         {this.state.threads.map((t, i) => {
           let messageSide = '';
           if (t.sender_id == this.state.user.user_id){
@@ -94,11 +99,11 @@ class Messaging extends Component{
             messageSide = 'left-message';
           }
           return (
-           
+
             <div className= 'message'>
                <div className= {messageSide}>
             <p > {t.message} </p>
-          
+
             </div>
             <br/>
             </div>

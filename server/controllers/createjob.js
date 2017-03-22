@@ -21,5 +21,16 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  getComp: function(req, res){
+    var user_id=req.session.passport.user.user_id;
+    console.log(user_id);
+    db.createjob.getComp(user_id, function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }
