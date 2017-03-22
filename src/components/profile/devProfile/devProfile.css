@@ -99,8 +99,8 @@ display: none;
   height: 200px !important;
 }
 .hide {
-  display: none;
-
+  display: none !important;
+}
 
 .ProfileSkillsContainer{
   display: flex;
