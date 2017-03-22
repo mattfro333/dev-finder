@@ -21,14 +21,20 @@ this.getApplicants = this.getApplicants.bind(this)
 
            {this.state.applicants.map((a,i)=>{
              return(
-               <div className = 'white card'>{a.firstname}{a.lastname}</div>
+               <div className = 'white card'>{a.firstname} {a.lastname}
+               </div>
              )}
            )};
         </div>
     )
  };
  componentDidMount(){
-     this.getApplicants().then(r=>console.log(r))
+     this.getApplicants().then((r)=>{
+         console.log(r);
+        this.setState({
+            applicants:r.data
+        })
+    })
  }
 }
-export default Applicants   
+export default Applicants    
