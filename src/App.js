@@ -75,7 +75,7 @@ class App extends Component {
             onClick={()=>browserHistory.push(this.state.links.dashboard)}
           >
           </div>
-          
+
           <Menu.Item
             position="right"
             name='search'
@@ -91,7 +91,7 @@ class App extends Component {
           </Menu.Item>
           <Menu.Item
             name='messages'
-            onClick={()=>browserHistory.push('/messages')}
+            onClick={()=>browserHistory.push('/messaging')}
           >
             <Icon name='mail' />
           </Menu.Item>
