@@ -41,7 +41,10 @@ class DevProfile extends Component{
 
     this.state = {
       dev: [[{}],[{}],[{}],[{}]],
-      open: false
+      open: false,
+      mine: 'hide',
+      theirs: 'hide',
+      session_id: ""
     }
     this.show = (dimmer) => () => this.setState({ dimmer, open: true })
     this.close = () => this.setState({ open: false })
@@ -53,8 +56,16 @@ class DevProfile extends Component{
     this.addEducation = this.addEducation.bind(this);
     this.deletePortfolio = this.deletePortfolio.bind(this);
     this.deleteExperience = this.deleteExperience.bind(this);
+    this.getUserId = this.getUserId.bind(this);
+    this.whosProfile = this.whosProfile.bind(this);
   }
 
+  whosProfile = ()=>{
+      console.log(this.state.dev[0][0].user_id, this.state.session_id);
+
+  }
+
+//this.state is profile that we are viewing
   EditUser = ()=>{
     var self = this;
     return axios.put('/api/updatedev', {firstname: this.devFirstName, lastname: this.devLastName, email: this.devEmail, city: this.devCity, state: this.devState, desc: this.devDesc, type: this.devType, github: this.devGithub, codewars: this.devTwitter, skills: this.devSkills}).then(function(response) {
@@ -66,10 +77,18 @@ class DevProfile extends Component{
       })
     })
 }
+getUserId = ()=>{
+  var self = this;
+  console.log('running');
+  return axios.get('/api/me').then(response => {
+    console.log(response);
+      self.setState({
+        session_id: response.data.user_id
+      })
+  })
+}
 changePhoto = ()=>{
-  console.log('clicked')
   return axios.put('/api/updatepic').then((r)=>{
-    console.log(r)
     this.close()
   })
 }
@@ -119,7 +138,6 @@ deletePortfolio = (id)=>{
 }
 deleteExperience = (id)=>{
   var self = this;
-  console.log(id);
   return axios.post('/api/deleteExperience', {id: id}).then(function(response) {
     getprofile(self.props.params.userid).then(dev => {
       self.setState({
@@ -203,7 +221,8 @@ deleteExperience = (id)=>{
     return(
       <div className='devProfile'>
         <div  className='topContainer'>
-
+          <Button className={this.state.mine}>Edit</Button>
+          <Button onClick={()=>this.whosProfile()}>test</Button>
           <div className='devInfo white'>
             <div className='profilePic'>
             <img onClick={this.show('blurring')} className='devPic' src={this.state.dev[0][0].profilepic}/>
@@ -216,7 +235,7 @@ deleteExperience = (id)=>{
                 <Input placeholder='State' onChange={(e)=>this.devState = e.target.value} />
             <h4>{this.state.dev[0][0].description}</h4>
             <Input placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
-          <div className=''><a><button>Message</button></a></div>
+          <div className=''><a><Button className={this.state.theirs}>Message</Button></a></div>
            <div className=''><a>{this.state.dev[0][0].email || 'Loading'}</a></div>
            <Input placeholder='Email' onChange={(e)=>this.devEmail = e.target.value} />
           <div className=''><a href={this.state.dev[0][0].github}>Github</a></div>
@@ -326,6 +345,7 @@ deleteExperience = (id)=>{
       })
       console.log(this.state.dev);
     })
+    this.getUserId();
   }
 }
 

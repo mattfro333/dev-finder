@@ -11,5 +11,15 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  get: function(req, res){
+    var user_id=req.session.passport.user.user_id;
+    db.createjob.get(user_id, function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }

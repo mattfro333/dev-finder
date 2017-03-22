@@ -167,11 +167,13 @@ app.get('/api/companyJobListings/:id', jobCtrl.getListings)
 
 //newjob endpoints
 app.post('/api/createjob', createJob.post);
+app.post('/api/name', createJob.get);
 
 //messaging endpoints
 app.get('/api/rooms', messagingCtrl.getRooms);
 app.put('/api/threads', messagingCtrl.getThreads);
 app.post('/api/sendmessage', messagingCtrl.sendMessage);
+app.post('/api/newRoom', messagingCtrl.createRoom);
 
 //skills endpoints
 app.get('/api/skills', skillsCtrl.getSkills)
