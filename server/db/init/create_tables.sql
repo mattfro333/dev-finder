@@ -18,38 +18,39 @@ company_id SERIAL PRIMARY KEY,
 name VARCHAR(50),
 description TEXT,
 industry VARCHAR(20),
-picture VARCHAR(500),
+picture TEXT,
 city VARCHAR(30),
-state VARCHAR(20),
+state VARCHAR(30),
 user_id INTEGER,
 founded INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS devs(
 id SERIAL PRIMARY KEY,
-profilepic VARCHAR(500),
-type VARCHAR(20),
+profilepic TEXT,
+type VARCHAR(30),
 description TEXT,
-email VARCHAR(50),
+email VARCHAR(100),
 github VARCHAR(200),
 twitter VARCHAR(200),
-lastname VARCHAR(30),
-firstname VARCHAR(30),
+lastname VARCHAR(40),
+firstname VARCHAR(40),
 user_id INTEGER,
 city VARCHAR(30),
-state VARCHAR(20)
+state VARCHAR(30)
 );
 
 CREATE TABLE IF NOT EXISTS experience(
 experience_id SERIAL PRIMARY KEY,
 title VARCHAR(100),
 description TEXT,
+work_true_education_false BOOLEAN,
 start_month INTEGER,
 start_year INTEGER,
 end_month INTEGER,
 end_year INTEGER,
-work_true_education_false BOOLEAN,
-user_id INTEGER
+user_id INTEGER,
+job_title VARCHAR(40)
 );
 
 CREATE TABLE IF NOT EXISTS experience_skills(
@@ -76,23 +77,26 @@ company_id INTEGER,
 job_description TEXT,
 job_title TEXT,
 filled BOOLEAN,
-city VARCHAR(30),
-state VARCHAR(20),
-timestamp DATE
+city VARCHAR(100),
+state VARCHAR(100),
+timestamped DATE,
+skills JSON
 );
 
 CREATE TABLE IF NOT EXISTS message_room(
 room_id SERIAL PRIMARY KEY,
 user1_id INTEGER,
-user2_id INTEGER
+user2_id INTEGER,
+user1_name VARCHAR(50),
+user2_name VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS messages(
 message_id SERIAL PRIMARY KEY,
 message TEXT,
 sender_id INTEGER,
-recipient_id INTEGER,
-room_id INTEGER
+room_id INTEGER,
+createdtime DATE
 );
 
 CREATE TABLE IF NOT EXISTS portfolio_pieces(
@@ -101,7 +105,8 @@ user_id INTEGER,
 title VARCHAR(50),
 description TEXT,
 image_url VARCHAR(500),
-link_url VARCHAR(500)
+link_url VARCHAR(500),
+skills JSON
 );
 
 CREATE TABLE IF NOT EXISTS portfolio_skills(
@@ -113,7 +118,9 @@ skill_id INTEGER
 CREATE TABLE IF NOT EXISTS skills(
 skill_id SERIAL PRIMARY KEY,
 skill_name VARCHAR(50),
-icon_url VARCHAR(500)
+icon_url VARCHAR(500),
+text TEXT,
+key TEXT
 );
 
 CREATE TABLE IF NOT EXISTS user_companies(
@@ -137,6 +144,6 @@ skill_id INTEGER
 CREATE TABLE IF NOT EXISTS users(
 user_id SERIAL PRIMARY KEY,
 username VARCHAR(50),
-password VARCHAR(50),
+password TEXT,
 company BOOLEAN
 );

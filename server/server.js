@@ -39,8 +39,6 @@ app.use(session({
 	resave: false
 }));
 
-
-
 //Set up Database
 const massiveInstance = massive.connectSync({
   connectionString: config.massiveUri
@@ -50,12 +48,13 @@ var db = app.get('db')
 
 //Initialize the Tables for the Database
 function initDb(){
+    console.log('creating tables')
     db.init.create_tables([], function(err, results){
       if (err){
         console.error(err);
       }
       console.log(results)
-    })
+    })  
 }
 initDb();
 
@@ -109,6 +108,7 @@ const devDashCtrl = require('./controllers/devDashCtrl')
 const messagingCtrl = require('./controllers/messagingCtrl')
 const applicants = require('./controllers/applicantsCtrl')
 const skillsCtrl = require('./controllers/skillsCtrl')
+const searchCtrl = require('./controllers/searchCtrl')
 //user endpoints
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
 	successRedirect: '/api/me'
@@ -178,8 +178,11 @@ app.post('/api/newRoom', messagingCtrl.createRoom);
 //skills endpoints
 app.get('/api/skills', skillsCtrl.getSkills)
 
+//search endpoints
+app.get('/api/companies/:compName', searchCtrl.getComps)
+app.get('/api/developers/:devName', searchCtrl.getDevs)
 //Server
-
+  
 
 
 const emailCtrl = require('./e-mailer.js');

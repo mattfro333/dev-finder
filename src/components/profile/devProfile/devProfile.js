@@ -160,45 +160,64 @@ deleteExperience = (id)=>{
     const { open, dimmer } = this.state
     console.log(this.state.dev[0][0].skills)
     var workex=this.state.dev[2].map(function(job, i){
-  return (
+        return (
 
-    <div key={i}>
-    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
-      <h1>{job.title}</h1>
-      {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
-    <h2>{job.description}</h2>
-    </div>
+          <div key={i}>
+          <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(job.experience_id)}/>
+            <h1>{job.title}</h1>
+            {job.start_month}/{job.start_year}-{job.end_month}/{job.end_year}
+          <h2>{job.description}</h2>
+          </div>
 
-  );
-})
-var education=this.state.dev[1].map(function(school, i){
-  return (
+        );
+        })
+    var education=this.state.dev[1].map(function(school, i){
+      return (
 
-    <div key={i}>
-    <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
-      <h1>{school.title}</h1>
-      {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
-    <h2>{school.description}</h2>
-    </div>
+        <div key={i}>
+        <Button className='DeleteButton' content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
+          <h1>{school.title}</h1>
+          {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
+        <h2>{school.description}</h2>
+        </div>
 
-  );
-})
-var portfolio=this.state.dev[3].map(function(piece, i){
+      );
+    })
+  var portfolio=this.state.dev[3].map(function(piece, i){
 
-  return (
-    <div key={i}>
-    <Button className='DeleteButton' content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
-      <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
-      <img className='portfolioPic'src={piece.img_url}/>
-    <h2>{piece.desc}</h2>
-    {piece.skills? piece.skills.skills.map((s,i)=>{
-      return(<div>{s}</div>)
-    }) :''}
+    return (
+      <div key={i}>
+      <Button className='DeleteButton' content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
+        <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
+        <img className='portfolioPic'src={piece.img_url}/>
+      <h2>{piece.desc}</h2>
+      {piece.skills? <div className="ProfilePortfolioPieceSkillsContainer">{piece.skills.skills.map((s,i)=>{
+        let image
+        let name
+        const style = {
+          borderRadius: 2,
+          opacity: 0.8,
+          height: 40
+        }
+        for(let i = 0; i < self.props.skills.skills.length; i++){
+          if(s === self.props.skills.skills[i].value){
+            image = self.props.skills.skills[i].icon_url
+            name = self.props.skills.skills[i].text
+            console.log('value',self.props.skills.skills[i].value)
+          }
+        }
+        return(
+          <Popup inverted size='tiny' style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} />}
+          content={<p>{name}</p>}
+        />
+        )
+      })}</div> :''}
 
-    </div>
+      </div>
 
-  );
-  })
+    );
+    })
+
     return(
       <div className='devProfile'>
         <div  className='topContainer'>
@@ -227,17 +246,29 @@ var portfolio=this.state.dev[3].map(function(piece, i){
             this.devSkills = {skills: d.value}
             console.log(this.devSkills);
           }}/>
-          <div>{this.state.dev[0][0].skills? this.state.dev[0][0].skills.skills.map((s,i)=>{
+        <div>
+            {this.state.dev[0][0].skills? <div className="ProfileSkillsContainer">{this.state.dev[0][0].skills.skills.map((s,i)=>{
             let image
+            let name
             for(let i = 0; i < this.props.skills.skills.length; i++){
               if(s === this.props.skills.skills[i].value){
                 image = this.props.skills.skills[i].icon_url
+                name = this.props.skills.skills[i].text
                 console.log('value',this.props.skills.skills[i].value)
               }
             }
-
-            return(<Image src={image} size='mini' />)
-          }) :''}</div>
+            const style = {
+              borderRadius: 2,
+              opacity: 0.8,
+              height: 40
+            }
+            return(
+            <Popup inverted style={style} trigger={<img className="ProfileSkillsImage" src={image} />}
+              content={name}
+            />
+        )
+          })}</div> :''}
+        </div>
           <Button className='signupButton' content='Update' onClick={()=>this.EditUser()}/>
           <div className='technologies'>
             <ul>

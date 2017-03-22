@@ -4,7 +4,7 @@ import {Menu} from "semantic-ui-react";
 import SweetAlert from 'sweetalert-react';
 import './../../../node_modules/sweetalert/dist/sweetalert.css';
 
-export default class Draft extends React.Component {
+export default class Alert extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -16,12 +16,11 @@ export default class Draft extends React.Component {
 render() {
   return (
     <div>
-      <button onClick={() => this.setState({ show: true })}>Alert</button>
       <SweetAlert
-        show={this.state.show}
-        title="Demo"
-        text="SweetAlert in React"
-        onConfirm={() => this.setState({ show: false})}
+        show={this.props.show}
+        title={this.props.alertTitle}
+        text={this.props.alertText}
+        onConfirm={this.props.onConfirm}
       />
     </div>
   );

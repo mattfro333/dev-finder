@@ -64,7 +64,7 @@ class App extends Component {
   render() {
     const trigger = (
       <span>
-      <Image size="mini" shape='circular' src={this.state.links.profilepic || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'} />
+      <Image size="mini" shape='circular' src={this.state.links.profilepic || 'https://s3.amazonaws.com/whisperinvest-images/default.png'} />
       </span>
     )
     return (
@@ -75,7 +75,7 @@ class App extends Component {
             onClick={()=>browserHistory.push(this.state.links.dashboard)}
           >
           </div>
-          
+
           <Menu.Item
             position="right"
             name='search'
