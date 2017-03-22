@@ -71,9 +71,11 @@ class Login extends Component {
                 onChange={(e) => this.passwordInput = e.target.value}
                 />
                 <br/>
+
                 <Button className='login-button'
                 content='Log In'
-                color="teal"
+                color="orange"
+
                 onClick={() => this.login()}/>
                 </div>
                </div>

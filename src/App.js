@@ -22,11 +22,12 @@ class App extends Component {
         watchAddIcon: 'star'
       }
     }
+    this.getProfile = this.getProfile.bind(this)
     this.setLinks = this.setLinks.bind(this)
     this.logOut = this.logOut.bind(this)
   }
   getProfile = () => {
-    return axios.get('/api/me').then((r)=>this.setState({user: r}))
+    return axios.get('/api/me')
   }
   logOut = () => {
     return axios.get('/api/logout')
@@ -52,14 +53,28 @@ class App extends Component {
         search: `/search`,
         profilepic: this.props.profile.profile[0][0].profilepic,
         watchAdd: '/watchlist',
-        watchAddIcon: 'star'
+        watchAddIcon: 'pin'
       }})
     }
     }
 
   }
   componentWillMount(){
-
+    this.getProfile().then((r) => {
+        let user = r.data
+        let profile = {}
+        this.props.addUserInfo(user)
+        if (user.company) {
+            axios.get(`/api/companyProfile/${user.user_id}`).then((r) => {
+                profile = r.data
+                this.props.addProfileInfo(profile)
+            })} else {
+            axios.get(`/api/devProfile/${user.user_id}`).then((r) => {
+                profile = r.data
+                this.props.addProfileInfo(profile)
+            })}
+    })
+    .catch((err)=>browserHistory.push('/login'))
   }
   render() {
     const trigger = (

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
-import {Input, Button, Form, Radio, Checkbox, Header, Segment, Divider, Icon, Image} from 'semantic-ui-react'
+import {Input, Button, Form, Radio} from 'semantic-ui-react'
 import Logo from './../../DevFinder.png'
 import axios from 'axios'
 import './signup.css';
@@ -24,56 +24,51 @@ class SignUp extends Component{
   render(){
     return(
         <div>
-        <h1 className="signTitle">SignUp</h1>
-      <Form className="signupMove">
-          <Form.Field>
-            <label>Username</label>
-            <input
+          <div className= 'land-nav'>
+            <div className='logo'></div>
+            <div className= 'landing-buttons'>
+               <Button
+               color='orange'
+               onClick={()=> browserHistory.push('/login')}>Login
+
+               </Button>
+            </div>
+          </div>
+
+          <div className = 'landing-page'>
+            <div className = 'black-shadow center-login'>
+              <div className = 'logIn white signup'>
+                <h1>Sign Up</h1>
+            <Input
+              className='username-input'
               placeholder='Username'
               onChange={(e)=>this.usernameInput = e.target.value}
               />
-          </Form.Field>
-          <Form.Field>
-            <label>Password</label>
-            <input
+            <Input
+              className='password-input'
               placeholder='Password'
               type="password"
               onChange={(e)=>this.passwordInput = e.target.value}
-              />
-
-          </Form.Field>
-          <div className="radioButtons">
-          <Form.Field>
-          <Radio className="radioDev"
+              /><br/>
+          <Radio className="radioCom"
             label='Company'
             name='company'
             value={true}
             checked={this.state.value === true}
             onChange={this.handleChange}
           />
-          </Form.Field>
-          <Form.Field>
-            <Radio className="radioCom"
+            <Radio className="radioDev"
               label='Developer'
               name='company'
               value={false}
               checked={this.state.value === false}
               onChange={this.handleChange}
             />
-          </Form.Field>
+            <br/><div className= 'buffer'></div>
+          <Button className= 'getstarted'color='teal'onClick={()=>this.postUser().then(()=> browserHistory.push('/login'))}>Get Started</Button>
           </div>
-          <Button color="black" type='submit' onClick={()=>this.postUser()}><Link to="/login">Submit</Link></Button>
-      </Form>
-
-      <footer className="signfooter">
-               <Segment inverted className="signfooter">
-                     <inverted />
-                     <Divider horizontal inverted className='dottitle' >.</Divider>
-                   </Segment>
-                   </footer>
-                   <Header textAlign='center'>
-                       <Image className="signinvert" src={Logo} size='tiny'/>
-                 </Header>
+          </div>
+          </div>
 
 </div>
     )

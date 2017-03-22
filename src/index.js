@@ -24,6 +24,9 @@ import CompanySignUp from './components/signup/companySignup/companySignup'
 import Applications from './components/applications/applications'
 import Applicants from './components/applicants/applicants'
 import './index.scss';
+let requireAuth =()=>{
+
+}
 
 let store = createStore(DevFinder)
 
@@ -33,21 +36,23 @@ ReactDOM.render(
       <Route path='/' component={Landing}/>
       <Route path='/signup' component={SignUp} />
       <Route path='/app' component={ConnectApp}>
-        <Route path='/profile/dev/dashboard/:userid' component={DevDashboard} />
-        <Route path='/profile/company/dashboard/:userid' component={CompDashboard} />
         <Route path='/login' component={Login} />
-        <Route path='/newjob' component={CreateJob} />
-        <Route path='/search' component={JobSearch} />
-        <Route path='/nodemailer' component={Messages} />
-        <Route path='/messages' component={Messaging} />
-        <Route path='/watchlist' component={DevWatchlist} />
-        <Route path='/jobdetails/:id' component={JobDetails} />
-        <Route path='/applications' component={Applications} />
-        <Route path='/applicants' component={Applicants}/>
-        <Route path='/profile/dev/:userid' component={DevProfile} />
-        <Route path='/profile/company/:userid' component={CompProfile} />
-        <Route path='/profile/dev/edit/:userid' component={DevSignUp} />
-        <Route path='/profile/company/edit/:userid' component={CompanySignUp} />
+        <Route onEnter={requireAuth} >
+          <Route path='/profile/dev/dashboard/:userid' component={DevDashboard} />
+          <Route path='/profile/company/dashboard/:userid' component={CompDashboard} />
+          <Route path='/newjob' component={CreateJob} />
+          <Route path='/search' component={JobSearch} />
+          <Route path='/nodemailer' component={Messages} />
+          <Route path='/messages' component={Messaging} />
+          <Route path='/watchlist' component={DevWatchlist} />
+          <Route path='/jobdetails/:id' component={JobDetails} />
+          <Route path='/applications' component={Applications} />
+          <Route path='/applicants' component={Applicants}/>
+          <Route path='/profile/dev/:userid' component={DevProfile} />
+          <Route path='/profile/company/:userid' component={CompProfile} />
+          <Route path='/profile/dev/edit/:userid' component={DevSignUp} />
+          <Route path='/profile/company/edit/:userid' component={CompanySignUp} />
+        </Route>
       </Route>
     </Router>
   </Provider>,
