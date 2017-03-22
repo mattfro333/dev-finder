@@ -17,8 +17,19 @@ class Landing extends Component{
      <div className= 'land-nav'>
        <div className='logo'></div>
        <div className = 'landing-buttons'>
-         <Button color='orange'onClick={()=> browserHistory.push('/login')}>Login</Button>
-         <Button color='teal' onClick={()=> browserHistory.push('/signup')}>Sign-up</Button>
+          <Button 
+         color='teal' 
+         onClick={()=> browserHistory.push('/signup')}
+         >
+         Sign-up
+         </Button>
+         <Button 
+         color='orange'
+         onClick={()=> browserHistory.push('/login')}
+         >
+         Login
+         </Button>
+
        </div>
      </div>
       <div className= 'landing-page'>

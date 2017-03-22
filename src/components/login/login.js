@@ -73,7 +73,7 @@ class Login extends Component {
                 <br/>
                 <Button className='login-button' 
                 content='Log In' 
-                color="teal" 
+                color="orange" 
                 onClick={() => this.login()}/>
                 </div>
                </div>

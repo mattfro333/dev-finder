@@ -1,51 +1,11 @@
-.signTitle {
-  position:relative;
-  top:15vh;
-  z-index: 1;
-  text-align: center;
 
+.signup{
+  height:350px;
 }
-.signfooter {
-  position: fixed;
-  bottom: 0px;
-  border-radius: 0px !important
-
+.buffer{
+  width: 100%;
+  height:25px;
 }
-.dottitle{
-  color:#1a1a1c !important;
-
-}
-
-  .signinvert{
-    position:absolute;
-    bottom:0px;
-    left:.3vw;
-    top: 48.6vh;
-    filter: invert(100%);
-
-  }
-
-  .signupMove {
-    top:17vh;
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 3vh
-  }
-.radioButtons {
-  position: relative !important;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center;
-  justify-content: center;
-
-}
-.radioDev {
-  right: 1vw
-}
-.radioCom {
-  top: -1vh;
-  left: 1vw
+.radioDev{
+  margin-left:10px
 }
