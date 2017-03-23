@@ -16,12 +16,12 @@ class Applications extends Component{
   }
  render(){
     return(
-        <div className = 'applications-page'>
+        <div className = 'applications-page background'>
            <h1>Your applications:</h1>
            {this.state.applications.map((a,i)=>{
                return(
                    <div  onClick = {()=>browserHistory.push(`/jobdetails/${a.job_id}`)}className= 'white card'>
-                       
+
                   <h1>{a.job_title}</h1>
                   <h2>{a.name}</h2>
                   <h3>{a.location}</h3>

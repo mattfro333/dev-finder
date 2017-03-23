@@ -94,7 +94,7 @@ app.post("/s3handler", function(req, res) {
         signRequest(req, res);
     }
 });
-
+ 
 const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');

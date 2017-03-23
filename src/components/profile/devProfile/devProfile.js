@@ -262,11 +262,11 @@ deleteExperience = (id)=>{
     })
 
     return(
-      <div className='devProfile'>
+      <div className='devProfile background'>
         <div  className='topContainer'>
           <div className='devInfo white'>
-            <div className='profilePic'>
-            <img onClick={this.show('blurring')} className='devPic' src={this.state.dev[0][0].profilepic}/>
+            <div className='profilePic' onClick={this.show('blurring')}>
+            <img  className='devPic' src={this.state.dev[0][0].profilepic}/>
           </div>
             <h1>{this.state.dev[0][0].firstname + ' ' + this.state.dev[0][0].lastname}</h1>
             <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
@@ -327,7 +327,7 @@ deleteExperience = (id)=>{
             <Button className={this.state.edit + ' add'}  icon="plus"/>
             <Input className={this.state.edit} placeholder='Title' onChange={(e)=>this.portTitle = e.target.value} />
             <Input className={this.state.edit} placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
-            <Input className={this.state.edit} placeholder='Image Url' onChange={(e)=>this.portImg = e.target.value} />
+            <Gallery className={this.state.edit} uploader={uploader}/>
             <Input className={this.state.edit} placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
             <Dropdown className={this.state.edit} placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
               this.portfolioSkills = {skills: d.value}

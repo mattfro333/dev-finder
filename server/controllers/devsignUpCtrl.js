@@ -12,6 +12,7 @@ module.exports = {
     })
   },
   update: function(req, res){
+    let date = new Date()
     var user_id=req.session.passport.user.user_id;
     db.user.update_dev([req.body.firstname, req.body.lastname, req.body.email, req.body.city, req.body.state, req.body.desc, req.body.type, user_id, req.body.github, req.body.twitter, req.body.skills], function(err, results){
       if (err){
@@ -32,6 +33,7 @@ module.exports = {
     })
   },
   addPortfolio: function(req, res){
+    let date = new Date()
     var user_id=req.session.passport.user.user_id;
     db.user.create_portfolio([user_id, req.body.title, req.body.description, req.body.image, req.body.link, req.body.skills], function(err, results){
       if (err){
@@ -42,6 +44,7 @@ module.exports = {
     })
   },
   addEducation: function(req, res){
+    let date = new Date()
     var user_id=req.session.passport.user.user_id;
     db.user.create_education([user_id, req.body.school, req.body.description, req.body.start_month, req.body.start_year, req.body.end_month, req.body.end_year], function(err, results){
       if (err){
@@ -52,8 +55,9 @@ module.exports = {
     })
   },
   addExperience: function(req, res){
+    let date = new Date()
     var user_id=req.session.passport.user.user_id;
-    db.user.create_experience([user_id, req.body.company, req.body.title, req.body.description, req.body.start_month, req.body.start_year, req.body.end_month, req.body.end_year], function(err, results){
+    db.user.create_experience([user_id, req.body.company, req.body.title, req.body.description, req.body.start_month, req.body.start_year, req.body.end_month, req.body.end_year, date], function(err, results){
       if (err){
         console.error(err);
         return res.send(err);
