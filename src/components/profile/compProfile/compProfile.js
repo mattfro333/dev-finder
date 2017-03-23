@@ -13,7 +13,7 @@ class CompProfile extends Component{
       company: [{}],
       id: 0,
       userName: "",
-      jobs: [{}]
+      jobs: [{}],
       jobList: [],
       edit: "hide",
       mine: "",

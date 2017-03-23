@@ -104,7 +104,7 @@ id SERIAL PRIMARY KEY,
 user_id INTEGER,
 title VARCHAR(50),
 description TEXT,
-image_url VARCHAR(500),
+img_url VARCHAR(500),
 link_url VARCHAR(500),
 skills JSON
 );
