@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Input, Button, Header, Segment, Divider, Image} from 'semantic-ui-react';
+import {Input, Button, Header, Segment, Divider, Image, Form, Label} from 'semantic-ui-react';
 import Logo from './../../DevFinder.png'
 import axios from 'axios';
 import './login.css';
@@ -8,7 +8,9 @@ import './login.css';
 class Login extends Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+          failure: false
+        }
         this.login = this.login.bind(this)
         this.getSkills = this.getSkills.bind(this)
     }
@@ -49,7 +51,7 @@ class Login extends Component {
                         browserHistory.push(`/profile/dev/dashboard/${user.user_id}`)
                     }
                 })}
-        })
+        }).catch((err)=>this.setState({failure:true}))
     }
     render() {
         return (
@@ -58,20 +60,24 @@ class Login extends Component {
                 <div className='black-shadow center-login'>
                 <div className = 'logIn white'>
                     <h1>Log In</h1>
+
                 <Input
                 className='username-input'
                 placeholder='Username'
                 onChange={(e) => this.usernameInput = e.target.value}
                 />
+                <Form>
+                <Form.Field className='overideSemantic'>
+                  <Input
+                   className='password-input'
+                  type='password'
+                  placeholder='Password'
+                  onChange={(e) => this.passwordInput = e.target.value}
+                  />
+                  {this.state.failure ? <Label basic color='red' pointing>Username or Password is incorrect </Label>: null }
+                </Form.Field>
+                </Form>
                 <br/>
-                <Input
-                 className='password-input'
-                type='password'
-                placeholder='Password'
-                onChange={(e) => this.passwordInput = e.target.value}
-                />
-                <br/>
-
                 <Button className='login-button'
                 content='Log In'
                 color="orange"

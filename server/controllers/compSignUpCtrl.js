@@ -19,5 +19,16 @@ module.exports = {
       }
       res.send(results)
     })
+  },
+  updatepic: function(req, res){
+    var user_id=req.session.passport.user.user_id;
+    db.companyProfile.update_pic([user_id, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`], function(err, results){
+      console.log(results)
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }

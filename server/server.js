@@ -94,7 +94,7 @@ app.post("/s3handler", function(req, res) {
         signRequest(req, res);
     }
 });
- 
+
 const userCtrl = require('./controllers/userCtrl');
 const watchCtrl = require('./controllers/watchlistCtrl');
 const applicationsCtrl = require('./controllers/applicationsCtrl');
@@ -118,7 +118,7 @@ app.get('/api/test', (req, res) => {
 	console.log('working')
 	res.status(200).send('test')
 })
- 
+
 
 app.get('/api/me', isAuthed, userCtrl.me)
 
@@ -138,7 +138,7 @@ app.get('/api/company/applications/:company_id', applicationsCtrl.companyGet);
 //applicants endpoints
 app.get('/api/applicants', applicants.get);
 //app.delete('/api/applicants', applicants.delete);
- 
+
 //devProfile endpoints
 app.get('/api/devProfile/:id', devProfileCtrl.get);
 app.post('/api/addPortfolio', devSignup.addPortfolio);
@@ -152,6 +152,7 @@ app.get('/api/newjobs', devDashCtrl.newjobs);
 
 //CopmanyProfile Endooints
 app.get('/api/companyProfile/:id', companyProfileCtrl.get);
+app.put('/api/updatecomppic', compSignup.updatepic)
 
 app.post('/api/companyJobs', companyProfileCtrl.get_jobs);
 app.put('/api/updatecompanyprofile', companyProfileCtrl.update_company);
@@ -162,7 +163,7 @@ app.put('/api/updatedev', devSignup.update);
 app.put('/api/updatepic', devSignup.updatepic);
 app.post('/api/createcomp', compSignup.post);
 app.put('/api/updatecomp', compSignup.put);
- 
+
 //job endpoints
 app.get('/api/jobs/:jobName', jobCtrl.get);
 app.get('/api/job/:id', jobCtrl.getOne);

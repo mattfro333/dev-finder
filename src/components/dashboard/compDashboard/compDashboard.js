@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
+import { getprofile } from '../../../services/devProfile';
 import {Divider, Card, Table, Header, Image, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 import './compDashboard.css';
@@ -21,6 +22,20 @@ class CompDashboard extends Component {
    }
    getNewApplicants = () => {
      return axios.get(`/api/company/applications/${this.props.profile.profile[0].company_id}`)
+   }
+   changePhoto = ()=>{
+     let self = this
+     return axios.put('/api/updatepic').then((r)=>{
+       this.close()
+       getprofile(this.props.params.userid).then(dev => {
+         this.props.addProfileInfo(dev)
+         this.setState({
+           dev: dev
+
+         })
+         console.log(this.state.dev);
+       })
+     })
    }
   render(){
     return(
