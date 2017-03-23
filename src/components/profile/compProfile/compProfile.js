@@ -1,9 +1,39 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
+import { getprofile } from '../../../services/devProfile';
 import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown} from 'semantic-ui-react';
+import FineUploaderS3 from 'fine-uploader-wrappers/s3';
+import Gallery from 'react-fine-uploader';
 import './compProfile.css';
+import config from './../../../../server/config'
 import { getCompanyProfile } from '../../../services/companyProfile.js';
 import axios from 'axios';
+
+const uploader = new FineUploaderS3({
+  options: {
+    chunking: {
+      enabled: false
+    },
+    request: {
+      endpoint: 'https://devfinder.s3.amazonaws.com',
+      accessKey: config.accessKey
+    },
+    cors: {
+       //all requests are expected to be cross-domain requests
+       expected: true,
+   },
+    retry: {
+      enableAuto: true
+    },
+    signature:{
+      endpoint: '/s3handler'
+    },
+    uploadSuccess:{
+      endpoint: '/s3handler?success=true'
+    }
+  }
+})
+
 
 class CompProfile extends Component{
   constructor(props){
@@ -11,6 +41,7 @@ class CompProfile extends Component{
 
     this.state = {
       company: [{}],
+      open: false,
       id: 0,
       userName: "",
       jobs: [{}],
@@ -20,6 +51,8 @@ class CompProfile extends Component{
       theirs: "",
       session_id: ""
     }
+    this.show = (dimmer) => () => this.setState({ dimmer, open: true })
+    this.close = () => this.setState({ open: false })
     this.createRoom = this.createRoom.bind(this)
     this.getUserName = this.getUserName.bind(this)
     this.getUserId=this.getUserId.bind(this)
@@ -30,6 +63,21 @@ class CompProfile extends Component{
     this.finishEdit = this.finishEdit.bind(this)
     this.whosProfile = this.whosProfile.bind(this)
     this.getUser = this.getUser.bind(this)
+    this.changePhoto = this.changePhoto.bind(this)
+  }
+  changePhoto = ()=>{
+    let self = this
+    return axios.put('/api/updatecomppic').then((r)=>{
+      this.close()
+      getprofile(this.props.params.userid).then(dev => {
+        this.props.addProfileInfo(dev)
+        this.setState({
+          dev: dev
+
+        })
+        console.log(this.state.dev);
+      })
+    })
   }
   getCompanyJobs = ()=>{
     var self = this;
@@ -125,6 +173,7 @@ finishEdit = ()=>{
 
 
   render(){
+    const { open, dimmer } = this.state
     var self = this;
     var jobs=this.state.jobList.map(function(jobs, i){
       return (
@@ -162,9 +211,9 @@ finishEdit = ()=>{
       <div className = 'body background'>
         <div className='main-info'>
           <div className = 'left-pane white'>
-            <div className='prof-pic'>
-          <img className='pic' src={this.state.company[0].picture}/>
-          </div>
+            <div className='prof-pic' onClick={this.show('blurring')}>
+              <img className='pic' src={this.state.company[0].picture}/>
+            </div>
           <div className='info'>
             <h1>{this.state.company[0].name}</h1>
             <Input className={this.state.edit} placeholder='Company name' onChange={(e)=>this.devCompanyName = e.target.value} />
@@ -193,6 +242,18 @@ finishEdit = ()=>{
             </div>
 
         </div>
+        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+          <Modal.Header>Select a Photo</Modal.Header>
+          <Modal.Content image>
+            <Gallery uploader={uploader} className='modalPic'/>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color='black' onClick={this.close}>
+              Nope
+            </Button>
+            <Button positive icon='checkmark' labelPosition='right' content="Use This Photo" onClick={()=>this.changePhoto()} />
+          </Modal.Actions>
+        </Modal>
       </div>
 
     )
