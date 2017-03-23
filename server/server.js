@@ -39,8 +39,6 @@ app.use(session({
 	resave: false
 }));
 
-
-
 //Set up Database
 const massiveInstance = massive.connectSync({
   connectionString: config.massiveUri
@@ -50,6 +48,7 @@ var db = app.get('db')
 
 //Initialize the Tables for the Database
 function initDb(){
+    console.log('creating tables')
     db.init.create_tables([], function(err, results){
       if (err){
         console.error(err);
@@ -109,6 +108,7 @@ const devDashCtrl = require('./controllers/devDashCtrl')
 const messagingCtrl = require('./controllers/messagingCtrl')
 const applicants = require('./controllers/applicantsCtrl')
 const skillsCtrl = require('./controllers/skillsCtrl')
+const searchCtrl = require('./controllers/searchCtrl')
 //user endpoints
 app.post('/api/register', userCtrl.register, passport.authenticate('local', {
 	successRedirect: '/api/me'
@@ -135,7 +135,6 @@ app.delete('/api/applications', applicationsCtrl.delete);
 app.get('/api/company/applications/:company_id', applicationsCtrl.companyGet);
 
 //applicants endpoints
-
 app.get('/api/applicants', applicants.get);
 //app.delete('/api/applicants', applicants.delete);
 
@@ -167,15 +166,21 @@ app.get('/api/companyJobListings/:id', jobCtrl.getListings)
 
 //newjob endpoints
 app.post('/api/createjob', createJob.post);
+app.post('/api/name', createJob.get);
+app.post('/api/companyInfo', createJob.getComp)
 
 //messaging endpoints
 app.get('/api/rooms', messagingCtrl.getRooms);
 app.put('/api/threads', messagingCtrl.getThreads);
 app.post('/api/sendmessage', messagingCtrl.sendMessage);
+app.post('/api/newRoom', messagingCtrl.createRoom);
 
 //skills endpoints
 app.get('/api/skills', skillsCtrl.getSkills)
 
+//search endpoints
+app.get('/api/companies/:compName', searchCtrl.getComps)
+app.get('/api/developers/:devName', searchCtrl.getDevs)
 //Server
 
 
