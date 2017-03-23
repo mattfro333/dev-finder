@@ -16,7 +16,7 @@ this.getApplicants = this.getApplicants.bind(this)
     }
  render(){
     return(
-        <div className = 'applicants-page'>
+        <div className = 'applicants-page background'>
            <h1>Your applicants:</h1>
 
            {this.state.applicants.map((a,i)=>{
@@ -37,4 +37,4 @@ this.getApplicants = this.getApplicants.bind(this)
     })
  }
 }
-export default Applicants    
+export default Applicants

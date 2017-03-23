@@ -33,7 +33,7 @@ class DevDashboard extends Component {
 
   render(){
     return(
-      <div className="companyDashboardPage">
+      <div className="companyDashboardPage background">
         <div className="companyDashboardContainer white">
           <div className='devDashboardFlaggedJobsContainer borders'>
             <h2>Pinned Jobs</h2>

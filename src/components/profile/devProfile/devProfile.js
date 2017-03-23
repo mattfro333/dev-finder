@@ -262,7 +262,7 @@ deleteExperience = (id)=>{
     })
 
     return(
-      <div className='devProfile'>
+      <div className='devProfile background'>
         <div  className='topContainer'>
 
           <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
