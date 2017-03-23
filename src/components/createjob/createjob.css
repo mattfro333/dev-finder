@@ -1,0 +1,38 @@
+.createJobForm{
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    height: 425px;
+    width: 500px;
+    background-color: rgba(255,255,255,0.85);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+    padding:20px 75px;
+margin-top:75px;
+}
+.btnbuffer{
+    margin: 0 10px;
+}
+.left{
+float:left
+}
+.right{
+    float:right;
+}
+.job-create-page{
+    background-image: url('../../job-background.jpg');
+    background-size: cover;
+    background-position: center;
+    height:calc(100vh - 70px);
+    position:absolute;
+    top:70px;
+    width:100vw;
+}
+.textbox{
+    width:100%;
+    height:100px;
+    margin-bottom:15px
+}
+.halfy{
+    width:50%;
+    margin-bottom:15px;
+}

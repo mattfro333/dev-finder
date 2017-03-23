@@ -19,7 +19,7 @@ class DevDashboard extends Component {
     this.getJobs = this.getJobs.bind(this);
   }
   getFlagged = ()=>{
-    return axios.get(`/api/flaggedJobs`).then(flagged => flagged.data)
+    return axios.get(`/api/flaggedJobs6`).then(flagged => flagged.data)
   }
   getApplications = ()=>{
     return axios.get(`/api/applications?limit=true`).then(apps => apps.data)
@@ -33,11 +33,10 @@ class DevDashboard extends Component {
   render(){
     return(
       <div className="companyDashboardPage">
-        <div className="companyDashboardContainer">
-          <div className='devDashboardFlaggedJobsContainer'>
+        <div className="companyDashboardContainer white">
+          <div className='devDashboardFlaggedJobsContainer borders'>
             <h2>Pinned Jobs</h2>
               {this.state.flagged.map((f, i) => {
-                console.log('pinned jobs ', f)
                 return (
                   <Header as='h3'>
                      <Icon name='pin'  />
@@ -51,16 +50,17 @@ class DevDashboard extends Component {
                        )
                      })}
           </div>
-          <div className='devDashboardNewJobsContainer'>
+          <div className='devDashboardNewJobsContainer borders'>
             <h2>New Postings</h2>
             <Item.Group>
               {this.state.newjobs.map((a, i) => {
+                console.log('newpostings', a)
                 return (
                   <Item key={i}>
                       <Item.Image size='tiny' src={a.picture} />
 
                       <Item.Content>
-                        <Item.Header>{a.job_title}</Item.Header>
+                        <Item.Header onClick={()=>browserHistory.push(`/jobdetails/${a.id}`)}>{a.job_title}</Item.Header>
                         <Item.Meta>
                           <span>{a.name}</span>
                           <span>{a.location}</span>
@@ -74,9 +74,9 @@ class DevDashboard extends Component {
                 }
               )}
             </Item.Group>
-                 <a className="companyDashboardBottomPageLink">See all Listings</a>
+                 <a className="companyDashboardBottomPageLink" onClick= {()=>browserHistory.push('/search')}>Find More Listings</a>
           </div>
-          <div className='devDashboardApplicationsContainer'>
+          <div className='devDashboardApplicationsContainer borders'>
             <h2>Current Applications</h2>
             <Table celled striped >
               <Table.Header>
