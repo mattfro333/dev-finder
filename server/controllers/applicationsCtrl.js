@@ -30,7 +30,8 @@ module.exports = {
     })
   },
   post: function(req, res){
-    db.applications.post([req.session.passport.user.user_id, req.params.jobId], function(err, results){
+    let date = new Date()
+    db.applications.post([req.session.passport.user.user_id, req.params.jobId, date], function(err, results){
       if(err){
         console.error(err);
         return res.send(err);

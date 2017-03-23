@@ -25,12 +25,19 @@ class App extends Component {
     this.getProfile = this.getProfile.bind(this)
     this.setLinks = this.setLinks.bind(this)
     this.logOut = this.logOut.bind(this)
+    this.getSkills = this.getSkills.bind(this)
   }
   getProfile = () => {
     return axios.get('/api/me')
   }
   logOut = () => {
     return axios.get('/api/logout')
+  }
+  getSkills = ()=>{
+    return axios.get('/api/skills').then((r)=>{
+       let skills = r.data
+       this.props.addSkills(skills)
+    })
   }
   setLinks = () => {
 
@@ -74,6 +81,7 @@ class App extends Component {
                 this.props.addProfileInfo(profile)
             })}
     })
+    this.getSkills()
     .catch((err)=>browserHistory.push('/login'))
   }
   render() {

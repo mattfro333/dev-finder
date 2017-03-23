@@ -8,8 +8,8 @@ import Pie from '../../charts/pie.js'
 
 class DevDashboard extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       flagged: [],
       apps: [],
@@ -55,7 +55,6 @@ class DevDashboard extends Component {
             <h2>New Postings</h2>
             <Item.Group>
               {this.state.newjobs.map((a, i) => {
-                console.log('newpostings', a)
                 return (
                   <Item key={i}>
                       <Item.Image size='tiny' src={a.picture} />
@@ -105,7 +104,7 @@ class DevDashboard extends Component {
                     <Header as='h4'>
                       <Header.Content>
                         {a.job_title}
-                        <Header.Subheader>{a.location}</Header.Subheader>
+                        <Header.Subheader>{a.city +', '+ a.state}</Header.Subheader>
                       </Header.Content>
                     </Header>
                     </Table.Cell>
@@ -126,11 +125,12 @@ class DevDashboard extends Component {
     )
   }
 
-componentDidMount() {
+componentWillMount() {
     this.getFlagged().then(flagged => {
       this.setState({flagged: flagged})
     })
     this.getApplications().then((apps) => {
+      console.log(apps)
       this.setState({apps: apps})
     })
     this.getJobs().then((newjobs) => {

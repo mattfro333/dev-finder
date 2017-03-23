@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
 import axios from 'axios'
+import Alert from './../SweetAlert/SweetAlert'
 import {Input, Button, Form, Radio, Checkbox, Dropdown, TextArea} from 'semantic-ui-react'
+
 import './createjob.css';
 
 class CreateJob extends Component{
@@ -11,7 +13,8 @@ class CreateJob extends Component{
     this.CreateJob = this.CreateJob.bind(this);
 
     this.state = {
-      dev: {}
+      dev: {},
+      showAlert: false
     }
   }
     CreateJob = ()=>{
@@ -22,8 +25,7 @@ class CreateJob extends Component{
   render(){
     return(
       <div className='job-create-page'>
-         
-        <div className='center-login'> 
+        <div className='center-login'>
           <div className='createJobForm'>
           <h1>Create Job</h1>
           <Input fluid placeholder='Job Title' onChange={(e)=>this.jobtitle = e.target.value} /><br/>
@@ -33,13 +35,18 @@ class CreateJob extends Component{
           <Dropdown  placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
             this.jobSkills = {skills: d.value}
             console.log(this.jobSkills);
-          }}/><br/>
+          }}/>
+        <br/>
           <Button className='left'color='teal' content='Create Job' onClick={()=>this.CreateJob()}/>
           <Button className='right' color='orange'content='Go To Dashboard' onClick={()=>browserHistory.push
             (`/profile/company/dashboard/${this.state.user.user_id}`)}/>
         </div>
         </div>
-
+      <Alert show={this.state.showAlert} onConfirm={()=>{
+        this.setState({showAlert: false})
+        browserHistory.push(`/profile/company/dashboard/${this.props.user.user.user_id}`)
+      }} alertTitle='Job Created!'
+      alertText=''/>
       </div>
     )
   }
