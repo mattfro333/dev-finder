@@ -17,10 +17,12 @@ render() {
   return (
     <div>
       <SweetAlert
+
         show={this.props.show}
         title={this.props.alertTitle}
         text={this.props.alertText}
         onConfirm={this.props.onConfirm}
+
       />
     </div>
   );

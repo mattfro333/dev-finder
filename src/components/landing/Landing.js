@@ -7,6 +7,7 @@ import './Landing.css';
 
 
 
+
 class Landing extends Component{
 
 
@@ -17,13 +18,13 @@ class Landing extends Component{
      <div className= 'land-nav'>
        <div className='logo'></div>
        <div className = 'landing-buttons'>
-          <Button 
-         color='teal' 
+          <Button
+         color='teal'
          onClick={()=> browserHistory.push('/signup')}
          >
          Sign-up
          </Button>
-         <Button 
+         <Button
          color='orange'
          onClick={()=> browserHistory.push('/login')}
          >

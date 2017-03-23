@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router';
 import {Table, Icon, Header, Image, Item, Divider} from 'semantic-ui-react';
 import axios from 'axios';
 import './devDashboard.css';
+import Pie from '../../charts/pie.js'
 
 
 class DevDashboard extends Component {
@@ -117,8 +118,10 @@ class DevDashboard extends Component {
                        className="companyDashboardBottomPageLink">
                        See all Applications
                        </a>
+                       <Pie />
           </div>
         </div>
+
       </div>
     )
   }

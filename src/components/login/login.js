@@ -58,25 +58,28 @@ class Login extends Component {
                 <div className='black-shadow center-login'>
                 <div className = 'logIn white'>
                     <h1>Log In</h1>
-                <Input  
+                <Input
                 className='username-input'
-                placeholder='Username' 
+                placeholder='Username'
                 onChange={(e) => this.usernameInput = e.target.value}
                 />
                 <br/>
-                <Input 
+                <Input
                  className='password-input'
-                type='password' 
-                placeholder='Password' 
+                type='password'
+                placeholder='Password'
                 onChange={(e) => this.passwordInput = e.target.value}
                 />
                 <br/>
-                <Button className='login-button' 
-                content='Log In' 
-                color="orange" 
+
+                <Button className='login-button'
+                content='Log In'
+                color="orange"
+
                 onClick={() => this.login()}/>
                 </div>
                </div>
+
             </div>
         )
     }
