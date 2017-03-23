@@ -55,7 +55,6 @@ class DevDashboard extends Component {
             <h2>New Postings</h2>
             <Item.Group>
               {this.state.newjobs.map((a, i) => {
-                console.log('newpostings', a)
                 return (
                   <Item key={i}>
                       <Item.Image size='tiny' src={a.picture} />

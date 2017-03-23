@@ -328,7 +328,7 @@ deleteExperience = (id)=>{
             <Button className={this.state.edit + ' add'}  icon="plus"/>
             <Input className={this.state.edit} placeholder='Title' onChange={(e)=>this.portTitle = e.target.value} />
             <Input className={this.state.edit} placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
-            <Input className={this.state.edit} placeholder='Image Url' onChange={(e)=>this.portImg = e.target.value} />
+            <Gallery className={this.state.edit} uploader={uploader}/>
             <Input className={this.state.edit} placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
             <Dropdown className={this.state.edit} placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
               this.portfolioSkills = {skills: d.value}
