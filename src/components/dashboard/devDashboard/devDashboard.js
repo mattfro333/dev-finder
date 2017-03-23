@@ -37,10 +37,11 @@ class DevDashboard extends Component {
           <div className='devDashboardFlaggedJobsContainer'>
             <h2>Pinned Jobs</h2>
               {this.state.flagged.map((f, i) => {
+                console.log('pinned jobs ', f)
                 return (
                   <Header as='h3'>
                      <Icon name='pin'  />
-                     <Header.Content onclick={()=>browserHistory.push(`/jobdetails/${f.id}`)}>
+                     <Header.Content onClick={()=>browserHistory.push(`/jobdetails/${f.job_id}`)}>
                        {f.job_title}
                        <Header.Subheader>
                          {f.name}

@@ -46,6 +46,8 @@ class Messaging extends Component{
     var currentDate = new Date()
     var self = this;
     this.scrollBottom();
+    console.log('rooms', this.state.rooms)
+    console.log('threads',this.state.threads)
     return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.threads[0].room_id, createdtime: currentDate}).then(
       function(){
         self.setState({message: ''});

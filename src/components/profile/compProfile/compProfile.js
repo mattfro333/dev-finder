@@ -12,11 +12,13 @@ class CompProfile extends Component{
     this.state = {
       company: [{}],
       id: 0,
-      userName: ""
+      userName: "",
+      jobs: [{}]
     }
     this.createRoom = this.createRoom.bind(this)
     this.getUserName = this.getUserName.bind(this)
     this.getUserId=this.getUserId.bind(this)
+    this.getJobs = this.getJobs.bind(this)
   }
 
   createRoom = ()=>{
@@ -44,6 +46,17 @@ class CompProfile extends Component{
     })
   }
 
+  getJobs = (company_id)=>{
+    return axios.get('/api/company/jobs/'+company_id).then(r =>{
+      console.log('jobs',r.data)
+      this.setState({
+        jobs:r.data
+      })
+    })
+  }
+
+
+
   render(){
     var self = this;
     return(
@@ -66,25 +79,26 @@ class CompProfile extends Component{
           <div className = 'right-pane white'><h1>Company Bio: </h1>
 
           <p>{this.state.company[0].description}</p>
-            <p>Vestibulum maximus lorem sapien, ac volutpat quam fringilla vitae. Aliquam consequat accumsan nisl, in consectetur purus vehicula non. Maecenas at vehicula risus, auctor sodales nunc. Nam fringilla orci metus, sit amet hendrerit enim tincidunt sed. Phasellus porttitor id augue at faucibus.</p>
-
-           <p>Sed efficitur bibendum scelerisque. Proin varius, dolor ut viverra consectetur, lectus mauris lacinia lacus, at ultricies justo nisl ac sem. Nullam a ex luctus, molestie nisi id, interdum turpis.            Vivamus aliquam convallis sapien, non ultricies nisl aliquam sed. Quisque pretium eleifend sodales. Nulla cursus dui vehicula, aliquam est vitae, fringilla tellus. Aenean aliquet quam eget ligula pulvinar,            id tincidunt risus fermentum. In hac habitasse platea dictumst. Mauris mollis magna urna, vitae pretium eros fringilla et. Nullam sodales suscipit tellus, quis cursus justo volutpat vel. Quisque vel            congue nulla. Pellentesque vestibulum, ligula eget pulvinar euismod, ex lorem ultricies ipsum, vitae suscipit nunc mauris a arcu.</p>
 
 
            </div>
             <div className=' right-pane white'>
-               <h2>Position Name</h2>
-            <h3>Position Location</h3>
-            <p>This is a short position Description </p>
-             <h2>Position Name</h2>
-            <h3>Position Location</h3>
-            <p>This is a short position Description </p>
-             <h2>Position Name</h2>
-            <h3>Position Location</h3>
-            <p>This is a short position Description </p>
-             <h2>Position Name</h2>
-            <h3>Position Location</h3>
-            <p>This is a short position Description </p>
+<h1>Jobs at {this.state.company[0].name}</h1>
+<hr/>
+              {
+                this.state.jobs.map((j, i)=>{
+                  return (
+                    <div>
+                      <div onClick ={()=>browserHistory.push(`/jobdetails/${j.id}`)}><h1>{j.job_title}</h1>
+                      {j.location}</div>
+                      
+                      <hr/>
+
+                    </div>
+                  )
+                })
+              }
+
             </div>
 
         </div>
@@ -93,12 +107,17 @@ class CompProfile extends Component{
     )
   }
    componentDidMount() {
+     var self=this
     getCompanyProfile(this.props.params.userid).then(company => {
       this.setState({
         company: company
 
       })
       console.log(company[0]);
+      console.log('this the id u need:', company[0].company_id)
+      return company[0].company_id
+    }).then(function(company_id){
+      self.getJobs(company_id)
     })
     this.getUserName();
     this.getUserId();

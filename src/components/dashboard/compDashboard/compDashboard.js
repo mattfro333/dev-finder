@@ -79,7 +79,7 @@ class CompDashboard extends Component {
                 })}
               </Table.Body>
             </Table>
-            <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applications</a>
+            <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applicants</a>
           </div>
         </div>
       </div>

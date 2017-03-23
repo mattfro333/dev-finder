@@ -9,5 +9,14 @@ module.exports = {
       }
       res.send(results);
     })
+  },
+  getJobs: function(req, res){
+    db.companyProfile.getJobs([req.params.companyId], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
   }
 }

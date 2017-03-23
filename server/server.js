@@ -118,7 +118,7 @@ app.get('/api/test', (req, res) => {
 	console.log('working')
 	res.status(200).send('test')
 })
-
+ 
 
 app.get('/api/me', isAuthed, userCtrl.me)
 
@@ -152,14 +152,14 @@ app.get('/api/newjobs', devDashCtrl.newjobs);
 
 //CopmanyProfile Endooints
 app.get('/api/companyProfile/:id', companyProfileCtrl.get);
-
+app.get('/api/company/jobs/:companyId', companyProfileCtrl.getJobs)
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);
 app.put('/api/updatepic', devSignup.updatepic);
 app.post('/api/createcomp', compSignup.post);
 app.put('/api/updatecomp', compSignup.put);
-
+ 
 //job endpoints
 app.get('/api/jobs/:jobName', jobCtrl.get);
 app.get('/api/job/:id', jobCtrl.getOne);
