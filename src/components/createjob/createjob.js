@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
 import axios from 'axios'
+import Alert from './../SweetAlert/SweetAlert'
 import {Input, Button, Form, Radio, Checkbox, Dropdown} from 'semantic-ui-react'
 import './createjob.css';
 
@@ -11,7 +12,8 @@ class CreateJob extends Component{
     this.CreateJob = this.CreateJob.bind(this);
 
     this.state = {
-      dev: {}
+      dev: {},
+      showAlert: false
     }
   }
     CreateJob = ()=>{
@@ -34,12 +36,20 @@ class CreateJob extends Component{
             this.jobSkills = {skills: d.value}
             console.log(this.jobSkills);
           }}/>
-          <Button content='Create Job' onClick={()=>this.CreateJob()}/>
+          <Button content='Create Job' onClick={()=>{
+            this.CreateJob()
+            this.setState({showAlert:true})
+            }
+          }/>
           <Button content='Go To Dashboard' onClick={()=>browserHistory.push
-            (`/profile/company/dashboard/${this.state.user.user_id}`)}/>
+            (`/profile/company/dashboard/${this.props.user.user_id}`)}/>
         </div>
         </div>
-
+      <Alert show={this.state.showAlert} onConfirm={()=>{
+        this.setState({showAlert: false})
+        browserHistory.push(`/profile/company/dashboard/${this.props.user.user.user_id}`)  
+      }} alertTitle='Job Created!'
+      alertText=''/>
       </div>
     )
   }

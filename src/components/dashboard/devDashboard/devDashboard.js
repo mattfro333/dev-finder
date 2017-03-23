@@ -7,8 +7,8 @@ import './devDashboard.css';
 
 class DevDashboard extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       flagged: [],
       apps: [],
@@ -103,7 +103,7 @@ class DevDashboard extends Component {
                     <Header as='h4'>
                       <Header.Content>
                         {a.job_title}
-                        <Header.Subheader>{a.location}</Header.Subheader>
+                        <Header.Subheader>{a.city +', '+ a.state}</Header.Subheader>
                       </Header.Content>
                     </Header>
                     </Table.Cell>
@@ -122,11 +122,12 @@ class DevDashboard extends Component {
     )
   }
 
-componentDidMount() {
+componentWillMount() {
     this.getFlagged().then(flagged => {
       this.setState({flagged: flagged})
     })
     this.getApplications().then((apps) => {
+      console.log(apps)
       this.setState({apps: apps})
     })
     this.getJobs().then((newjobs) => {
