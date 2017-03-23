@@ -65,7 +65,7 @@ class Messaging extends Component{
   }
   render(){
     return(
-      <div className = 'messaging'>
+      <div className = 'messaging background'>
         <h1>Your Inbox</h1>
           <div className='roomslist white'>
             <h1>Contacts</h1>

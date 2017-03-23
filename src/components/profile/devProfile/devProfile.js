@@ -265,16 +265,15 @@ deleteExperience = (id)=>{
     })
 
     return(
-      <div className='devProfile'>
+      <div className='devProfile background'>
         <div  className='topContainer'>
-
-          <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
-          <Button className={this.state.edit} onClick={()=>this.finishEdit()}>Finish Changes</Button>
           <div className='devInfo white'>
             <div className='profilePic' onClick={this.show('blurring')}>
             <img  className='devPic' src={this.state.dev[0][0].profilepic}/>
           </div>
             <h1>{this.state.dev[0][0].firstname + ' ' + this.state.dev[0][0].lastname}</h1>
+            <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
+            <Button className={this.state.edit} onClick={()=>this.finishEdit()}>Finish Changes</Button>
             <Input className={this.state.edit} placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
             <Input className={this.state.edit} placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
               <h3>Im from {this.state.dev[0][0].city}, {this.state.dev[0][0].state}.</h3>

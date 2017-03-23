@@ -75,7 +75,7 @@ getDevelopers=function(){
   }
   render(){
     return(
-     <div className='jobSearch'>
+     <div className='jobSearch background'>
        <div className='left-pane white'>
         <h1>Refine your Search</h1>
         <Form>
@@ -97,7 +97,7 @@ getDevelopers=function(){
             </Radio>
           </Form.Field>
           <Form.Field>
-            <Radio 
+            <Radio
             label='Developers'
             value={'Developers'}
              checked={this.state.value === 'Developers'}
@@ -147,10 +147,10 @@ getDevelopers=function(){
 
 
 
-        
+
        </div>
        <div className='white right-pane'>
-         <h1></h1> 
+         <h1></h1>
          {this.state.jobs.map((j, i)=>{
            return(
              <div>

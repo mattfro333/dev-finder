@@ -12,13 +12,13 @@ constructor(){
         watchlist:[{}]
     }
     this.getWatchList = this.getWatchList.bind(this);
-  } 
+  }
   getWatchList = ()=>{
     return axios.get('/api/flaggedJobs')
   }
-  render(){ 
+  render(){
     return(
-      <div className = 'watchlistPage'>
+      <div className = 'watchlistPage background'>
       <h1>Your Pinned Jobs:</h1>
     <div className = 'watchedJobs'>
       {this.state.watchlist.map((j,i)=>{
@@ -34,7 +34,7 @@ constructor(){
                     </h2>
                   </div>
                  <h3>{j.location}</h3>
-                
+
               </div>
           )
       })}
@@ -50,11 +50,9 @@ constructor(){
         })
       console.log(r)
       })
-  }  
+  }
 }
 
 
 
 export default DevWatchlist
-
-

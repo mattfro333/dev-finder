@@ -159,7 +159,7 @@ finishEdit = ()=>{
     })
     var self = this;
     return(
-      <div className = 'body'>
+      <div className = 'body background'>
         <div className='main-info'>
           <div className = 'left-pane white'>
             <div className='prof-pic'>

@@ -25,7 +25,6 @@ class CreateJob extends Component{
   render(){
     return(
       <div className='job-create-page'>
-
         <div className='center-login'>
           <div className='createJobForm'>
           <h1>Create Job</h1>
