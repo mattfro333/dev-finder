@@ -12,10 +12,10 @@
   padding: 5px 10px 5px 10px;
    margin-bottom: 10px;
    margin-right:10px;
-  
+
 }
 .message{
- 
+
 }
 .dms{
   border-top: 1px solid lightgrey;
@@ -35,8 +35,8 @@
   padding:20px
 }
 .messaging{
-  margin: 0 20vw;
-  
+  padding: 0 20vw;
+
 }
 .dms{
   height:300px;
@@ -90,4 +90,3 @@ p{
   padding: 5px 10px 5px 10px;
    margin-bottom: 10px;
 }
-
