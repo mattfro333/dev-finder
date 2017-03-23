@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router';
 import {Divider, Card, Table, Header, Image, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 import './compDashboard.css';
+import Pie from '../../charts/pie.js'
 
 
 class CompDashboard extends Component {
@@ -83,6 +84,7 @@ class CompDashboard extends Component {
               </Table.Body>
             </Table>
             <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applicants</a>
+    <Pie />
           </div>
         </div>
       </div>

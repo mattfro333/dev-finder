@@ -152,7 +152,10 @@ app.get('/api/newjobs', devDashCtrl.newjobs);
 
 //CopmanyProfile Endooints
 app.get('/api/companyProfile/:id', companyProfileCtrl.get);
-app.get('/api/company/jobs/:companyId', companyProfileCtrl.getJobs)
+
+app.post('/api/companyJobs', companyProfileCtrl.get_jobs);
+app.put('/api/updatecompanyprofile', companyProfileCtrl.update_company);
+
 //devSignup endpoints
 app.post('/api/createdev', devSignup.post);
 app.put('/api/updatedev', devSignup.update);

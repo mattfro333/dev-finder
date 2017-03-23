@@ -6,6 +6,7 @@ import axios from 'axios'
 import './signup.css';
 
 
+
 class SignUp extends Component{
   constructor(){
     super()
@@ -26,7 +27,7 @@ class SignUp extends Component{
           <div className= 'land-nav'>
             <div className='logo'></div>
             <div className= 'landing-buttons'>
-               <Button 
+               <Button
                color='orange'
                onClick={()=> browserHistory.push('/login')}>Login
 
@@ -37,7 +38,7 @@ class SignUp extends Component{
           <div className = 'landing-page'>
             <div className = 'black-shadow center-login'>
               <div className = 'logIn white signup'>
-                <h1>Sign Up</h1> 
+                <h1>Sign Up</h1>
             <Input
               className='username-input'
               placeholder='Username'
@@ -68,6 +69,7 @@ class SignUp extends Component{
           </div>
           </div>
           </div>
+
 </div>
     )
   }
