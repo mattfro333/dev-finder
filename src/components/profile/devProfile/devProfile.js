@@ -45,7 +45,8 @@ class DevProfile extends Component{
       mine: '',
       theirs: '',
       session_id: "",
-      edit: "hide"
+      edit: "hide",
+      companyUser: {}
     }
     this.show = (dimmer) => () => this.setState({ dimmer, open: true })
     this.close = () => this.setState({ open: false })
@@ -61,8 +62,24 @@ class DevProfile extends Component{
     this.whosProfile = this.whosProfile.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.finishEdit = this.finishEdit.bind(this);
+    this.createRoom = this.createRoom.bind(this);
+    this.getCompanyName = this.getCompanyName.bind(this);
   }
-
+  createRoom = ()=>{
+    var self = this;
+    return axios.post('/api/newRoom', {user1_id: this.state.dev[0][0].user_id, user2_id: this.state.companyUser.user_id, user1_name: this.state.dev[0][0].firstname + " " + this.state.dev[0][0].lastname, user2_name: this.state.companyUser.name}).then(response => {
+        browserHistory.push('/messages')
+    })
+  }
+  getCompanyName = ()=>{
+    var self = this;
+    return axios.post('/api/companyInfo').then(response => {
+      self.setState({
+        companyUser: response.data[0]
+        })
+      //console.log(this.state.companyUser.user_id,this.state.companyUser.name , this.state.dev[0][0].user_id, this.state.dev[0][0].firstname + " " + this.state.dev[0][0].lastname);
+    })
+  }
   whosProfile = ()=>{
     var self = this;
       console.log(this.state.dev[0][0].user_id, this.state.session_id);
@@ -247,6 +264,7 @@ deleteExperience = (id)=>{
     return(
       <div className='devProfile'>
         <div  className='topContainer'>
+
           <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
           <Button className={this.state.edit} onClick={()=>this.finishEdit()}>Finish Changes</Button>
           <div className='devInfo white'>
@@ -261,7 +279,7 @@ deleteExperience = (id)=>{
                 <Input className={this.state.edit} placeholder='State' onChange={(e)=>this.devState = e.target.value} />
             <h4>{this.state.dev[0][0].description}</h4>
             <Input className={this.state.edit} placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
-          <div className=''><a><Button className={this.state.theirs}>Message</Button></a></div>
+          <div className=''><a><Button onClick={()=>this.createRoom()} className={this.state.theirs}>Message</Button></a></div>
            <div className=''><a>{this.state.dev[0][0].email || 'Loading'}</a></div>
            <Input className={this.state.edit} placeholder='Email' onChange={(e)=>this.devEmail = e.target.value} />
           <div className=''><a href={this.state.dev[0][0].github}>Github</a></div>
@@ -375,6 +393,7 @@ deleteExperience = (id)=>{
     }).then(function(response) {
       self.getUser().then(function(response) {
         self.whosProfile();
+        self.getCompanyName();
       });
     });
 

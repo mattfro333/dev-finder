@@ -54,7 +54,7 @@ function initDb(){
         console.error(err);
       }
       console.log(results)
-    })  
+    })
 }
 initDb();
 
@@ -135,7 +135,6 @@ app.delete('/api/applications', applicationsCtrl.delete);
 app.get('/api/company/applications/:company_id', applicationsCtrl.companyGet);
 
 //applicants endpoints
-
 app.get('/api/applicants', applicants.get);
 //app.delete('/api/applicants', applicants.delete);
 
@@ -168,6 +167,7 @@ app.get('/api/companyJobListings/:id', jobCtrl.getListings)
 //newjob endpoints
 app.post('/api/createjob', createJob.post);
 app.post('/api/name', createJob.get);
+app.post('/api/companyInfo', createJob.getComp)
 
 //messaging endpoints
 app.get('/api/rooms', messagingCtrl.getRooms);
@@ -182,7 +182,7 @@ app.get('/api/skills', skillsCtrl.getSkills)
 app.get('/api/companies/:compName', searchCtrl.getComps)
 app.get('/api/developers/:devName', searchCtrl.getDevs)
 //Server
-  
+
 
 
 const emailCtrl = require('./e-mailer.js');
