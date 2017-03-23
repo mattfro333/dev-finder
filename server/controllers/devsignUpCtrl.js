@@ -35,7 +35,7 @@ module.exports = {
   addPortfolio: function(req, res){
     let date = new Date()
     var user_id=req.session.passport.user.user_id;
-    db.user.create_portfolio([user_id, req.body.title, req.body.description, req.body.image, req.body.link, req.body.skills], function(err, results){
+    db.user.create_portfolio([user_id, req.body.title, req.body.description, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`, req.body.link, req.body.skills], function(err, results){
       if (err){
         console.error(err);
         return res.send(err);
