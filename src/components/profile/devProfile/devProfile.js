@@ -134,8 +134,17 @@ getUser = ()=>{
   })
 }
 changePhoto = ()=>{
+  let self = this
   return axios.put('/api/updatepic').then((r)=>{
     this.close()
+    getprofile(this.props.params.userid).then(dev => {
+      this.props.addProfileInfo(dev)
+      this.setState({
+        dev: dev
+
+      })
+      console.log(this.state.dev);
+    })
   })
 }
 addPortfolio = ()=>{
@@ -386,7 +395,7 @@ deleteExperience = (id)=>{
   componentDidMount() {
     var self = this;
     getprofile(this.props.params.userid).then(dev => {
-
+      this.props.addProfileInfo(dev)
       this.setState({
         dev: dev
 
