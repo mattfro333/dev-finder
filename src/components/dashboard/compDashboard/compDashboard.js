@@ -34,11 +34,14 @@ class CompDashboard extends Component {
               <Card.Group itemsPerRow={3}>
               {this.state.currentListings.map((l,i)=>{
                 return(
-                  <Card key={i} raised>
-                    <Card.Header onClick={()=>browserHistory.push(`/jobdetails/${l.id}`)}>{l.job_title}</Card.Header>
+                  <Card key={i} raised >
+                    <div className='currentCard'>
+                       <Card.Header onClick={()=>browserHistory.push(`/jobdetails/${l.id}`)}>{l.job_title}</Card.Header>
                     <Card.Meta>{l.location}</Card.Meta>
                     <Card.Description className="companyDashboardListingCardDescription">{l.description}</Card.Description>
                     <Card.Meta>Applicants: {l.count}</Card.Meta>
+                    </div>
+                   
                   </Card>
                 )
               })}
@@ -80,7 +83,7 @@ class CompDashboard extends Component {
                 })}
               </Table.Body>
             </Table>
-            <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applications</a>
+            <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applicants</a>
     <Pie />
           </div>
         </div>

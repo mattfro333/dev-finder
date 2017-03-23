@@ -13,6 +13,7 @@ class CompProfile extends Component{
       company: [{}],
       id: 0,
       userName: "",
+      jobs: [{}]
       jobList: [],
       edit: "hide",
       mine: "",
@@ -22,6 +23,7 @@ class CompProfile extends Component{
     this.createRoom = this.createRoom.bind(this)
     this.getUserName = this.getUserName.bind(this)
     this.getUserId=this.getUserId.bind(this)
+    this.getJobs = this.getJobs.bind(this)
     this.getCompanyJobs = this.getCompanyJobs.bind(this)
     this.editCompany = this.editCompany.bind(this)
     this.editProfile = this.editProfile.bind(this)
@@ -111,6 +113,17 @@ finishEdit = ()=>{
       })
 }
 
+  getJobs = (company_id)=>{
+    return axios.get('/api/company/jobs/'+company_id).then(r =>{
+      console.log('jobs',r.data)
+      this.setState({
+        jobs:r.data
+      })
+    })
+  }
+
+
+
   render(){
     var self = this;
     var jobs=this.state.jobList.map(function(jobs, i){
@@ -173,7 +186,6 @@ finishEdit = ()=>{
           <div className = 'right-pane white'><h1>Company Bio: </h1>
           <Input className={this.state.edit} placeholder='Company Bio' onChange={(e)=>this.devCompanyBio = e.target.value} />
           <p>{this.state.company[0].description}</p>
-
            </div>
             <div className=' right-pane white'>
                <h2>Position Name</h2>
@@ -186,6 +198,7 @@ finishEdit = ()=>{
     )
   }
    componentDidMount() {
+
      var self = this
     getCompanyProfile(this.props.params.userid).then(company => {
       this.setState({

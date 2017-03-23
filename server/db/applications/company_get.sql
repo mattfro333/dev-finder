@@ -3,4 +3,4 @@ JOIN applications a ON a.user_id=d.user_id
 JOIN jobs j ON a.job_id=j.id
 WHERE j.company_id = $1
 ORDER BY timestamp DESC
-LIMIT 10
+LIMIT 5

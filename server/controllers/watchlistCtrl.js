@@ -10,6 +10,15 @@ module.exports = {
       res.send(results);
     })
   },
+   get6: function(req, res){
+    db.watchlist.get6([req.session.passport.user.user_id], function(err, results){
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      res.send(results);
+    })
+  },
   delete: function(req, res){
     db.watchlist.delete([req.session.passport.user.user_id, req.params.id], function(err, results){
       if (err){
