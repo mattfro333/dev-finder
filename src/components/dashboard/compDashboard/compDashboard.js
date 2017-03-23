@@ -3,7 +3,7 @@ import {browserHistory} from 'react-router';
 import {Divider, Card, Table, Header, Image, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 import './compDashboard.css';
-import Pie from '../../charts/pie.js'
+import Bar from '../../charts/bar.js'
 
 
 class CompDashboard extends Component {
@@ -24,7 +24,7 @@ class CompDashboard extends Component {
    }
   render(){
     return(
-      <div className="companyDashboardPage">
+      <div className="companyDashboardPage background">
         <Divider />
         <div className="companyDashboardContainer" >
           <div className="companyDashboardListingsContainer">
@@ -41,7 +41,7 @@ class CompDashboard extends Component {
                     <Card.Description className="companyDashboardListingCardDescription">{l.description}</Card.Description>
                     <Card.Meta>Applicants: {l.count}</Card.Meta>
                     </div>
-                   
+
                   </Card>
                 )
               })}
@@ -84,7 +84,7 @@ class CompDashboard extends Component {
               </Table.Body>
             </Table>
             <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applicants</a>
-    <Pie />
+            <Bar />
           </div>
         </div>
       </div>

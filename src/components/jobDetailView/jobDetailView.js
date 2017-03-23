@@ -60,7 +60,7 @@ class jobDetails extends Component{
   render(){
     var self = this;
     return (
-      <div className =''>
+      <div className ='background'>
           <div className=' jobBox topJobContainer white'>
             <div>
               <img className = 'jobPic'src={this.state.job.picture}/>
