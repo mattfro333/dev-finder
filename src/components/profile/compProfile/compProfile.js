@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown} from 'semantic-ui-react';
+import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, TextArea} from 'semantic-ui-react';
 import './compProfile.css';
 import { getCompanyProfile } from '../../../services/companyProfile.js';
 import axios from 'axios';
@@ -161,7 +161,7 @@ finishEdit = ()=>{
     return(
       <div className = 'body background'>
         <div className='main-info'>
-          <div className = 'left-pane white'>
+          <div className = 'left-pane white overflow-scroll'>
             <div className='prof-pic'>
           <img className='pic' src={this.state.company[0].picture}/>
           </div>
@@ -184,7 +184,7 @@ finishEdit = ()=>{
 
           </div>
           <div className = 'right-pane white'><h1>Company Bio: </h1>
-          <Input className={this.state.edit} placeholder='Company Bio' onChange={(e)=>this.devCompanyBio = e.target.value} />
+          <TextArea className={this.state.edit + ' editBio' } placeholder='Company Bio' onChange={(e)=>this.devCompanyBio = e.target.value} />
           <p>{this.state.company[0].description}</p>
            </div>
             <div className=' right-pane white'>
