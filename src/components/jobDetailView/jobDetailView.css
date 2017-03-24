@@ -5,8 +5,8 @@
     white-space: pre-line;
 }
 .topJobContainer{
-    height:300px;
-    padding-top:30px;
+    height:350px;
+    padding-top:25px;
 }
 .jobPic{
     height: 250px;
@@ -14,6 +14,7 @@
     border-radius:100%;
     float:left;
     margin-left:20px;
+    margin-top: 20px
 }
 .basicJobInfo{
     margin-left:50px;
@@ -21,5 +22,13 @@
     padding-top:15px;
 }
 .center{
-    text-align:center
+    text-align:center;
+    text-decoration: underline;
+}
+.ProfilePortfolioPieceSkillsImage{
+overflow-y: hidden;
+}
+.companyName {
+  text-decoration: underline;
+  font-size: 2.7em;
 }
