@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-<<<<<<< HEAD
 import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, TextArea} from 'semantic-ui-react';
-=======
 import { getprofile } from '../../../services/devProfile';
-import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown} from 'semantic-ui-react';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
->>>>>>> master
 import './compProfile.css';
 import config from './../../../../server/config'
 import { getCompanyProfile } from '../../../services/companyProfile.js';
