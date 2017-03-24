@@ -3,21 +3,21 @@ import {Pie} from 'react-chartjs-2';
 
 const data = {
       labels: [
-        'Red',
-        'Green',
-        'Yellow'
+        'HTML5',
+        'Nodejs',
+        'Reactjs'
       ],
       datasets: [{
             data: [300, 50, 100],
             backgroundColor: [
-              '#FF6384',
+              '#EE7600',
               '#36A2EB',
-              '#FFCE56'
+              '#008080'
             ],
             hoverBackgroundColor: [
-              '#FF6384',
+              '#EE7600',
               '#36A2EB',
-              '#FFCE56'
+              '#008080'
             ]
       }]
 };
@@ -28,7 +28,7 @@ const data = {
    render() {
      return (
        <div>
-       <h2>Pie</h2>
+       <h2>Technologies</h2>
        <Pie data={data} />
        </div>
      );
