@@ -22,7 +22,7 @@ module.exports = {
     },
     sendMessage: function(req, res){
 
-        db.messaging.post([req.session.passport.user.user_id, req.body.message, req.body.room_id, req.body.createdtime],function(err, results){
+        db.messaging.post([req.session.passport.user.user_id, req.body.message, req.body.room_id, req.body.createdtime, req.body.recievingUser],function(err, results){
             if(err){
                 console.error(err);
                 return res.send(err);
@@ -39,4 +39,13 @@ module.exports = {
             res.send(results)
         })
     },
+    newMessages: (req, res)=>{
+      db.messaging.new_message_query([req.session.passport.user.user_id], (err, response)=>{
+        if(err){
+            console.error(err);
+            return res.send(err);
+        }
+        res.send(response)
+      })
+    }
 }
