@@ -395,7 +395,7 @@ deleteExperience = (id)=>{
   componentDidMount() {
     var self = this;
     getprofile(this.props.params.userid).then(dev => {
-      this.props.addProfileInfo(dev)
+      // this.props.addProfileInfo(dev)
       this.setState({
         dev: dev
 

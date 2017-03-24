@@ -76,7 +76,7 @@ getDevelopers=function(){
   render(){
     return(
      <div className='jobSearch background'>
-       <div className='left-pane white'>
+       <div className='left-pane white refineSearch'>
         <h1>Refine your Search</h1>
         <Form>
             <Form.Field>
@@ -112,23 +112,28 @@ getDevelopers=function(){
           onChange={(e)=>this.mySearch = e.target.value}
          icon='search'
          placeholder='Search...'
-         fluid
+         className='searchBar'
+         
          />
          {(()=>{
            if(this.state.value === 'Jobs'){
             return (<div>
-                    <Button
+                    <Button 
+                      color= 'orange'
+                      className= 'searchButton'
                       onClick={()=>this.getJob()}
-                      primary>
+                      >
                       Find my Job!
                     </Button>
                   </div>)
            }
            else if(this.state.value === 'Companies'){
                return (<div>
-                    <Button
+                    <Button 
+                      color= 'orange'
+                      className= 'searchButton'
                       onClick={()=>this.getCompanies()}
-                      primary>
+                      >
                       Find my Company!
                     </Button>
                   </div>)
@@ -136,8 +141,10 @@ getDevelopers=function(){
             else if(this.state.value === 'Developers'){
                return (<div>
                     <Button
+                      color= 'orange'
+                      className= 'searchButton'
                       onClick={()=>this.getDevelopers()}
-                      primary>
+                      >
                       Find me a Developer!
                     </Button>
                   </div>)
@@ -154,12 +161,23 @@ getDevelopers=function(){
          {this.state.jobs.map((j, i)=>{
            return(
              <div>
-                   <h1 type='link'
-                   onClick={()=>browserHistory.push(`/jobdetails/${j.id}`)}
-                   >{j.job_title}</h1>
-                 <h2
-                 onClick={()=>browserHistory.push(`/profile/company/${j.user_id}`)}
-                 >{j.name}</h2>
+                   <h1  
+                   className='hoverTeal'
+                   type='link'
+                   onClick={
+                     ()=>browserHistory.push(`/jobdetails/${j.id}`)
+                     }
+                   >
+                   {j.job_title}
+                   </h1>
+                 <h2 
+                 className='hoverOrange'
+                 onClick={
+                   ()=>browserHistory.push(`/profile/company/${j.user_id}`)
+                   }
+                 >
+                 {j.name}
+                 </h2>
                  <p>{j.location}</p>
                  <Button color='teal'
                   onClick={()=>{
@@ -167,6 +185,7 @@ getDevelopers=function(){
                     this.applyJob(j.id)}}
                   >Apply</Button>
                    <Button
+                   color= 'orange'
                   onClick={()=>{
                     this.setState({showPinAlert: true})
                     this.watchJob(j.id)}}
@@ -180,7 +199,9 @@ getDevelopers=function(){
            this.state.companies.map((c, i)=>{
             return(
               <div>
-                <h1 onClick={()=>browserHistory.push(`/profile/company/${c.user_id}`)}>{c.name}</h1>
+                <img className='companySearchPicture' src={c.picture}/> 
+                <h1 className='companySearchName hoverTeal' onClick={()=>browserHistory.push(`/profile/company/${c.user_id}`)}>{c.name}</h1>
+                <hr/>
               </div>
             )
            })
@@ -189,7 +210,10 @@ getDevelopers=function(){
            this.state.devs.map((d, i)=>{
              return(
                <div>
+                 <img  className='dev-search-photo'src={d.profilepic}/>
                  <h1 onClick={()=>browserHistory.push(`/profile/dev/${d.user_id}`)}>{d.firstname} {d.lastname}</h1>
+                 <h2>{d.city}, {d.state}</h2>
+                 <hr/>
                </div>
              )
            })
