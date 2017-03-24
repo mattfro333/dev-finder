@@ -113,7 +113,7 @@ class jobDetails extends Component{
             </div>
           </div>
 
-      <div className = ' jobBox white'>
+      <div className = 'jobBox white'>
 <h1 className = 'center'>
   Job Description
 </h1>
