@@ -87,6 +87,7 @@ p{
 }
 .rooms{
   margin-bottom:10px;
+  display: flex;
 }
 .left-message{
   border:2px solid #e5e5e5;
