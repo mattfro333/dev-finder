@@ -31,7 +31,7 @@ class App extends Component {
     return axios.get('/api/me')
   }
   logOut = () => {
-    return axios.get('/api/logout')
+    return axios.get('/api/logout').then(()=>this.props.logout())
   }
   getSkills = ()=>{
     return axios.get('/api/skills').then((r)=>{
