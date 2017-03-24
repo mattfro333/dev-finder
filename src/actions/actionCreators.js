@@ -19,3 +19,9 @@ export const addSkills = (skills) => {
     skills: skills
   }
 }
+
+export const logout = ()=>{
+  return{
+    type: 'USER_LOGOUT'
+  }
+}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
-import {Input, Button, Form, Radio} from 'semantic-ui-react'
+import {Input, Button, Form, Radio, Label} from 'semantic-ui-react'
 import Logo from './../../DevFinder.png'
 import axios from 'axios'
 import './signup.css';
@@ -11,8 +11,10 @@ class SignUp extends Component{
   constructor(){
     super()
     this.state = {
+      show: false
     }
     this.postUser = this.postUser.bind(this)
+    this.checkPasswords = this.checkPasswords.bind(this)
   }
   handleChange = (e, { value }) => this.setState({ value })
 
@@ -20,6 +22,14 @@ class SignUp extends Component{
      return axios.post('/api/register', {username: this.usernameInput,
      password: this.passwordInput,
      company: this.state.value})
+  }
+  checkPasswords = () => {
+    if(this.passwordInput == this.confirmPasswordInput){
+      this.postUser().then(()=> browserHistory.push('/login'))
+    }
+    else{
+      this.setState({show: true})
+    }
   }
   render(){
     return(
@@ -39,17 +49,30 @@ class SignUp extends Component{
             <div className = 'black-shadow center-login'>
               <div className = 'logIn white signup'>
                 <h1>Sign Up</h1>
-            <Input
-              className='username-input'
-              placeholder='Username'
-              onChange={(e)=>this.usernameInput = e.target.value}
-              />
+            <Form>
+              <Form.Field inline>
+                <Input
+                className='username-input'
+                placeholder='Username'
+                onChange={(e)=>this.usernameInput = e.target.value}
+                />
+                {this.state.show ? <Label basic color='red' pointing='below'>The passwords do not match</Label> : null}
+              </Form.Field>
+            </Form>
+
             <Input
               className='password-input'
               placeholder='Password'
               type="password"
               onChange={(e)=>this.passwordInput = e.target.value}
-              /><br/>
+              onClick={()=>this.setState({show:false})}
+            />
+            <Input
+              className='password-input'
+              placeholder='Confirm Password'
+              type="password"
+              onChange={(e)=>this.confirmPasswordInput = e.target.value}
+            /><br/>
           <Radio className="radioCom"
             label='Company'
             name='company'
@@ -65,7 +88,7 @@ class SignUp extends Component{
               onChange={this.handleChange}
             />
             <br/><div className= 'buffer'></div>
-          <Button className= 'getstarted'color='teal'onClick={()=>this.postUser().then(()=> browserHistory.push('/login'))}>Get Started</Button>
+          <Button className= 'getstarted'color='teal'onClick={()=>this.checkPasswords()}>Get Started</Button>
           </div>
           </div>
           </div>

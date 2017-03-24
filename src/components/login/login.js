@@ -65,6 +65,7 @@ class Login extends Component {
                 className='username-input'
                 placeholder='Username'
                 onChange={(e) => this.usernameInput = e.target.value}
+                onClick={()=>this.setState({failure:false})}
                 />
                 <Form>
                 <Form.Field className='overideSemantic'>
@@ -73,6 +74,7 @@ class Login extends Component {
                   type='password'
                   placeholder='Password'
                   onChange={(e) => this.passwordInput = e.target.value}
+                  onClick={()=>this.setState({failure:false})}
                   />
                   {this.state.failure ? <Label basic color='red' pointing>Username or Password is incorrect </Label>: null }
                 </Form.Field>
