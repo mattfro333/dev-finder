@@ -6,8 +6,13 @@
     background-image: url('https://www.xmple.com/wallpaper/linear-gradient-orange-blue-1920x1080-c2-ff4500-00ffff-a-210-f-14.svg');
     background-size: cover;
     background-position: center;
-    height:calc(100vh - 70px);
+    background-attachment: fixed;
     position:absolute;
+    overflow-y: scroll;
+    height:calc(100vh - 70px);
     top:70px;
     width:100vw;
+}
+.background::-webkit-scrollbar{
+width: 0px;
 }

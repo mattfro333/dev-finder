@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
+import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, TextArea} from 'semantic-ui-react';
 import { getprofile } from '../../../services/devProfile';
-import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown} from 'semantic-ui-react';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
 import './compProfile.css';
@@ -210,10 +210,10 @@ finishEdit = ()=>{
     return(
       <div className = 'body background'>
         <div className='main-info'>
-          <div className = 'left-pane white'>
-            <div className='prof-pic' onClick={this.show('blurring')}>
-              <img className='pic' src={this.state.company[0].picture}/>
-            </div>
+          <div className = 'left-pane white overflow-scroll'>
+            <div className='prof-pic'>
+          <img className='pic' src={this.state.company[0].picture}/>
+          </div>
           <div className='info'>
             <h1>{this.state.company[0].name}</h1>
             <Input className={this.state.edit} placeholder='Company name' onChange={(e)=>this.devCompanyName = e.target.value} />
@@ -233,7 +233,7 @@ finishEdit = ()=>{
 
           </div>
           <div className = 'right-pane white'><h1>Company Bio: </h1>
-          <Input className={this.state.edit} placeholder='Company Bio' onChange={(e)=>this.devCompanyBio = e.target.value} />
+          <TextArea className={this.state.edit + ' editBio' } placeholder='Company Bio' onChange={(e)=>this.devCompanyBio = e.target.value} />
           <p>{this.state.company[0].description}</p>
            </div>
             <div className=' right-pane white'>
