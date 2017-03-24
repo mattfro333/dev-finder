@@ -38,5 +38,16 @@ module.exports = {
       }
       res.status(200).send(profile)
     })
+  },
+  gettheUser: (req, res, next) => {
+    var user_id=req.session.passport.user.user_id;
+    console.log('profile ctrl', user_id);
+    db.devProfile.get_user([user_id], (err, profile) =>{
+      if (err) {
+          console.log('get profile err: ', err);
+          return res.status(500).send(err);
+      }
+      res.status(200).send(profile)
+    })
   }
 }
