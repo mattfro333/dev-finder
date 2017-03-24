@@ -22,7 +22,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <h2>Bar Example (custom size)</h2>
+        <h2>Company Stocks</h2>
         <Bar
           data={data}
           width={100}
