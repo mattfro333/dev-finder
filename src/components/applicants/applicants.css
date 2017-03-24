@@ -3,7 +3,7 @@
 }
 
 .background{
-    background-image: url('https://www.xmple.com/wallpaper/linear-gradient-orange-blue-1920x1080-c2-ff4500-00ffff-a-210-f-14.svg');
+    background-image: url('../../background.svg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

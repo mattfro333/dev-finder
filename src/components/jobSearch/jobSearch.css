@@ -2,3 +2,37 @@
     padding: 50px 11vw;
 height:calc(100vh - 70px);
 }
+.refineSearch{
+    top:120px !important;
+}
+
+.searchBar{
+    width:calc(100% - 200px);
+    float:left;
+}
+.searchButton{
+    width:175px;
+    float:right;
+}
+
+.hoverTeal:hover{
+    color:#00B5AD
+}
+.hoverOrange:hover{
+    color:#f26304
+}
+.companySearchPicture{
+    height:100px;
+    float:left;
+    position: relative;
+ 
+}
+.companySearchName{
+       line-height: 100px;
+       margin-left:30px;
+       position: relative;
+}
+.dev-search-photo{
+    height:100px;
+
+}
