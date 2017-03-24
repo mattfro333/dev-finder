@@ -68,16 +68,20 @@ class jobDetails extends Component{
                   <h1 className='companyName'>{this.state.job.name}</h1>
               <h2 className='jobtitle'>{this.state.job.job_title}</h2>
         <h3>
-          <Icon name='location arrow' color='black'></Icon>{this.state.job.location}</h3>
+          <Icon name='location arrow' color='black'></Icon>{this.state.job.city}, {this.state.job.state}</h3>
            <Button
+           color='teal'
            onClick={()=>this.applyJob(this.state.job.id)}>
            Apply
            </Button>
            <Button
+           color='orange'
              onClick={()=>this.watchJob(this.state.job.id)}>
              Save
              </Button>
-             <Button onClick={()=>self.createRoom()}>
+             <Button 
+             primary
+             onClick={()=>self.createRoom()}>
                Message
                </Button>
            <br/>
