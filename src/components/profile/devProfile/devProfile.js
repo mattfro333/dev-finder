@@ -46,7 +46,8 @@ class DevProfile extends Component{
       theirs: '',
       session_id: "",
       edit: "hide",
-      companyUser: {}
+      companyUser: {},
+      show: false
     }
     this.show = (dimmer) => () => this.setState({ dimmer, open: true })
     this.close = () => this.setState({ open: false })
@@ -98,13 +99,15 @@ class DevProfile extends Component{
   editProfile = ()=>{
     var self = this;
         self.setState({
-          edit: ""
+          edit: "",
+          show: true
         })
   }
   finishEdit = ()=>{
     var self = this;
         self.setState({
-          edit: "hide"
+          edit: "hide",
+          show: false
         })
   }
 
@@ -131,13 +134,22 @@ getUser = ()=>{
   })
 }
 changePhoto = ()=>{
+  let self = this
   return axios.put('/api/updatepic').then((r)=>{
     this.close()
+    getprofile(this.props.params.userid).then(dev => {
+      this.props.addProfileInfo(dev)
+      this.setState({
+        dev: dev
+
+      })
+      console.log(this.state.dev);
+    })
   })
 }
 addPortfolio = ()=>{
   var self = this;
-  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, image: this.portImg, link: this.portLink, skills: this.portfolioSkills}).then(function(response) {
+  return axios.post('/api/addPortfolio', {title: this.portTitle, description: this.portDesc, link: this.portLink, skills: this.portfolioSkills}).then(function(response) {
     getprofile(self.props.params.userid).then(dev => {
       self.setState({
         dev: dev
@@ -327,7 +339,7 @@ deleteExperience = (id)=>{
             <Button className={this.state.edit + ' add'}  icon="plus"/>
             <Input className={this.state.edit} placeholder='Title' onChange={(e)=>this.portTitle = e.target.value} />
             <Input className={this.state.edit} placeholder='Description' onChange={(e)=>this.portDesc = e.target.value} />
-            <Gallery className={this.state.edit} uploader={uploader}/>
+            {this.state.show ? <div><p>Add Image</p> <Gallery uploader={uploader}/></div> : null}
             <Input className={this.state.edit} placeholder='Link' onChange={(e)=>this.portLink = e.target.value} />
             <Dropdown className={this.state.edit} placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
               this.portfolioSkills = {skills: d.value}
@@ -383,7 +395,7 @@ deleteExperience = (id)=>{
   componentDidMount() {
     var self = this;
     getprofile(this.props.params.userid).then(dev => {
-
+      this.props.addProfileInfo(dev)
       this.setState({
         dev: dev
 

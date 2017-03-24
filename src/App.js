@@ -123,7 +123,6 @@ class App extends Component {
             <Dropdown trigger={trigger} icon={null} >
               <Dropdown.Menu>
                 <Dropdown.Item content='Profile' icon='user' onClick={()=>browserHistory.push(this.state.links.profile)}/>
-                <Dropdown.Item content='Edit Profile' icon='settings' onClick={()=>browserHistory.push(this.state.links.editProfile)}/>
                 <Dropdown.Item content='Log Out' icon='sign out' onClick={()=>this.logOut().then(()=>browserHistory.push('/'))}/>
               </Dropdown.Menu>
             </Dropdown>
