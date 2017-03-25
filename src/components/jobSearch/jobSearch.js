@@ -108,6 +108,7 @@ getDevelopers=function(){
         </Form>
        </div>
        <div className='white right-pane'>
+         
          <Input
           onChange={(e)=>this.mySearch = e.target.value}
          icon='search'
@@ -151,6 +152,7 @@ getDevelopers=function(){
            }
          })()
          }
+     
 
 
 
@@ -211,7 +213,7 @@ getDevelopers=function(){
              return(
                <div>
                  <img  className='dev-search-photo'src={d.profilepic}/>
-                 <h1 onClick={()=>browserHistory.push(`/profile/dev/${d.user_id}`)}>{d.firstname} {d.lastname}</h1>
+                 <h1 className='hoverTeal' onClick={()=>browserHistory.push(`/profile/dev/${d.user_id}`)}>{d.firstname} {d.lastname}</h1>
                  <h2>{d.city}, {d.state}</h2>
                  <hr/>
                </div>

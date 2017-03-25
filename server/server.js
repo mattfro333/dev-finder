@@ -119,7 +119,7 @@ app.get('/api/test', (req, res) => {
 	res.status(200).send('test')
 })
 
-
+ 
 app.get('/api/me', isAuthed, userCtrl.me)
 
 //watchlist endpoints
