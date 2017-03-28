@@ -226,7 +226,7 @@ finishEdit = ()=>{
               Message
               </Button></h3>
               <Button className={this.state.edit} onClick={()=>self.editCompany()}>
-                Save Changes
+                Update
                 </Button>
                 <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
           </div>
