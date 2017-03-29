@@ -43,6 +43,18 @@ class Messaging extends Component{
     })
   }
 
+  deleteRoom = (id)=>{
+    var self = this;
+    return axios.post(`/api/deleteRoom`, {id: id}).then(
+      self.getRooms().then(newRooms => {
+        console.log('rooms',newRooms);
+        self.setState({rooms: newRooms.data})
+        console.log(this.state.rooms);
+      }
+    )
+  )
+  }
+
   sendmessage = ()=>{
     var currentDate = new Date()
     var self = this;
@@ -91,7 +103,7 @@ class Messaging extends Component{
                     this.setState({
                       currentRoom: r.room_id
                     })
-                    this.getthread(r.room_id, roomName).then(()=>this.scrollBottom())}}>{roomName} </Button>
+                    this.getthread(r.room_id, roomName).then(()=>this.scrollBottom())}}>{roomName} </Button><Button onClick={()=>this.deleteRoom(r.room_id)}>X</Button>
                   </div>
                       )
                     })}
@@ -132,8 +144,12 @@ class Messaging extends Component{
         this.setState({rooms: rooms.data})
         this.getUser()
       })
-      setInterval(this.update, 2500);
+      this.interval = setInterval(this.update, 2500);
     }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 }
 
 export default Messaging

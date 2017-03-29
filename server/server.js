@@ -180,7 +180,8 @@ app.get('/api/rooms', messagingCtrl.getRooms);
 app.put('/api/threads', messagingCtrl.getThreads);
 app.post('/api/sendmessage', messagingCtrl.sendMessage);
 app.post('/api/newRoom', messagingCtrl.createRoom);
-app.get('/api/newmessages', messagingCtrl.newMessages)
+app.get('/api/newmessages', messagingCtrl.newMessages);
+app.post('/api/deleteRoom', messagingCtrl.deleteRoom);
 
 //skills endpoints
 app.get('/api/skills', skillsCtrl.getSkills)

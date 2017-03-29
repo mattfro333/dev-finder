@@ -47,5 +47,14 @@ module.exports = {
         }
         res.send(response)
       })
+    },
+    deleteRoom: function(req, res){
+        db.messaging.delete_room([req.body.id],function(err, results){
+            if(err){
+                console.error(err);
+                return res.send(err);
+            }
+            res.send(results)
+        })
     }
 }
