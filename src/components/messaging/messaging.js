@@ -58,9 +58,17 @@ class Messaging extends Component{
   sendmessage = ()=>{
     var currentDate = new Date()
     var self = this;
-    console.log(this.state.currentRoom);
+    let recievingName = ""
+    console.log('current room', this.state);
+
+    if (this.state.rooms[0].user1_id == this.state.user.user_id){
+      recievingName = this.state.rooms[0].user2_id
+    }else {
+      recievingName = this.state.rooms[0].user1_id
+    }
+
     this.scrollBottom();
-    return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.currentRoom, createdtime: currentDate}).then(
+    return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.currentRoom, createdtime: currentDate, recievingUser: recievingName}).then(
       function(){
         self.setState({message: ''});
       self.getthread(self.state.currentRoom, self.currentChat);

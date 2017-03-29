@@ -19,13 +19,15 @@ class App extends Component {
         search: '',
         profilepic: '',
         watchAdd: '',
-        watchAddIcon: 'star'
+        watchAddIcon: 'star',
+        newMessages: false
       }
     }
     this.getProfile = this.getProfile.bind(this)
     this.setLinks = this.setLinks.bind(this)
     this.logOut = this.logOut.bind(this)
     this.getSkills = this.getSkills.bind(this)
+    this.checkNewMessages = this.checkNewMessages.bind(this)
   }
   getProfile = () => {
     return axios.get('/api/me')
@@ -38,6 +40,9 @@ class App extends Component {
        let skills = r.data
        this.props.addSkills(skills)
     })
+  }
+  checkNewMessages = ()=>{
+    return axios.get('/api/newmessages').then((r)=>console.log("response", r))
   }
   setLinks = () => {
 
@@ -67,10 +72,12 @@ class App extends Component {
 
   }
   componentWillMount(){
+    var self = this
     this.getProfile().then((r) => {
         let user = r.data
         let profile = {}
         this.props.addUserInfo(user)
+        this.checkNewMessages().then((r)=>r.data[0]?this.setState({newMessages:true}):console.log('no new messages'))
         if (user.company) {
             axios.get(`/api/companyProfile/${user.user_id}`).then((r) => {
                 profile = r.data
@@ -116,7 +123,7 @@ class App extends Component {
             name='messages'
             onClick={()=>browserHistory.push('/messages')}
           >
-            <Icon name='mail' />
+            {this.state.newMessages ? <Icon color='red'  name='mail' />:<Icon  name='mail' />}
           </Menu.Item>
           <Menu.Item>
 

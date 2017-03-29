@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu} from 'semantic-ui-react'
+import {Menu, Header, Image} from 'semantic-ui-react'
 import './devWatchlist.css';
 import axios from 'axios';
 
@@ -19,25 +19,39 @@ constructor(){
   render(){
     return(
       <div className = 'watchlistPage background'>
+    <div className='watchlistContainer' >
       <h1 className='centerHeader'>Your Pinned Jobs</h1>
     <div className = 'watchedJobs'>
       {this.state.watchlist.map((j,i)=>{
+        console.log(j)
           return(
-              <div 
-              onClick={()=> browserHistory.push(`/jobdetails/${j.id}`)} 
+              <div
+              onClick={()=> browserHistory.push(`/jobdetails/${j.id}`)}
                 className ='white watchlistBox card wwww'>
-                  <h1 >
-                    {j.job_title}
-                    </h1>
-                    <h2 
-                    onClick={()=> browserHistory.push(`/profile/company/${j.company_id}`)}>{j.name}
-                    </h2>
-                 <h3>{j.location}</h3>
+                    <Header as='h2'>
+                      <Header.Content>
+                        {j.job_title}
+                        <Header.Subheader>
+                          {j.city +', '+j.state}
+                        </Header.Subheader>
+                      </Header.Content>
+
+                    </Header>
+                    <Header as='h4' textAlign='left'>
+                      <Image src={j.picture} size='mini' shape='circular'/>
+                      <Header.Content>
+                        {j.name}
+                        <Header.Subheader>
+                          {j.company_city +', '+j.company_state}
+                        </Header.Subheader>
+                      </Header.Content>
+                    </Header>
 
               </div>
           )
       })}
       <div  onClick={()=> browserHistory.push('/search')}className = 'white watchlistBox card'><h1>Find more Jobs</h1></div>
+      </div>
       </div>
       </div>
     )

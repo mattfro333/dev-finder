@@ -5,7 +5,7 @@
 .watchlistBox{
     padding: 20px;
    border-radius:10px;
-   margin:10px;
+   margin:5px;
    float:left;
    width:300px;
    height:225px;
@@ -13,6 +13,13 @@
     display: flex;
   justify-content: center;
   flex-direction: column;
+  margin: 20px;
+}
+.watchlistContainer{
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-top: 25px;
+  border-radius: 10px;
+  height: inherit;
 }
 
 .watchedJobs{
