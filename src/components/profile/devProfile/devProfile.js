@@ -47,7 +47,8 @@ class DevProfile extends Component{
       session_id: "",
       edit: "hide",
       companyUser: {},
-      show: false
+      show: false,
+      user: {}
     }
     this.show = (dimmer) => () => this.setState({ dimmer, open: true })
     this.close = () => this.setState({ open: false })
@@ -68,7 +69,12 @@ class DevProfile extends Component{
   }
   createRoom = ()=>{
     var self = this;
-    return axios.post('/api/newRoom', {user1_id: this.state.dev[0][0].user_id, user2_id: this.state.companyUser.user_id, user1_name: this.state.dev[0][0].firstname + " " + this.state.dev[0][0].lastname, user2_name: this.state.companyUser.name}).then(response => {
+    console.log(this.state);
+    var user_id = 0;
+    var user_name = "";
+    var devName = this.state.user[0].firstname + " " + this.state.user[0].lastname;
+    this.state.companyUser? (user_id = this.state.companyUser.user_id, user_name = this.state.companyUser.name): (user_id = this.state.session_id, user_name = devName);
+    return axios.post('/api/newRoom', {user1_id: this.state.dev[0][0].user_id, user2_id: user_id, user1_name: this.state.dev[0][0].firstname + " " + this.state.dev[0][0].lastname, user2_name: user_name }).then(response => {
         browserHistory.push('/messages')
     })
   }
@@ -207,7 +213,7 @@ deleteExperience = (id)=>{
     this.getUserId().then((r) => this.setState({user: r.data}))
   }
   getUserId = ()=>{
-    return axios.get('/api/me')
+    return axios.post('/api/get/user/message')
   }
 
   render(){
@@ -280,9 +286,11 @@ deleteExperience = (id)=>{
             <div className='profilePic' onClick={this.show('blurring')}>
             <img  className='devPic' src={this.state.dev[0][0].profilepic}/>
           </div>
+
             <h1>{this.state.dev[0][0].firstname + ' ' + this.state.dev[0][0].lastname}</h1>
-            <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
-            <Button className={this.state.edit} onClick={()=>this.finishEdit()}>Finish Changes</Button>
+            <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>            
+            <Button className={this.state.edit + ' signupButton'} content='Update' onClick={()=>{this.EditUser();this.finishEdit();}}/>
+
             <Input className={this.state.edit} placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
             <Input className={this.state.edit} placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
               <h3>Im from {this.state.dev[0][0].city}, {this.state.dev[0][0].state}.</h3>
@@ -324,7 +332,6 @@ deleteExperience = (id)=>{
         )
           })}</div> :''}
         </div>
-          <Button className={this.state.edit + ' signupButton'} content='Update' onClick={()=>this.EditUser()}/>
           <div className='technologies'>
             <ul>
             </ul>
