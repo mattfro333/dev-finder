@@ -56,18 +56,15 @@ class DevDashboard extends Component {
             <Item.Group>
               {this.state.newjobs.map((a, i) => {
                 return (
-                  <Item key={i}>
-                      <Item.Image size='tiny' src={a.picture} />
-
-                      <Item.Content>
+                  <Item key={i} className='itemDashboardDivider'>
+                      <Item.Image shape='rounded' size='tiny' src={a.picture} />
+                      <Item.Content verticalAlign='middle'>
                         <Item.Header onClick={()=>browserHistory.push(`/jobdetails/${a.id}`)}>{a.job_title}</Item.Header>
                         <Item.Meta>
                           <span>{a.name}</span>
                           <span>{a.location}</span>
                         </Item.Meta>
-                        <Item.Description>Description</Item.Description>
                       </Item.Content>
-                      <Divider />
                     </Item>
 
                   )

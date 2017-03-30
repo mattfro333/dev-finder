@@ -43,12 +43,32 @@ class Messaging extends Component{
     })
   }
 
+  deleteRoom = (id)=>{
+    var self = this;
+    return axios.post(`/api/deleteRoom`, {id: id}).then(
+      self.getRooms().then(newRooms => {
+        console.log('rooms',newRooms);
+        self.setState({rooms: newRooms.data})
+        console.log(this.state.rooms);
+      }
+    )
+  )
+  }
+
   sendmessage = ()=>{
     var currentDate = new Date()
     var self = this;
-    console.log(this.state.currentRoom);
+    let recievingName = ""
+    console.log('current room', this.state);
+
+    if (this.state.rooms[0].user1_id == this.state.user.user_id){
+      recievingName = this.state.rooms[0].user2_id
+    }else {
+      recievingName = this.state.rooms[0].user1_id
+    }
+
     this.scrollBottom();
-    return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.currentRoom, createdtime: currentDate}).then(
+    return axios.post(`/api/sendmessage`, {message: this.state.message, room_id: this.state.currentRoom, createdtime: currentDate, recievingUser: recievingName}).then(
       function(){
         self.setState({message: ''});
       self.getthread(self.state.currentRoom, self.currentChat);
@@ -83,7 +103,7 @@ class Messaging extends Component{
                     this.setState({
                       currentRoom: r.room_id
                     })
-                    this.getthread(r.room_id, roomName).then(()=>this.scrollBottom())}}>{roomName} </Button>
+                    this.getthread(r.room_id, roomName).then(()=>this.scrollBottom())}}>{roomName} </Button><Button onClick={()=>this.deleteRoom(r.room_id)}>X</Button>
                   </div>
                       )
                     })}
@@ -124,8 +144,12 @@ class Messaging extends Component{
         this.setState({rooms: rooms.data})
         this.getUser()
       })
-      setInterval(this.update, 2500);
+      this.interval = setInterval(this.update, 2500);
     }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 }
 
 export default Messaging
