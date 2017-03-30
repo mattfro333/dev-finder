@@ -3,4 +3,4 @@ FROM applications a
 JOIN jobs j ON a.job_id = j.id
 JOIN companys c ON j.company_id=c.company_id
 WHERE a.user_id = $1
-LIMIT 6
+LIMIT 5
