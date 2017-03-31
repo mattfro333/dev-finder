@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import { getprofile } from '../../../services/devProfile';
-import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown} from 'semantic-ui-react';
+import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, Divider} from 'semantic-ui-react';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
 import config from './../../../../server/config'
@@ -239,7 +239,7 @@ deleteExperience = (id)=>{
         <Button className={self.state.edit + ' DeleteButton'} content='X' onClick={()=>self.deleteExperience(school.experience_id)}/>
           <h1>{school.title}</h1>
           {school.start_month}/{school.start_year}-{school.end_month}/{school.end_year}
-        <h2>{school.description}</h2>
+        <h3>{school.description}</h3>
         </div>
 
       );
@@ -288,8 +288,7 @@ deleteExperience = (id)=>{
           </div>
 
             <h1>{this.state.dev[0][0].firstname + ' ' + this.state.dev[0][0].lastname}</h1>
-            <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>            
-            <Button className={this.state.edit + ' signupButton'} content='Update' onClick={()=>{this.EditUser();this.finishEdit();}}/>
+
 
             <Input className={this.state.edit} placeholder='First Name' onChange={(e)=>this.devFirstName = e.target.value} />
             <Input className={this.state.edit} placeholder='Last Name' onChange={(e)=>this.devLastName = e.target.value}/>
@@ -299,6 +298,9 @@ deleteExperience = (id)=>{
             <h4>{this.state.dev[0][0].description}</h4>
             <Input className={this.state.edit} placeholder='Desc' onChange={(e)=>this.devDesc = e.target.value} />
           <div className=''><a><Button onClick={()=>this.createRoom()} className={this.state.theirs}>Message</Button></a></div>
+            <Divider />
+          <h3>Social Media</h3>
+
            <div className=''><a>{this.state.dev[0][0].email || 'Loading'}</a></div>
            <Input className={this.state.edit} placeholder='Email' onChange={(e)=>this.devEmail = e.target.value} />
           <div className=''><a href={this.state.dev[0][0].github}>Github</a></div>
@@ -310,6 +312,9 @@ deleteExperience = (id)=>{
             console.log(this.devSkills);
           }}/>
         <div>
+          <Divider />
+          <h3>Skills</h3>
+
             {this.state.dev[0][0].skills? <div className="ProfileSkillsContainer">{this.state.dev[0][0].skills.skills.map((s,i)=>{
             let image
             let name
@@ -331,6 +336,8 @@ deleteExperience = (id)=>{
             />
         )
           })}</div> :''}
+          <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
+          <Button className={this.state.edit + ' signupButton'} content='Update' onClick={()=>{this.EditUser();this.finishEdit();}}/>
         </div>
           <div className='technologies'>
             <ul>

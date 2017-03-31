@@ -113,12 +113,12 @@ getDevelopers=function(){
          icon='search'
          placeholder='Search...'
          className='searchBar'
-         
+
          />
          {(()=>{
            if(this.state.value === 'Jobs'){
             return (<div>
-                    <Button 
+                    <Button
                       color= 'orange'
                       className= 'searchButton'
                       onClick={()=>this.getJob()}
@@ -129,7 +129,7 @@ getDevelopers=function(){
            }
            else if(this.state.value === 'Companies'){
                return (<div>
-                    <Button 
+                    <Button
                       color= 'orange'
                       className= 'searchButton'
                       onClick={()=>this.getCompanies()}
@@ -160,8 +160,8 @@ getDevelopers=function(){
          <h1></h1>
          {this.state.jobs.map((j, i)=>{
            return(
-             <div>
-                   <h1  
+             <div className="SearchResultsJobsContainer">
+                   <h1
                    className='hoverTeal'
                    type='link'
                    onClick={
@@ -170,20 +170,18 @@ getDevelopers=function(){
                    >
                    {j.job_title}
                    </h1>
-                 <h2 
+                 <h3
                  className='hoverOrange'
                  onClick={
                    ()=>browserHistory.push(`/profile/company/${j.user_id}`)
                    }
                  >
                  {j.name}
-                 </h2>
+               </h3>
                  <p>{j.location}</p>
                  <Button color='teal'
-                  onClick={()=>{
-                    this.setState({showApplyAlert: true})
-                    this.applyJob(j.id)}}
-                  >Apply</Button>
+                  onClick={()=>browserHistory.push(`/jobdetails/${j.id}`)}
+                  >View Job</Button>
                    <Button
                    color= 'orange'
                   onClick={()=>{
@@ -199,7 +197,7 @@ getDevelopers=function(){
            this.state.companies.map((c, i)=>{
             return(
               <div>
-                <img className='companySearchPicture' src={c.picture}/> 
+                <img className='companySearchPicture' src={c.picture}/>
                 <h1 className='companySearchName hoverTeal' onClick={()=>browserHistory.push(`/profile/company/${c.user_id}`)}>{c.name}</h1>
                 <hr/>
               </div>
