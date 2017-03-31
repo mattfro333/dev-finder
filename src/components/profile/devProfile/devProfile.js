@@ -7,7 +7,7 @@ import Gallery from 'react-fine-uploader';
 import config from './../../../../server/config'
 import './devProfile.css';
 import axios from 'axios';
-
+import Pie from '../../charts/pie.js'
 const uploader = new FineUploaderS3({
   options: {
     chunking: {
@@ -339,6 +339,10 @@ deleteExperience = (id)=>{
           <Button className={this.state.mine} onClick={()=>this.editProfile()}>Edit</Button>
           <Button className={this.state.edit + ' signupButton'} content='Update' onClick={()=>{this.EditUser();this.finishEdit();}}/>
         </div>
+                              <Pie />
+
+          <Button className={this.state.edit + ' signupButton'} content='Update' onClick={()=>this.EditUser()}/>
+
           <div className='technologies'>
             <ul>
             </ul>

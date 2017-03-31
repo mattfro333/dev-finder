@@ -4,6 +4,7 @@ import {Menu, Button, Icon, Image, Popup} from 'semantic-ui-react';
 import { getjob } from './../../services/jobinfo'
 import './jobDetailView.css';
 import axios from 'axios';
+import Alert from '../SweetAlert/SweetAlert'
 
 class jobDetails extends Component{
 
@@ -14,7 +15,9 @@ class jobDetails extends Component{
     this.state = {
       job: [{}],
       id: "",
-      userName: ""
+      userName: "",
+      applyShow: false,
+      saveShow: false
 
     }
     this.applyJob=this.applyJob.bind(this)
@@ -70,15 +73,29 @@ class jobDetails extends Component{
                 <h2 className='companyName'>{this.state.job.name}</h2>
 
         <h3>
-          <Icon name='location arrow' color='black'></Icon>{this.state.job.city}, {this.state.job.state}</h3>
+          <Icon name='location arrow' color='black'></Icon>
+          {this.state.job.city}, {this.state.job.state}</h3>
            <Button
            color='teal'
-           onClick={()=>this.applyJob(this.state.job.id)}>
+           onClick={()=>{
+             this.applyJob(this.state.job.id).then(r=>{
+              this.setState({
+                applyShow:true
+              })
+             })
+             
+             }}>
            Apply
            </Button>
            <Button
            color='orange'
-             onClick={()=>this.watchJob(this.state.job.id)}>
+             onClick={()=>{
+               this.watchJob(this.state.job.id).then(r=>{
+                 this.setState({
+                   saveShow:true
+              })
+               })
+               }}>
              Save
              </Button>
              <Button
@@ -121,6 +138,28 @@ class jobDetails extends Component{
 
         <h4>{this.state.job.job_description}</h4>
       </div>
+<Alert 
+  alertTitle='Congratulations!'
+  alertText={'Your application has been sent to ' + this.state.job.name + '.'}
+  show={this.state.applyShow}
+  onConfirm= {
+    ()=>{
+      this.setState({
+        applyShow:false
+      })
+    }}
+/>
+<Alert 
+  alertTitle={this.state.job.job_title + ' - ' + this.state.job.name}
+  alertText="You've pinned this job."
+  show={this.state.saveShow}
+  onConfirm= {
+    ()=>{
+      this.setState({
+        saveShow:false
+      })
+    }}
+/>
 
           </div>
     )

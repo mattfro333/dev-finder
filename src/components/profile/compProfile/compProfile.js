@@ -8,6 +8,7 @@ import './compProfile.css';
 import config from './../../../../server/config'
 import { getCompanyProfile } from '../../../services/companyProfile.js';
 import axios from 'axios';
+import Bar from '../../charts/bar.js'
 
 const uploader = new FineUploaderS3({
   options: {
@@ -225,6 +226,7 @@ finishEdit = ()=>{
             <Input className={this.state.edit} placeholder='State' onChange={(e)=>this.devCompanyState = e.target.value} />
             <h3>Founded: {this.state.company[0].founded}</h3>
             <Input className={this.state.edit} placeholder='Company Founded' onChange={(e)=>this.devCompanyFounded = e.target.value} />
+            <Bar/>
             <h3><Button className={this.state.theirs} onClick={()=>self.createRoom()}>
               Message
               </Button></h3>
@@ -242,6 +244,7 @@ finishEdit = ()=>{
             <div className=' right-pane white'>
                <h2>Open Positions</h2>
                <Divider />
+               <h2>Jobs at {this.state.company[0].name}</h2>
                {jobs}
             </div>
 

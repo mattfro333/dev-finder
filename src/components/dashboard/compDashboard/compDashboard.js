@@ -4,7 +4,7 @@ import { getprofile } from '../../../services/devProfile';
 import {Divider, Card, Table, Header, Image, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 import './compDashboard.css';
-import Bar from '../../charts/bar.js'
+
 
 
 class CompDashboard extends Component {
@@ -51,7 +51,7 @@ class CompDashboard extends Component {
                 return(
                   <Card key={i} raised >
                     <div className='currentCard'>
-                       <Card.Header onClick={()=>browserHistory.push(`/jobdetails/${l.id}`)}>{l.job_title}</Card.Header>
+                       <Card.Header className='hoverTeal'onClick={()=>browserHistory.push(`/jobdetails/${l.id}`)}>{l.job_title}</Card.Header>
                     <Card.Meta>{l.location}</Card.Meta>
                     <Card.Description className="companyDashboardListingCardDescription">{l.description}</Card.Description>
                     <Card.Meta>Applicants: {l.count}</Card.Meta>
@@ -84,13 +84,13 @@ class CompDashboard extends Component {
                       <Table.Cell>
                         <Header as='h4' onClick={()=>{browserHistory.push(`/profile/dev/${a.user_id}`)}} image>
                           <Image src={a.profilepic} shape='rounded' size='mini' />
-                          <Header.Content>
+                          <Header.Content className='hoverOrange'>
                             {a.firstname + ' ' + a.lastname}
                             <Header.Subheader>{a.city + ', ' + a.state}</Header.Subheader>
                           </Header.Content>
                         </Header>
                       </Table.Cell>
-                      <Table.Cell onClick={()=>browserHistory.push(`/jobdetails/${a.id}`)}>
+                      <Table.Cell  className='hoverOrange' onClick={()=>browserHistory.push(`/jobdetails/${a.id}`)}>
                             {a.job_title}
                       </Table.Cell>
                     </Table.Row>
@@ -99,7 +99,6 @@ class CompDashboard extends Component {
               </Table.Body>
             </Table>
             <a  onClick={()=>browserHistory.push(`/applicants`)} className="companyDashboardBottomPageLink">See All Applicants</a>
-            <Bar />
           </div>
         </div>
       </div>
