@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, TextArea} from 'semantic-ui-react';
+import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, TextArea, Divider} from 'semantic-ui-react';
 import { getprofile } from '../../../services/devProfile';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
@@ -179,7 +179,7 @@ finishEdit = ()=>{
     var jobs=this.state.jobList.map(function(jobs, i){
       return (
         <div key={i}>
-        <p>{jobs.job_title}</p>
+        <h2 onClick={()=>browserHistory.push(`/jobdetails/${jobs.id}`)}>{jobs.job_title}</h2>
         <p>{jobs.location}</p>
         {jobs.skills? <div className="ProfilePortfolioPieceSkillsContainer">{jobs.skills.skills.map((s,i)=>{
           let image
@@ -201,7 +201,10 @@ finishEdit = ()=>{
           />
           )
         })}</div> :''}
-        <p>{jobs.job_description}</p>
+        <div className='jobDescriptionContainer' >
+          <p>{jobs.job_description}</p>
+        </div>
+
         <hr/>
         </div>
 
@@ -239,6 +242,8 @@ finishEdit = ()=>{
           <p>{this.state.company[0].description}</p>
            </div>
             <div className=' right-pane white'>
+               <h2>Open Positions</h2>
+               <Divider />
                <h2>Jobs at {this.state.company[0].name}</h2>
                {jobs}
             </div>

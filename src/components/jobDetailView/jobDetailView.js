@@ -62,14 +62,16 @@ class jobDetails extends Component{
 
   render(){
     var self = this;
+    console.log(this.state.job);
     return (
       <div className ='background'>
           <div className=' jobBox topJobContainer white'>
             <div>
               <img className = 'jobPic'src={this.state.job.picture}/>
               <div className = 'basicJobInfo'>
-                  <h1 className='companyName'>{this.state.job.name}</h1>
-              <h2 className='jobtitle'>{this.state.job.job_title}</h2>
+                <h1 className='jobtitle'>{this.state.job.job_title}</h1>
+                <h2 className='companyName'>{this.state.job.name}</h2>
+
         <h3>
           <Icon name='location arrow' color='black'></Icon>
           {this.state.job.city}, {this.state.job.state}</h3>
@@ -96,14 +98,13 @@ class jobDetails extends Component{
                }}>
              Save
              </Button>
-             <Button 
+             <Button
              primary
              onClick={()=>self.createRoom()}>
                Message
                </Button>
            <br/>
-           <h4> This job was listed on {this.state.job.timestamped}</h4>
-           {this.state.job.skills? <div>{this.state.job.skills.skills.map((s,i)=>{
+           {this.state.job.skills? <div><h3>Desired Skills</h3><div className="JobDetailsSkillContainer">{this.state.job.skills.skills.map((s,i)=>{
              let image
              let name
              const style = {
@@ -123,7 +124,7 @@ class jobDetails extends Component{
                content={name}
              />
              )
-           })}</div> :''}
+           })}</div></div> :''}
               </div>
 
 

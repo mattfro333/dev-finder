@@ -25,7 +25,7 @@ height:calc(100vh - 70px);
     height:100px;
     float:left;
     position: relative;
- 
+
 }
 .companySearchName{
        line-height: 100px;
@@ -34,5 +34,8 @@ height:calc(100vh - 70px);
 }
 .dev-search-photo{
     height:100px;
+
+}
+.SearchResultsJobsContainer{
 
 }

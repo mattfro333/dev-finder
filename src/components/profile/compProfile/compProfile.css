@@ -43,3 +43,7 @@
 .overflow-scroll::-webkit-scrollbar{
 width: 12px;
 }
+
+.jobDescriptionContainer{
+  padding: 10px;
+}
