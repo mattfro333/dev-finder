@@ -16,7 +16,7 @@ const app = module.exports = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
-
+app.set('port', (process.env.PORT || 3000));
 //Amazon Session Keys
 const clientSecretKey = config.secretKey;
 const serverPublicKey = config.accessKey;
@@ -119,7 +119,7 @@ app.get('/api/test', (req, res) => {
 	res.status(200).send('test')
 })
 
- 
+
 app.get('/api/me', isAuthed, userCtrl.me)
 
 //watchlist endpoints
@@ -388,6 +388,6 @@ function callS3(type, spec, callback) {
 
 const PORT = config.port
 
-app.listen(PORT, function(){
-  console.log('Listening on port: '+ PORT)
-})
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
