@@ -38,10 +38,10 @@ app.use(session({
 	saveUninitialized: false,
 	resave: false
 }));
-const connectionString = process.env.connectionString
+
 //Set up Database
 const massiveInstance = massive.connectSync({
-  connectionString: config.massiveUri
+  connectionString: process.env.connectionString
 })
 
 app.set('db', massiveInstance);
@@ -50,7 +50,7 @@ var db = app.get('db')
 //Initialize the Tables for the Database
 function initDb(){
     console.log('creating tables')
-    db.init.create_tables( function(err, results){
+    db.init.create_tables([], function(err, results){
       if (err){
         console.error(err);
       }
