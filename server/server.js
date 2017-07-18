@@ -9,7 +9,7 @@ const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 
 //Our Modules
-const config = require('./config');
+// const config = require('./config');
 
 //Set up App
 const app = module.exports = express();
@@ -18,15 +18,15 @@ app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
 app.use(express.static('./public'));
 //Amazon Session Keys
-const clientSecretKey = config.secretKey;
-const serverPublicKey = config.accessKey;
-const serverSecretKey = config.secretKey;
+const clientSecretKey = process.env.secretKey;
+const serverPublicKey = process.env.accessKey;
+const serverSecretKey = process.env.secretKey;
 const expectedBucket = 'devfinder';
 const expectedHostname = 'http://devfinder.s3.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
-aws.config.update({
+aws.process.env.update({
     accessKeyId: serverPublicKey,
     secretAccessKey: serverSecretKey
 });
@@ -34,7 +34,7 @@ s3 = new aws.S3()
 
 //Set up Session
 app.use(session({
-	secret: config.SESSION_SECRET,
+	secret: process.env.SESSION_SECRET,
 	saveUninitialized: false,
 	resave: false
 }));
@@ -384,7 +384,7 @@ function callS3(type, spec, callback) {
 }
 
 
-const PORT = config.port
+const PORT = process.env.port
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
