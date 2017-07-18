@@ -16,7 +16,7 @@ const app = module.exports = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
-app.use(express.static('./public'));
+app.use(express.static('./build'));
 //Amazon Session Keys
 const clientSecretKey = process.env.secretKey;
 const serverPublicKey = process.env.accessKey;
