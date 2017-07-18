@@ -50,7 +50,7 @@ var db = app.get('db')
 //Initialize the Tables for the Database
 function initDb(){
     console.log('creating tables')
-    db.init.create_tables([], function(err, results){
+    db.init.create_tables( function(err, results){
       if (err){
         console.error(err);
       }
@@ -199,24 +199,15 @@ const emailCtrl = require('./e-mailer.js');
 app.post('/api/email', emailCtrl.sendEmail);
 
 
+
+
+//AWS-FineUploader Encryption
 function sessionCleanup() {
     sessionStore.all(function(err, sessions) {
         for (var i = 0; i < sessions.length; i++) {
             sessionStore.get(sessions[i], function() {} );
         }
     });
-}
-
-
-//AWS-FineUploader Encryption
-
-function signRequest(req, res) {
-    if (req.body.headers) {
-        signRestRequest(req, res);
-    }
-    else {
-        signPolicy(req, res);
-    }
 }
 
 // Signs multipart (chunked) requests.  Omit if you don't want to support chunking.
