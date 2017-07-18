@@ -26,7 +26,7 @@ const expectedHostname = 'https://secret-forest-37773.herokuapp.com/';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
-aws.update({
+aws.config.update({
     accessKeyId: serverPublicKey,
     secretAccessKey: serverSecretKey
 });
