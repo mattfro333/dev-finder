@@ -199,7 +199,13 @@ const emailCtrl = require('./e-mailer.js');
 app.post('/api/email', emailCtrl.sendEmail);
 
 
-
+function sessionCleanup() {
+    sessionStore.all(function(err, sessions) {
+        for (var i = 0; i < sessions.length; i++) {
+            sessionStore.get(sessions[i], function() {} );
+        }
+    });
+}
 
 
 //AWS-FineUploader Encryption
