@@ -26,10 +26,10 @@ const expectedHostname = 'http://devfinder.s3.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
-aws.process.env.update({
-    accessKeyId: serverPublicKey,
-    secretAccessKey: serverSecretKey
-});
+// aws.update({
+//     accessKeyId: serverPublicKey,
+//     secretAccessKey: serverSecretKey
+// });
 s3 = new aws.S3()
 
 //Set up Session
