@@ -16,7 +16,7 @@ const app = module.exports = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
-app.use(express.static('./server'));
+app.use(express.static('./public'));
 app.set('port', (process.env.PORT || 3000));
 //Amazon Session Keys
 const clientSecretKey = config.secretKey;
@@ -390,7 +390,7 @@ function callS3(type, spec, callback) {
 const PORT = config.port
 
 app.get('/', function(request, response) {
-  response.render('pages/server');
+  response.render('pages/index');
 });
 
 app.listen(app.get('port'), function() {
