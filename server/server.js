@@ -41,7 +41,7 @@ app.use(session({
 
 //Set up Database
 const massiveInstance = massive.connectSync({
-  connectionString: process.env.connectionString
+  connectionString: process.env.massiveUri
 })
 
 app.set('db', massiveInstance);
