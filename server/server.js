@@ -18,7 +18,7 @@ app.set('port', (process.env.PORT || PORT));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
-app.use(express.static('./build'));
+app.use(express.static('./public'));
 //Amazon Session Keys
 const clientSecretKey = config.secretKey;
 const serverPublicKey = config.accessKey;
