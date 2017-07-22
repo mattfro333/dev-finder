@@ -18,7 +18,6 @@ app.set('port', (process.env.PORT || PORT));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
-app.use(express.static('./build'));
 //Amazon Session Keys
 const clientSecretKey = config.secretKey;
 const serverPublicKey = config.accessKey;
@@ -386,7 +385,12 @@ function callS3(type, spec, callback) {
         Key: spec.key
     }, callback)
 }
+app.use(express.static('public'));
+app.use(favicon(path.join(__dirname,'assets','public','favicon.ico')));
 
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
