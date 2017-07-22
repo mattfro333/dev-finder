@@ -9,20 +9,21 @@ const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 
 //Our Modules
-// const config = require('./config');
+const config = require('./config');
 
 //Set up App
 const app = module.exports = express();
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
-app.use(express.static('./public'));
+app.use(express.static('./build'));
 //Amazon Session Keys
-const clientSecretKey = process.env.secretKey;
-const serverPublicKey = process.env.accessKey;
-const serverSecretKey = process.env.secretKey;
+const clientSecretKey = config.secretKey;
+const serverPublicKey = config.accessKey;
+const serverSecretKey = config.secretKey;
 const expectedBucket = 'devfinder';
-const expectedHostname = 'https://secret-forest-37773.herokuapp.com/';
+const expectedHostname = 'http://devfinder.s3.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
@@ -34,30 +35,29 @@ s3 = new aws.S3()
 
 //Set up Session
 app.use(session({
-	secret: process.env.SESSION_SECRET,
+	secret: config.SESSION_SECRET,
 	saveUninitialized: false,
 	resave: false
 }));
 
 //Set up Database
 const massiveInstance = massive.connectSync({
-  connectionString: process.env.massiveUri
+  connectionString: config.massiveUri
 })
-
 app.set('db', massiveInstance);
 var db = app.get('db')
 
 //Initialize the Tables for the Database
-// function initDb(){
-//     console.log('creating tables')
-//     db.init.create_tables([], function(err, results){
-//       if (err){
-//         console.error(err);
-//       }
-//       console.log(results)
-//     })
-// }
-// initDb();
+function initDb(){
+    console.log('creating tables')
+    db.init.create_tables([], function(err, results){
+      if (err){
+        console.error(err);
+      }
+      console.log(results)
+    })
+}
+initDb();
 
 //AUTHENTICATION
  //Set up Passport
@@ -201,13 +201,16 @@ app.post('/api/email', emailCtrl.sendEmail);
 
 
 
+
 //AWS-FineUploader Encryption
-function sessionCleanup() {
-    sessionStore.all(function(err, sessions) {
-        for (var i = 0; i < sessions.length; i++) {
-            sessionStore.get(sessions[i], function() {} );
-        }
-    });
+
+function signRequest(req, res) {
+    if (req.body.headers) {
+        signRestRequest(req, res);
+    }
+    else {
+        signPolicy(req, res);
+    }
 }
 
 // Signs multipart (chunked) requests.  Omit if you don't want to support chunking.
@@ -384,10 +387,8 @@ function callS3(type, spec, callback) {
 }
 
 
-const PORT = process.env.port
-app.get('/', function(request, response) {
-  response.render('pages/index');
-});
-app.listen(process.env.PORT || PORT, function(){
+const PORT = config.port
+
+app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)
 })
