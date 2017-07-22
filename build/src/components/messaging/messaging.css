@@ -1,0 +1,102 @@
+.messaging {
+
+}
+
+.right-message {
+  text-align: right;
+  clear: both;
+
+  border-radius:10px;
+  white-space: pre-line;
+  word-wrap: break-word;
+  line-height:20px;
+  display: inline-block;
+  float: right;
+  background-color: #E1E9EE;
+  padding: 5px 10px 5px 10px;
+   margin-bottom: 10px;
+   margin-right:10px;
+
+}
+.MessageTitle{
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  font-size: 2.7em;
+  font-style: italic;
+  text-decoration: underline;
+}
+.dms{
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom:10px;
+}
+.roomslist {
+  width: 37%;
+  float:left;
+  border-radius:10px;
+  padding:20px
+}
+.thread {
+  width: 60%;
+  float:right;
+  border-radius:10px;
+  padding:20px
+}
+.messaging{
+  padding: 0 20vw;
+
+}
+.dms{
+  height:300px;
+  overflow-x:hidden;
+}
+.dms::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.dms::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.dms::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #767676;
+}
+p{
+  text-indent: 0;
+}
+.message{
+  width:100%;
+  display: block;
+  clear:both;
+}
+.messageInput{
+  width:83%;
+  margin-right:1%;
+}
+.sendBtn{
+  width:15%;
+}
+.rooms{
+  margin-bottom:10px;
+  display: flex;
+}
+.left-message{
+  border:2px solid #e5e5e5;
+  border-radius:10px;
+  white-space: pre-line;
+  word-wrap: break-word;
+  line-height:20px;
+  display:inline-block;
+  max-width:70%;
+  padding: 5px 10px 5px 10px;
+   margin-bottom: 10px;
+}

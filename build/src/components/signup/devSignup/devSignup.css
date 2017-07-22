@@ -1,0 +1,18 @@
+.devSignupbody {
+text-align:center;
+
+}
+
+.devEditUploader {
+  margin: 0 20vw
+}
+
+.devEditInputs1 {
+  display: flex;
+  justify-content: space-around;
+  margin: 3em;
+}
+.signupButton {
+  background-color: #00abc7 !important;
+  color: white !important;
+}

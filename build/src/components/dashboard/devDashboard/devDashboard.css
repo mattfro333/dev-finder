@@ -1,0 +1,32 @@
+.companyDashboardContainer{
+        padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.borders{
+    border-left: 1px solid grey;
+    padding-left:20px;
+    border-right: 1px solid grey;
+    padding-right:20px;
+}
+.companyDashboardPage{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.scrollMeBruh{
+    height:300px;
+    overflow-y:scroll;
+}
+
+.itemDashboardDivider{
+  border-bottom: 1px !important;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  border-style: solid !important;
+  border-color: rgb(120, 120, 120) !important;
+}
+

@@ -1,0 +1,49 @@
+.body{
+    padding: 0 10vw;
+}
+.prof-pic{
+    height:250px;
+    width:100%;
+    float:left;
+    text-align: center;
+}
+.info{
+    padding: 0 0 0 20px;
+    float:left;
+}
+.top{
+    height:300px;
+    clear:both;
+}
+.left-pane{
+    width:23%;
+    float:left;
+    border-radius: 5px;
+    position: fixed;
+    top: 85px;
+    padding:20px;
+}
+.right-pane{
+    float:right;
+    border-radius: 5px;
+    width:70%;
+     padding:20px;
+     margin-bottom:15px;
+}
+.pic {
+  height: 100%;
+}
+.main-info{
+    margin-top:15px
+}
+.overflow-scroll{
+    overflow-y: scroll;
+    max-height:500px
+}
+.overflow-scroll::-webkit-scrollbar{
+width: 12px;
+}
+
+.jobDescriptionContainer{
+  padding: 10px;
+}
