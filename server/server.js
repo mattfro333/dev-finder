@@ -13,7 +13,8 @@ const config = require('./config');
 
 //Set up App
 const app = module.exports = express();
-
+const PORT = config.port
+app.set('port', (process.env.PORT || PORT));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
@@ -23,7 +24,7 @@ const clientSecretKey = config.secretKey;
 const serverPublicKey = config.accessKey;
 const serverSecretKey = config.secretKey;
 const expectedBucket = 'devfinder';
-const expectedHostname = 'http://devfinder.s3.amazonaws.com';
+const expectedHostname = 'https://secret-forest-37773.herokuapp.com/';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
@@ -386,9 +387,12 @@ function callS3(type, spec, callback) {
     }, callback)
 }
 
+app.get('/', function(request, response) {
+  response.render('pages/index');
+});
 
-const PORT = config.port
 
-app.listen(PORT, function(){
+
+app.listen(app.get('port'), function(){
   console.log('Listening on port: '+ PORT)
 })
