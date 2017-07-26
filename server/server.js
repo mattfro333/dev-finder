@@ -9,11 +9,14 @@ const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 
 //Our Modules
-const config = process.env;
+// const config = require('./config');
 
 //Set up App
 const app = module.exports = express();
 const PORT = process.env.port
+var app = connect();
+app.use(connect.cookieParser());
+app.use(connect.cookieSession({ secret: 'tobo!', cookie: { maxAge: 60 * 60 * 1000 }}));
 app.set('port', (process.env.PORT || PORT));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
