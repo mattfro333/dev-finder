@@ -7,19 +7,13 @@ const massive = require('massive');
 const localAuth = require('passport-local');
 const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
-const connect = require('connect');
-const cookieSession = require('cookie-session');
-const cookieParser = require('cookie-parser');
-const http = require('http');
+
 //Our Modules
 // const config = require('./config');
 
 //Set up App
-
+const app = module.exports = express();
 const PORT = process.env.port
-const app = module.exports = connect()
-app.use(cookieParser())
-app.use(cookieSession({ secret: 'tobo!', cookie: { maxAge: 60 * 60 * 1000 }}));
 app.set('port', (process.env.PORT || PORT));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
@@ -399,8 +393,6 @@ app.get('/', function(request, response) {
 
 
 
-var server = http.createServer(app);
-server.listen(app.get('port'), function(){
-    console.log('Express server listening on port ' + app.get('port'));
-});
-module.exports = app;
+app.listen(app.get('port'), function(){
+  console.log('Listening on port: '+ PORT)
+})
