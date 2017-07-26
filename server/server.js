@@ -17,7 +17,7 @@ const http = require('http');
 //Set up App
 
 const PORT = process.env.port
-const app = connect()
+const app = module.exports = connect()
 app.use(cookieParser())
 app.use(cookieSession({ secret: 'tobo!', cookie: { maxAge: 60 * 60 * 1000 }}));
 app.set('port', (process.env.PORT || PORT));
