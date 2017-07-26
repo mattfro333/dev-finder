@@ -7,6 +7,7 @@ const massive = require('massive');
 const localAuth = require('passport-local');
 const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
+const connect = require('connect');
 
 //Our Modules
 // const config = require('./config');
