@@ -12,9 +12,9 @@ const aws = require('aws-sdk');
 // const config = require('./config');
 
 //Set up App
-const app = module.exports = express();
+const app = connect();
 const PORT = process.env.port
-var app = connect();
+
 app.use(connect.cookieParser());
 app.use(connect.cookieSession({ secret: 'tobo!', cookie: { maxAge: 60 * 60 * 1000 }}));
 app.set('port', (process.env.PORT || PORT));
