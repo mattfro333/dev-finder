@@ -9,20 +9,20 @@ const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 
 //Our Modules
-const config = require('./config');
+// const config = require('./config');
 
 //Set up App
 const app = module.exports = express();
-const PORT = config.port
+const PORT = process.env.port
 app.set('port', (process.env.PORT || PORT));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
 app.use(express.static('./public'));
 //Amazon Session Keys
-const clientSecretKey = config.secretKey;
-const serverPublicKey = config.accessKey;
-const serverSecretKey = config.secretKey;
+const clientSecretKey = process.env.secretKey;
+const serverPublicKey = process.env.accessKey;
+const serverSecretKey = process.env.secretKey;
 const expectedBucket = 'devfinder';
 const expectedHostname = 'https://secret-forest-37773.herokuapp.com/';
 const expectedMinSize = 0;
@@ -43,7 +43,7 @@ app.use(session({
 
 //Set up Database
 const massiveInstance = massive.connectSync({
-  connectionString: config.massiveUri
+  connectionString: process.env.massiveUri
 })
 app.set('db', massiveInstance);
 var db = app.get('db')
