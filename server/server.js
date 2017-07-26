@@ -15,11 +15,11 @@ const cookieParser = require('cookie-parser');
 // const config = require('./config');
 
 //Set up App
-const app = connect();
-const PORT = process.env.port
 
-app.use(connect.cookieParser());
-app.use(connect.cookieSession({ secret: 'tobo!', cookie: { maxAge: 60 * 60 * 1000 }}));
+const PORT = process.env.port
+const app = connect()
+app.use(cookieParser())
+app.use(cookieSession({ secret: 'tobo!', cookie: { maxAge: 60 * 60 * 1000 }}));
 app.set('port', (process.env.PORT || PORT));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
