@@ -10,7 +10,7 @@ const aws = require('aws-sdk');
 const connect = require('connect');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
-
+const http = require('http');
 //Our Modules
 // const config = require('./config');
 
@@ -399,6 +399,8 @@ app.get('/', function(request, response) {
 
 
 
-app.listen(app.get('port'), function(){
-  console.log('Listening on port: '+ PORT)
-})
+var server = http.createServer(app);
+server.listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+});
+module.exports = app;
