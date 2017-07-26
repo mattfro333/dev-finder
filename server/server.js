@@ -8,8 +8,8 @@ const localAuth = require('passport-local');
 const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 const connect = require('connect');
-const cookie-session = require('cookie-session');
-const cookie-parser = require('cookie-parser');
+const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 
 //Our Modules
 // const config = require('./config');
