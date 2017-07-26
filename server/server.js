@@ -9,7 +9,7 @@ const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 
 //Our Modules
-// const config = require('./config');
+const config = process.env;
 
 //Set up App
 const app = module.exports = express();
@@ -36,7 +36,7 @@ s3 = new aws.S3()
 
 //Set up Session
 app.use(session({
-	secret: config.SESSION_SECRET,
+	secret: process.env.SESSION_SECRET,
 	saveUninitialized: false,
 	resave: false
 }));
