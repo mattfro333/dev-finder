@@ -22,7 +22,7 @@ const clientSecretKey = config.secretKey;
 const serverPublicKey = config.accessKey;
 const serverSecretKey = config.secretKey;
 const expectedBucket = 'devfinder';
-const expectedHostname = 'http://devfinder.s3.amazonaws.com';
+const expectedHostname = 'http://dev-finder.s3-website-us-west-1.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
