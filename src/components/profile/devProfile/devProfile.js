@@ -4,7 +4,7 @@ import { getprofile } from '../../../services/devProfile';
 import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, Divider} from 'semantic-ui-react';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
-import config from './../../../../server/config'
+// import config from './../../../../server/config'
 import './devProfile.css';
 import axios from 'axios';
 import Pie from '../../charts/pie.js'
@@ -14,8 +14,8 @@ const uploader = new FineUploaderS3({
       enabled: false
     },
     request: {
-      endpoint: 'https://devfinder.s3.amazonaws.com',
-      accessKey: config.accessKey
+      endpoint: 'https://dev-finder.s3.amazonaws.com',
+      accessKey: process.env.accessKey
     },
     cors: {
        //all requests are expected to be cross-domain requests
