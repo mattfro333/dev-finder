@@ -22,7 +22,7 @@ const clientSecretKey = process.env.secretKey;
 const serverPublicKey = process.env.accessKey;
 const serverSecretKey = process.env.secretKey;
 const expectedBucket = 'dev-finder';
-const expectedHostname = 'https://dev-finder-qcmsicanre.now.sh';
+const expectedHostname = 'http://dev-finder.s3-website-us-west-1.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
