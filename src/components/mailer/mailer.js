@@ -1,6 +1,6 @@
 import React from "react";
-import { browserHistory } from "react-router";
-import {Menu} from 'semantic-ui-react';
+import {} from "react-router";
+import {} from 'semantic-ui-react';
 import axios from 'axios';
 var Axios = axios.create({
   baseURL: 'http://localhost:3500',

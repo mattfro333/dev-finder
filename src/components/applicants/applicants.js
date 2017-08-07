@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
+import {} from 'react-router';
 import './applicants.css';
 import axios from 'axios';
 
@@ -16,12 +16,12 @@ this.getApplicants = this.getApplicants.bind(this)
     }
  render(){
     return(
-        <div className = 'applicants-page background'>
+        <div className='applicants-page background'>
            <h1>Your applicants:</h1>
 
            {this.state.applicants.map((a,i)=>{
              return(
-               <div className = 'white card'>{a.firstname} {a.lastname}
+               <div className='white card'>{a.firstname} {a.lastname}
                </div>
              )}
            )};

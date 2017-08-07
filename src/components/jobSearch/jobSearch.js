@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Input, Button, Form, Radio} from 'semantic-ui-react';
+import {Input, Button, Form, Radio} from 'semantic-ui-react';
 import './jobSearch.css';
 import axios from 'axios';
 import Alert from '../SweetAlert/SweetAlert'
@@ -108,7 +108,7 @@ getDevelopers=function(){
         </Form>
        </div>
        <div className='white right-pane'>
-         
+
          <Input
           onChange={(e)=>this.mySearch = e.target.value}
          icon='search'
@@ -120,8 +120,8 @@ getDevelopers=function(){
            if(this.state.value === 'Jobs'){
             return (<div>
                     <Button
-                      color= 'orange'
-                      className= 'searchButton'
+                      color='orange'
+                      className='searchButton'
                       onClick={()=>this.getJob()}
                       >
                       Find my Job!
@@ -131,8 +131,8 @@ getDevelopers=function(){
            else if(this.state.value === 'Companies'){
                return (<div>
                     <Button
-                      color= 'orange'
-                      className= 'searchButton'
+                      color='orange'
+                      className='searchButton'
                       onClick={()=>this.getCompanies()}
                       >
                       Find my Company!
@@ -142,8 +142,8 @@ getDevelopers=function(){
             else if(this.state.value === 'Developers'){
                return (<div>
                     <Button
-                      color= 'orange'
-                      className= 'searchButton'
+                      color='orange'
+                      className='searchButton'
                       onClick={()=>this.getDevelopers()}
                       >
                       Find me a Developer!
@@ -152,7 +152,7 @@ getDevelopers=function(){
            }
          })()
          }
-     
+
 
 
 
@@ -185,7 +185,7 @@ getDevelopers=function(){
                   onClick={()=>browserHistory.push(`/jobdetails/${j.id}`)}
                   >View Job</Button>
                    <Button
-                   color= 'orange'
+                   color='orange'
                   onClick={()=>{
                     this.setState({showPinAlert: true})
                     this.watchJob(j.id)}}
@@ -199,7 +199,7 @@ getDevelopers=function(){
            this.state.companies.map((c, i)=>{
             return(
               <div>
-                <img className='companySearchPicture' src={c.picture}/>
+                <img className='companySearchPicture' src={c.picture} alt=""/>
                 <h1 className='companySearchName hoverTeal' onClick={()=>browserHistory.push(`/profile/company/${c.user_id}`)}>{c.name}</h1>
                 <hr/>
               </div>
@@ -210,7 +210,7 @@ getDevelopers=function(){
            this.state.devs.map((d, i)=>{
              return(
                <div>
-                 <img  className='dev-search-photo'src={d.profilepic}/>
+                 <img  className='dev-search-photo'src={d.profilepic} alt=""/>
                  <h1 className='hoverTeal' onClick={()=>browserHistory.push(`/profile/dev/${d.user_id}`)}>{d.firstname} {d.lastname}</h1>
                  <h2>{d.city}, {d.state}</h2>
                  <hr/>

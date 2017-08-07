@@ -1,6 +1,4 @@
-import axios from 'axios'
 
-let nextTodoId = 0
 export const addUserInfo = (user) => {
   return {
     type: 'ADD_USER_INFO',

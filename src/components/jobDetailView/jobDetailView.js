@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Button, Icon, Image, Popup} from 'semantic-ui-react';
+import {Button, Icon, Popup} from 'semantic-ui-react';
 import { getjob } from './../../services/jobinfo'
 import './jobDetailView.css';
 import axios from 'axios';
@@ -53,7 +53,6 @@ class jobDetails extends Component{
     })
   }
   createRoom = ()=>{
-    var self = this;
     return axios.post('/api/newRoom', {user1_id: this.state.id, user2_id: this.state.job.id, user1_name: this.state.userName, user2_name: this.state.job.name}).then(response => {
         browserHistory.push('/messages')
     })
@@ -64,11 +63,11 @@ class jobDetails extends Component{
     var self = this;
     console.log(this.state.job);
     return (
-      <div className ='background'>
-          <div className=' jobBox topJobContainer white'>
+      <div className='background'>
+          <div className='jobBox topJobContainer white'>
             <div>
-              <img className = 'jobPic'src={this.state.job.picture}/>
-              <div className = 'basicJobInfo'>
+              <img className='jobPic'src={this.state.job.picture} alt=""/>
+              <div className='basicJobInfo'>
                 <h1 className='jobtitle'>{this.state.job.job_title}</h1>
                 <h2 className='companyName'>{this.state.job.name}</h2>
 
@@ -83,7 +82,7 @@ class jobDetails extends Component{
                 applyShow:true
               })
              })
-             
+
              }}>
            Apply
            </Button>
@@ -120,7 +119,7 @@ class jobDetails extends Component{
                }
              }
              return(
-               <Popup inverted style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} />}
+               <Popup inverted style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} alt="" />}
                content={name}
              />
              )
@@ -131,29 +130,29 @@ class jobDetails extends Component{
             </div>
           </div>
 
-      <div className = 'jobBox white'>
-<h1 className = 'center'>
+      <div className='jobBox white'>
+<h1 className='center'>
   Job Description
 </h1>
 
         <h4>{this.state.job.job_description}</h4>
       </div>
-<Alert 
+<Alert
   alertTitle='Congratulations!'
   alertText={'Your application has been sent to ' + this.state.job.name + '.'}
   show={this.state.applyShow}
-  onConfirm= {
+  onConfirm={
     ()=>{
       this.setState({
         applyShow:false
       })
     }}
 />
-<Alert 
+<Alert
   alertTitle={this.state.job.job_title + ' - ' + this.state.job.name}
   alertText="You've pinned this job."
   show={this.state.saveShow}
-  onConfirm= {
+  onConfirm={
     ()=>{
       this.setState({
         saveShow:false

@@ -3,7 +3,7 @@ import {browserHistory} from 'react-router';
 import {Input, Button} from 'semantic-ui-react'
 import FineUploaderS3 from 'fine-uploader-wrappers/s3'
 import Gallery from 'react-fine-uploader'
-// import config from './../../../../server/config'
+import config from './../../../../server/config'
 import axios from 'axios'
 import './companySignup.css';
 import 'react-fine-uploader/gallery/gallery.css'
@@ -14,8 +14,8 @@ const uploader = new FineUploaderS3({
       enabled: false
     },
     request: {
-      endpoint: 'https://dev-finder.s3.amazonaws.com',
-      accessKey: process.env.accessKey
+      endpoint: 'http://devfind.s3.amazonaws.com',
+      accessKey: config.accessKey
     },
     cors: {
        //all requests are expected to be cross-domain requests
@@ -73,8 +73,7 @@ class CompanySignUp extends Component{
       <Input placeholder="Industry" onChange={(e)=>this.compIndustry = e.target.value}/>
 </div>
       <Button content="Submit" onClick={()=>this.CreateCompany()}/>
-      <Button content='Go To Dashboard' onClick={()=>browserHistory.push
-        (`/profile/company/dashboard/${this.state.user.user_id}`)}/>
+      <Button content='Go To Dashboard' onClick={()=>browserHistory.push(`/profile/company/dashboard/${this.state.user.user_id}`)}/>
      </div>
 
   )

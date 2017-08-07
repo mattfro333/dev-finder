@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {browserHistory, Link} from 'react-router';
+import {browserHistory} from 'react-router';
 import axios from 'axios'
 import Alert from './../SweetAlert/SweetAlert'
-import {Input, Button, Form, Radio, Checkbox, Dropdown, TextArea} from 'semantic-ui-react'
+import {Input, Button, Dropdown, TextArea} from 'semantic-ui-react'
 
 import './createjob.css';
 
@@ -29,17 +29,16 @@ class CreateJob extends Component{
           <div className='createJobForm'>
           <h1>Create Job</h1>
           <Input fluid placeholder='Job Title' onChange={(e)=>this.jobtitle = e.target.value} /><br/>
-          <TextArea className ='textbox'placeholder='Job Desc' onChange={(e)=>this.jobdesc = e.target.value}/><br/>
-          <Input className = 'halfy' placeholder='City' onChange={(e)=>this.city = e.target.value}/>
-          <Input  className = 'halfy'placeholder='State' onChange={(e)=>this.state = e.target.value}/><br/>
+          <TextArea className='textbox'placeholder='Job Desc' onChange={(e)=>this.jobdesc = e.target.value}/><br/>
+          <Input className='halfy' placeholder='City' onChange={(e)=>this.city = e.target.value}/>
+          <Input  className='halfy'placeholder='State' onChange={(e)=>this.state = e.target.value}/><br/>
           <Dropdown  placeholder='Skills' fluid multiple search selection options={this.props.skills.skills}  onChange={(e, d)=>{
             this.jobSkills = {skills: d.value}
             console.log(this.jobSkills);
           }}/>
         <br/>
           <Button className='left'color='teal' content='Create Job' onClick={()=>this.CreateJob()}/>
-          <Button className='right' color='orange'content='Go To Dashboard' onClick={()=>browserHistory.push
-            (`/profile/company/dashboard/${this.state.user.user_id}`)}/>
+          <Button className='right' color='orange'content='Go To Dashboard' onClick={()=>browserHistory.push(`/profile/company/dashboard/${this.state.user.user_id}`)}/>
         </div>
         </div>
       <Alert show={this.state.showAlert} onConfirm={()=>{

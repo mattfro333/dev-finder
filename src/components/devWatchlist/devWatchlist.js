@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Header, Image} from 'semantic-ui-react'
+import {Header, Image} from 'semantic-ui-react'
 import './devWatchlist.css';
 import axios from 'axios';
 
@@ -18,16 +18,16 @@ constructor(){
   }
   render(){
     return(
-      <div className = 'watchlistPage background'>
+      <div className='watchlistPage background'>
     <div className='watchlistContainer' >
       <h1 className='centerHeader'>Your Pinned Jobs</h1>
-    <div className = 'watchedJobs'>
+    <div className='watchedJobs'>
       {this.state.watchlist.map((j,i)=>{
         console.log(j)
           return(
               <div
               onClick={()=> browserHistory.push(`/jobdetails/${j.id}`)}
-                className ='white watchlistBox card wwww'>
+                className='white watchlistBox card wwww'>
                     <Header as='h2'>
                       <Header.Content>
                         {j.job_title}
@@ -50,7 +50,7 @@ constructor(){
               </div>
           )
       })}
-      <div  onClick={()=> browserHistory.push('/search')}className = 'white watchlistBox card'><h1>Find more Jobs</h1></div>
+      <div  onClick={()=> browserHistory.push('/search')}className='white watchlistBox card'><h1>Find more Jobs</h1></div>
       </div>
       </div>
       </div>

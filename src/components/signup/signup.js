@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {browserHistory, Link} from 'react-router';
+import {browserHistory} from 'react-router';
 import {Input, Button, Form, Radio, Label} from 'semantic-ui-react'
-import Logo from './../../DevFinder.png'
 import axios from 'axios'
 import './signup.css';
 
@@ -24,7 +23,7 @@ class SignUp extends Component{
      company: this.state.value})
   }
   checkPasswords = () => {
-    if(this.passwordInput == this.confirmPasswordInput){
+    if(this.passwordInput === this.confirmPasswordInput){
       this.postUser().then(()=> browserHistory.push('/login'))
     }
     else{
@@ -34,9 +33,9 @@ class SignUp extends Component{
   render(){
     return(
         <div>
-          <div className= 'land-nav'>
+          <div className='land-nav'>
             <div className='logo'></div>
-            <div className= 'landing-buttons'>
+            <div className='landing-buttons'>
                <Button
                color='orange'
                onClick={()=> browserHistory.push('/login')}>Login
@@ -45,9 +44,9 @@ class SignUp extends Component{
             </div>
           </div>
 
-          <div className = 'landing-page'>
-            <div className = 'black-shadow center-login'>
-              <div className = 'logIn white signup'>
+          <div className='landing-page'>
+            <div className='black-shadow center-login'>
+              <div className='logIn white signup'>
                 <h1>Sign Up</h1>
             <Form>
               <Form.Field inline>
@@ -87,8 +86,8 @@ class SignUp extends Component{
               checked={this.state.value === false}
               onChange={this.handleChange}
             />
-            <br/><div className= 'buffer'></div>
-          <Button className= 'getstarted'color='teal'onClick={()=>this.checkPasswords()}>Get Started</Button>
+            <br/><div className='buffer'></div>
+          <Button className='getstarted'color='teal'onClick={()=>this.checkPasswords()}>Get Started</Button>
           </div>
           </div>
           </div>

@@ -3,7 +3,7 @@ import {browserHistory} from 'react-router';
 import {Input, Button, Dropdown} from 'semantic-ui-react'
 import FineUploaderS3 from 'fine-uploader-wrappers/s3'
 import Gallery from 'react-fine-uploader'
-// import config from './../../../../server/config'
+import config from './../../../../server/config'
 import axios from 'axios'
 import './devSignup.css';
 import 'react-fine-uploader/gallery/gallery.css'
@@ -14,8 +14,8 @@ const uploader = new FineUploaderS3({
       enabled: false
     },
     request: {
-      endpoint: 'https://dev-finder.s3.amazonaws.com',
-      accessKey: process.env.accessKey
+      endpoint: 'http://devfind.s3.amazonaws.com',
+      accessKey: config.accessKey
     },
     cors: {
        //all requests are expected to be cross-domain requests
@@ -83,8 +83,7 @@ getUserId = ()=>{
 <div className="devEditInputs">
 
         <Button className='signupButton' content='Update' onClick={()=>this.CreateUser()}/>
-        <Button className='signupButton' content='Go To Dashboard' onClick={()=>browserHistory.push
-          (`/profile/dev/dashboard/${this.state.user.user_id}`)}/>
+        <Button className='signupButton' content='Go To Dashboard' onClick={()=>browserHistory.push(`/profile/dev/dashboard/${this.state.user.user_id}`)}/>
           </div>
       </div>
     </div>

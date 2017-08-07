@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Input, Button, Header, Segment, Divider, Image, Form, Label} from 'semantic-ui-react';
-import Logo from './../../DevFinder.png'
+import {Input, Button, Form, Label} from 'semantic-ui-react';
 import axios from 'axios';
 import './login.css';
 
@@ -56,9 +55,9 @@ class Login extends Component {
     render() {
         return (
 
-            <div className= 'login-page landing-page'>
+            <div className='login-page landing-page'>
                 <div className='black-shadow center-login'>
-                <div className = 'logIn white'>
+                <div className='logIn white'>
                     <h1>Log In</h1>
 
                 <Input

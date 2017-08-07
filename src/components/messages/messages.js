@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
-import {Menu} from 'semantic-ui-react';
+import {} from 'react-router';
+import {} from 'semantic-ui-react';
 import Mailer from "../mailer/mailer.js";
 import SweetAlert from "../SweetAlert/SweetAlert.js"
 import './messages.css';

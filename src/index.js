@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import DevFinder from './reducers'
 import Landing from './components/landing/Landing'
-import App from './App';
 import ConnectApp from './ConnectApp';
 import DevDashboard from './components/dashboard/devDashboard/devDashboard'
 import CompDashboard from './components/dashboard/compDashboard/compDashboard'

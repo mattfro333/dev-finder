@@ -1,6 +1,6 @@
 import React from 'react';
-import { browserHistory } from "react-router";
-import {Menu} from "semantic-ui-react";
+import {} from "react-router";
+import {} from "semantic-ui-react";
 import SweetAlert from 'sweetalert-react';
 import './../../../node_modules/sweetalert/dist/sweetalert.css';
 

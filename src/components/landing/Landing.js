@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
-import {Input, Button, Container, Header, Segment, Divider, Icon, Image} from 'semantic-ui-react'
-import axios from 'axios'
+import {Button} from 'semantic-ui-react'
 import './Landing.css';
 
 
@@ -15,9 +14,9 @@ class Landing extends Component{
   render(){
     return(
     <div>
-     <div className= 'land-nav'>
+     <div className='land-nav'>
        <div className='logo'></div>
-       <div className = 'landing-buttons'>
+       <div className='landing-buttons'>
           <Button
          color='teal'
          onClick={()=> browserHistory.push('/signup')}
@@ -33,9 +32,9 @@ class Landing extends Component{
 
        </div>
      </div>
-      <div className= 'landing-page'>
-        <div className= 'black-shadow'>
-          <div className = 'landing-text'>
+      <div className='landing-page'>
+        <div className='black-shadow'>
+          <div className='landing-text'>
                 <h1>{'{'}<span className='blue'>employed</span>=<span className='orange'>true</span>}</h1>
         <h2>By Developers. For Developers.</h2>
         <h3>Sign up today to find your next employment opportunity.</h3>

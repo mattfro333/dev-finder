@@ -3,7 +3,7 @@ var db = app.get('db');
 module.exports = {
   post: function(req, res){
     var user_id=req.session.passport.user.user_id;
-    db.user.create_company([req.body.name, req.body.city, req.body.state, req.body.description, user_id, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`], function(err, results){
+    db.user.create_company([req.body.name, req.body.city, req.body.state, req.body.description, user_id, `https://s3-us-west-1.amazonaws.com/s3/buckets/devfind/images${req.session.imageInfo.key}`], function(err, results){
       if (err){
         console.error(err);
         return res.send(err);
@@ -22,7 +22,7 @@ module.exports = {
   },
   updatepic: function(req, res){
     var user_id=req.session.passport.user.user_id;
-    db.companyProfile.update_pic([user_id, `https://s3-us-west-1.amazonaws.com/devfinder/${req.session.imageInfo.key}`], function(err, results){
+    db.companyProfile.update_pic([user_id, `https://s3-us-west-1.amazonaws.com/s3/buckets/devfind/images${req.session.imageInfo.key}`], function(err, results){
       console.log(results)
       if (err){
         console.error(err);

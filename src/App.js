@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
-import DevFinder from './reducers'
 import {Menu, Icon, Image, Dropdown} from 'semantic-ui-react'
 import axios from 'axios'
-import Logo from './DevFinder.png'
 import './App.css';
 
 
@@ -47,7 +45,7 @@ class App extends Component {
   setLinks = () => {
 
     if(this.props.user.user.user_id){
-      if(this.props.user.user.company == true) {
+      if(this.props.user.user.company === true) {
       this.setState({links:{
         dashboard: `/profile/company/dashboard/${this.props.user.user.user_id}`,
         profile: `/profile/company/${this.props.user.user.user_id}`,
@@ -72,7 +70,6 @@ class App extends Component {
 
   }
   componentWillMount(){
-    var self = this
     this.getProfile().then((r) => {
         let user = r.data
         let profile = {}

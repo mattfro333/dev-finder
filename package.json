@@ -1,5 +1,4 @@
 {
-  "main": "./server/server.js",
   "name": "dev-finder",
   "version": "0.1.0",
   "private": true,
@@ -8,10 +7,8 @@
     "axios": "^0.15.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
-    "cd": "^0.3.3",
     "chart.js": "^2.5.0",
     "chartjs": "^0.3.24",
-    "client": "0.0.1",
     "concurrently": "^3.4.0",
     "cors": "^2.8.1",
     "crypto-js": "^3.1.9-1",
@@ -23,7 +20,6 @@
     "nodemailer": "^3.1.5",
     "nodemailer-mailgun-transport": "^1.2.4",
     "nodemon": "^1.11.0",
-    "now": "^7.3.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "react": "^15.4.2",
@@ -36,7 +32,6 @@
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
     "semantic-ui-react": "^0.67.1",
-    "server": "^1.0.0-beta.1",
     "sweetalert-react": "^0.4.9"
   },
   "devDependencies": {
@@ -48,5 +43,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3500/"
+  "proxy": "http://localhost:3000/"
 }

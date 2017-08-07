@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Table, Icon, Header, Image, Item, Divider} from 'semantic-ui-react';
+import {Table, Icon, Header, Image, Item} from 'semantic-ui-react';
 import axios from 'axios';
 import './devDashboard.css';
 
@@ -71,7 +71,7 @@ class DevDashboard extends Component {
                 }
               )}
             </Item.Group>
-                 <a className="companyDashboardBottomPageLink" onClick= {()=>browserHistory.push('/search')}>Find More Listings</a>
+                 <a className="companyDashboardBottomPageLink" onClick={()=>browserHistory.push('/search')}>Find More Listings</a>
           </div>
           <div className='devDashboardApplicationsContainer borders'>
             <h2>Current Applications</h2>

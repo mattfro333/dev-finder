@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, TextArea, Divider} from 'semantic-ui-react';
+import {Input, Button, Popup, Modal, TextArea, Divider} from 'semantic-ui-react';
 import { getprofile } from '../../../services/devProfile';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
 import './compProfile.css';
-// import config from './../../../../server/config'
+import config from './../../../../server/config'
 import { getCompanyProfile } from '../../../services/companyProfile.js';
 import axios from 'axios';
 import Bar from '../../charts/bar.js'
@@ -16,8 +16,8 @@ const uploader = new FineUploaderS3({
       enabled: false
     },
     request: {
-      endpoint: 'https://dev-finder.s3.amazonaws.com',
-      accessKey: process.env.accessKey
+      endpoint: 'http://devfind.s3.amazonaws.com',
+      accessKey: config.accessKey
     },
     cors: {
        //all requests are expected to be cross-domain requests
@@ -67,7 +67,6 @@ class CompProfile extends Component{
     this.changePhoto = this.changePhoto.bind(this)
   }
   changePhoto = ()=>{
-    let self = this
     return axios.put('/api/updatecomppic').then((r)=>{
       this.close()
       getprofile(this.props.params.userid).then(dev => {
@@ -98,7 +97,6 @@ class CompProfile extends Component{
   }
 
   createRoom = ()=>{
-    var self = this;
     return axios.post('/api/newRoom', {user1_id: this.state.id, user2_id: parseInt(this.state.company[0].user_id), user1_name: this.state.userName, user2_name: this.state.company[0].name}).then(response => {
         browserHistory.push('/messages')
     })
@@ -137,7 +135,7 @@ class CompProfile extends Component{
 whosProfile = ()=>{
   var self = this;
 
-    if (this.state.company[0].user_id == this.state.session_id){
+    if (this.state.company[0].user_id === this.state.session_id){
       self.setState({
         mine: "",
         theirs: "hide"
@@ -196,7 +194,7 @@ finishEdit = ()=>{
             }
           }
           return(
-            <Popup inverted size='tiny' style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} />}
+            <Popup inverted size='tiny' style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} alt="" />}
             content={<p>{name}</p>}
           />
           )
@@ -210,13 +208,12 @@ finishEdit = ()=>{
 
       );
     })
-    var self = this;
     return(
-      <div className = 'body background'>
+      <div className='body background'>
         <div className='main-info'>
-          <div className = 'left-pane white overflow-scroll'>
+          <div className='left-pane white overflow-scroll'>
             <div className='prof-pic'>
-          <img className='pic' src={this.state.company[0].picture}/>
+          <img className='pic' src={this.state.company[0].picture} alt=""/>
           </div>
           <div className='info'>
             <h1>{this.state.company[0].name}</h1>
@@ -237,7 +234,7 @@ finishEdit = ()=>{
           </div>
 
           </div>
-          <div className = 'right-pane white'><h1>Company Bio: </h1>
+          <div className='right-pane white'><h1>Company Bio: </h1>
           <TextArea className={this.state.edit + ' editBio' } placeholder='Company Bio' onChange={(e)=>this.devCompanyBio = e.target.value} />
           <p>{this.state.company[0].description}</p>
            </div>

@@ -24,7 +24,6 @@ class CompDashboard extends Component {
      return axios.get(`/api/company/applications/${this.props.profile.profile[0].company_id}`)
    }
    changePhoto = ()=>{
-     let self = this
      return axios.put('/api/updatepic').then((r)=>{
        this.close()
        getprofile(this.props.params.userid).then(dev => {

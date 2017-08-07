@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {browserHistory} from 'react-router';
+import {} from 'react-router';
 import {Input, Button} from 'semantic-ui-react'
 import './messaging.css';
 import axios from 'axios';
@@ -25,7 +25,6 @@ class Messaging extends Component{
 
   }
   getRooms = ()=>{
-    var self = this;
     return axios.get(`/api/rooms`)
   }
 
@@ -61,7 +60,7 @@ class Messaging extends Component{
     let recievingName = ""
     console.log('current room', this.state);
 
-    if (this.state.rooms[0].user1_id == this.state.user.user_id){
+    if (this.state.rooms[0].user1_id === this.state.user.user_id){
       recievingName = this.state.rooms[0].user2_id
     }else {
       recievingName = this.state.rooms[0].user1_id
@@ -85,14 +84,14 @@ class Messaging extends Component{
   }
   render(){
     return(
-      <div className = 'messaging background'>
+      <div className='messaging background'>
         <h1 className="MessageTitle">Messages</h1>
           <div className='roomslist white'>
             <h1>Contacts</h1>
             <hr/>
               {this.state.rooms.map((r, i) => {
                 let roomName = '';
-                if (r.user1_id == this.state.user.user_id){
+                if (r.user1_id === this.state.user.user_id){
                   roomName = r.user2_name
                 }else {
                   roomName = r.user1_name
@@ -110,18 +109,18 @@ class Messaging extends Component{
           </div>
         <div className='thread white'>
         <h1>{this.currentChat}</h1>
-        <div className = 'dms' ref='dms'>
+        <div className='dms' ref='dms'>
         {this.state.threads.map((t, i) => {
           let messageSide = '';
-          if (t.sender_id == this.state.user.user_id){
+          if (t.sender_id === this.state.user.user_id){
             messageSide = 'right-message';
           }else {
             messageSide = 'left-message';
           }
           return (
 
-            <div className= 'message'>
-               <div className= {messageSide}>
+            <div className='message'>
+               <div className={messageSide}>
             <p > {t.message} </p>
 
             </div>
@@ -132,8 +131,8 @@ class Messaging extends Component{
               <div ref={(el) => { this.messagesEnd = el}}>
               </div>
               </div>
-      <Input  className= 'messageInput' placeholder='Message' value={this.state.message} onChange={(e)=>this.setState({message: e.target.value})} />
-      <Button  className= 'sendBtn'content='Send' onClick={()=>this.sendmessage()}/>
+      <Input  className='messageInput' placeholder='Message' value={this.state.message} onChange={(e)=>this.setState({message: e.target.value})} />
+      <Button  className='sendBtn'content='Send' onClick={()=>this.sendmessage()}/>
         </div>
       </div>
     )

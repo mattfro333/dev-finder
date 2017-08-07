@@ -9,7 +9,7 @@ const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 
 //Our Modules
-// const config = require('./config');
+const config = require('./config');
 
 //Set up App
 const app = module.exports = express();
@@ -18,15 +18,15 @@ app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
 
 //Amazon Session Keys
-const clientSecretKey = process.env.secretKey;
-const serverPublicKey = process.env.accessKey;
-const serverSecretKey = process.env.secretKey;
-const expectedBucket = 'dev-finder';
-const expectedHostname = 'http://dev-finder.s3-website-us-west-1.amazonaws.com';
+const clientSecretKey = config.secretKey;
+const serverPublicKey = config.accessKey;
+const serverSecretKey = config.secretKey;
+const expectedBucket = 'devfind';
+const expectedHostname = 'http://devfind.s3.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 let s3
-aws.process.env.update({
+aws.config.update({
     accessKeyId: serverPublicKey,
     secretAccessKey: serverSecretKey
 });
@@ -34,14 +34,14 @@ s3 = new aws.S3()
 
 //Set up Session
 app.use(session({
-	secret: process.env.SESSION_SECRET,
+	secret: config.SESSION_SECRET,
 	saveUninitialized: false,
 	resave: false
 }));
 
 //Set up Database
 const massiveInstance = massive.connectSync({
-  connectionString: process.env.massiveUri
+  connectionString: config.massiveUri
 })
 app.set('db', massiveInstance);
 var db = app.get('db')
@@ -82,13 +82,17 @@ var isAuthed = function(req, res, next) {
 //AMAZON S3 endpoints
 
 app.post("/s3handler", function(req, res) {
+  // console.log(req.query)
+  // console.log(req.session)
+  //   console.log(req.session.imageInfo)
+  // console.log(res)
     if (typeof req.query.success !== "undefined") {
       //Save to db
       // Send back 200.
       req.session.imageInfo = req.body
-      console.log(req.session.imageInfo)
+
       res.status(200).send('item saved')
-        // verifyFileInS3(req, res);
+        verifyFileInS3(req, res);
     }
     else {
         signRequest(req, res);
@@ -350,6 +354,7 @@ function verifyFileInS3(req, res) {
             res.end();
         }
     }
+    console.log(key)
     console.log(req.body);
     callS3("head", {
         Bucket: req.body.bucket,
@@ -358,7 +363,10 @@ function verifyFileInS3(req, res) {
 }
 
 function getV2SignatureKey(key, stringToSign) {
+  // console.log(key)
+  // console.log(stringToSign)
     var words = CryptoJS.HmacSHA1(stringToSign, key);
+    console.log(words)
     return CryptoJS.enc.Base64.stringify(words);
 }
 
@@ -386,7 +394,7 @@ function callS3(type, spec, callback) {
 }
 
 
-const PORT = process.env.port
+const PORT = config.port
 
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import { getprofile } from '../../../services/devProfile';
-import {Menu, Input, Button, Popup, Header, Image, Modal, Dropdown, Divider} from 'semantic-ui-react';
+import {Input, Button, Popup, Modal, Dropdown, Divider} from 'semantic-ui-react';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
-// import config from './../../../../server/config'
+import config from './../../../../server/config'
 import './devProfile.css';
 import axios from 'axios';
 import Pie from '../../charts/pie.js'
@@ -14,8 +14,8 @@ const uploader = new FineUploaderS3({
       enabled: false
     },
     request: {
-      endpoint: 'https://dev-finder.s3.amazonaws.com',
-      accessKey: process.env.accessKey
+      endpoint: 'http://devfind.s3.amazonaws.com',
+      accessKey: config.accessKey
     },
     cors: {
        //all requests are expected to be cross-domain requests
@@ -68,7 +68,6 @@ class DevProfile extends Component{
     this.getCompanyName = this.getCompanyName.bind(this);
   }
   createRoom = ()=>{
-    var self = this;
     console.log(this.state);
     var user_id = 0;
     var user_name = "";
@@ -90,7 +89,7 @@ class DevProfile extends Component{
   whosProfile = ()=>{
     var self = this;
       console.log(this.state.dev[0][0].user_id, this.state.session_id);
-      if (this.state.dev[0][0].user_id == this.state.session_id){
+      if (this.state.dev[0][0].user_id === this.state.session_id){
         self.setState({
           mine: "",
           theirs: "hide"
@@ -140,7 +139,6 @@ getUser = ()=>{
   })
 }
 changePhoto = ()=>{
-  let self = this
   return axios.put('/api/updatepic').then((r)=>{
     this.close()
     getprofile(this.props.params.userid).then(dev => {
@@ -250,7 +248,7 @@ deleteExperience = (id)=>{
       <div key={i}>
       <Button className={self.state.edit + ' DeleteButton'} content='X' onClick={()=>self.deletePortfolio(piece.id)}/>
         <h1><a href={'http://'+piece.link_url} target='blank'>{piece.title}</a></h1>
-        <img className='portfolioPic'src={piece.img_url}/>
+        <img className='portfolioPic'src={piece.img_url} alt=""/>
       <h2>{piece.desc}</h2>
       {piece.skills? <div className="ProfilePortfolioPieceSkillsContainer">{piece.skills.skills.map((s,i)=>{
         let image
@@ -268,7 +266,7 @@ deleteExperience = (id)=>{
           }
         }
         return(
-          <Popup inverted size='tiny' style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} />}
+          <Popup inverted size='tiny' style={style} trigger={<img className="ProfilePortfolioPieceSkillsImage" src={image} alt="" />}
           content={<p>{name}</p>}
         />
         )
@@ -284,7 +282,7 @@ deleteExperience = (id)=>{
         <div  className='topContainer'>
           <div className='devInfo white'>
             <div className='profilePic' onClick={this.show('blurring')}>
-            <img  className='devPic' src={this.state.dev[0][0].profilepic}/>
+            <img  className='devPic' src={this.state.dev[0][0].profilepic} alt=""/>
           </div>
 
             <h1>{this.state.dev[0][0].firstname + ' ' + this.state.dev[0][0].lastname}</h1>
@@ -331,7 +329,7 @@ deleteExperience = (id)=>{
               height: 40
             }
             return(
-            <Popup inverted style={style} trigger={<img className="ProfileSkillsImage" src={image} />}
+            <Popup inverted style={style} trigger={<img className="ProfileSkillsImage" src={image} alt=""/>}
               content={name}
             />
         )
