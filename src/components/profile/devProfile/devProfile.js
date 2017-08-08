@@ -147,7 +147,7 @@ changePhoto = ()=>{
         dev: dev
 
       })
-      console.log(this.state.dev);
+      // console.log(this.state.dev);
     })
   })
 }

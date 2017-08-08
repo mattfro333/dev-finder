@@ -1,4 +1,8 @@
 //Dependencies
+
+const dotenv = require('dotenv').config({path: __dirname + '/../.env'});
+const buf = new Buffer('BASIC=basic');
+// const config = dotenv.parse(buf);
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -7,56 +11,68 @@ const massive = require('massive');
 const localAuth = require('passport-local');
 const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
+// console.log(typeof config, config)
 
 //Our Modules
-const config = require('./config');
-
+const path = require('path');
+// const config = require('./config');
 //Set up App
 const app = module.exports = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}))
 app.use(cors());
-
+app.use(express.static(__dirname+'/../build'));
 //Amazon Session Keys
-const clientSecretKey = config.secretKey;
-const serverPublicKey = config.accessKey;
-const serverSecretKey = config.secretKey;
+const clientSecretKey = process.env.secretKey;
+const serverPublicKey = process.env.accessKey;
+const serverSecretKey = process.env.secretKey;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 const expectedBucket = 'devfind';
 const expectedHostname = 'http://devfind.s3.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
+// console.log(process.env.secretKey);
 let s3
 aws.config.update({
     accessKeyId: serverPublicKey,
     secretAccessKey: serverSecretKey
 });
 s3 = new aws.S3()
-
 //Set up Session
 app.use(session({
-	secret: config.SESSION_SECRET,
+	secret: process.env.SESSION_SECRET,
 	saveUninitialized: false,
 	resave: false
 }));
-
+// console.log(process.env)
 //Set up Database
-const massiveInstance = massive.connectSync({
-  connectionString: config.massiveUri
-})
-app.set('db', massiveInstance);
-var db = app.get('db')
+var db
+// console.log(process.env.massiveUri);
+// console.log(massive)
+const massiveInstance = massive(process.env.massiveUri).then(dbi=>{
+    db = dbi;
+    // db.init.create_tables([],function(err, results){
+    //   console.log(err)    })
+    setTimeout(()=>{
+      console.log(Object.keys(dbi.skills));
+    },1000)
+
+    app.set('db', dbi);
+}).catch((err)=>console.error(err))
+
+
 
 //Initialize the Tables for the Database
-function initDb(){
-    console.log('creating tables')
-    db.init.create_tables([], function(err, results){
-      if (err){
-        console.error(err);
-      }
-      console.log(results)
-    })
-}
-initDb();
+// function initDb(){
+//     console.log('creating tables')
+//     db.init.create_tables([], function(err, results){
+//       if (err){
+//         console.error(err);
+//       }
+//       console.log(results)
+//     })
+// }
+// initDb();
 
 //AUTHENTICATION
  //Set up Passport
@@ -82,17 +98,13 @@ var isAuthed = function(req, res, next) {
 //AMAZON S3 endpoints
 
 app.post("/s3handler", function(req, res) {
-  // console.log(req.query)
-  // console.log(req.session)
-  //   console.log(req.session.imageInfo)
-  // console.log(res)
     if (typeof req.query.success !== "undefined") {
       //Save to db
       // Send back 200.
       req.session.imageInfo = req.body
-
+      console.log(req.session.imageInfo)
       res.status(200).send('item saved')
-        verifyFileInS3(req, res);
+        // verifyFileInS3(req, res);
     }
     else {
         signRequest(req, res);
@@ -197,9 +209,9 @@ app.get('/api/developers/:devName', searchCtrl.getDevs)
 
 
 
-const emailCtrl = require('./e-mailer.js');
+// const emailCtrl = require('./e-mailer.js');
 
-app.post('/api/email', emailCtrl.sendEmail);
+// app.post('/api/email', emailCtrl.sendEmail);
 
 
 
@@ -354,7 +366,6 @@ function verifyFileInS3(req, res) {
             res.end();
         }
     }
-    console.log(key)
     console.log(req.body);
     callS3("head", {
         Bucket: req.body.bucket,
@@ -363,10 +374,7 @@ function verifyFileInS3(req, res) {
 }
 
 function getV2SignatureKey(key, stringToSign) {
-  // console.log(key)
-  // console.log(stringToSign)
     var words = CryptoJS.HmacSHA1(stringToSign, key);
-    console.log(words)
     return CryptoJS.enc.Base64.stringify(words);
 }
 
@@ -394,7 +402,11 @@ function callS3(type, spec, callback) {
 }
 
 
-const PORT = config.port
+const PORT = process.env.port
+
+app.get('/*', (req, res)=>{
+  res.sendFile(path.join(__dirname,'..', 'build', 'index.html'))
+})
 
 app.listen(PORT, function(){
   console.log('Listening on port: '+ PORT)

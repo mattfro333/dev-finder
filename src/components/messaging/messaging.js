@@ -139,7 +139,9 @@ class Messaging extends Component{
   }
 
   componentDidMount() {
+
       this.getRooms().then(rooms => {
+        console.log("This", rooms);
         this.setState({rooms: rooms.data})
         this.getUser()
       })
