@@ -1,6 +1,6 @@
 var app = require('./../server');
 
-var db = app.get('db');
+// var db = app.get('db');
 
 
 // BCRYPT
@@ -16,7 +16,8 @@ function hashPassword(password) {
 module.exports = {
 
 	// REGISTER USER //
-	register: function(req, res, next) {
+	register: (req, res, next) => {
+		db = req.app.get('db');
 		let userID
 		// Hash the users password for security
 		req.body.password = hashPassword(req.body.password);
