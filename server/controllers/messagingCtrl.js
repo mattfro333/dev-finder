@@ -1,60 +1,46 @@
 var app = require('./../server');
-var db = app.get('db');
+
 module.exports = {
-    getRooms: function(req, res){
+    getRooms: (req, res) => {
+  db = req.app.get('db');
+        db.messaging.rooms([req.session.passport.user.user_id]).then( results=> {
 
-        db.messaging.rooms([req.session.passport.user.user_id],function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
             res.send(results)
-        })
+        }).catch(err=>console.error(err));
     },
-    getThreads: function(req, res){
-        db.messaging.threads([req.body.id],function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
-            res.send(results)
-        })
-    },
-    sendMessage: function(req, res){
+    getThreads: (req, res) => {
+        db = req.app.get('db');
+        db.messaging.threads([req.body.id]).then( results=> {
 
-        db.messaging.post([req.session.passport.user.user_id, req.body.message, req.body.room_id, req.body.createdtime, req.body.recievingUser],function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
             res.send(results)
-        })
+        }).catch(err=>console.error(err));
     },
-    createRoom: function(req, res){
-        db.messaging.create_room([req.body.user1_id, req.body.user2_id, req.body.user1_name, req.body.user2_name],function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
+    sendMessage: (req, res) => {
+  db = req.app.get('db');
+        db.messaging.post([req.session.passport.user.user_id, req.body.message, req.body.room_id, req.body.createdtime, req.body.recievingUser]).then( results=> {
+
             res.send(results)
-        })
+        }).catch(err=>console.error(err));
+    },
+    createRoom: (req, res) => {
+        db = req.app.get('db');
+        db.messaging.create_room([req.body.user1_id, req.body.user2_id, req.body.user1_name, req.body.user2_name]).then( results=> {
+
+            res.send(results)
+        }).catch(err=>console.error(err));
     },
     newMessages: (req, res)=>{
-      db.messaging.new_message_query([req.session.passport.user.user_id], (err, response)=>{
-        if(err){
-            console.error(err);
-            return res.send(err);
-        }
+        db = req.app.get('db');
+      db.messaging.new_message_query([req.session.passport.user.user_id]).then( results=> {
+
         res.send(response)
-      })
+      }).catch(err=>console.error(err));
     },
-    deleteRoom: function(req, res){
-        db.messaging.delete_room([req.body.id],function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
+    deleteRoom: (req, res) => {
+        db = req.app.get('db');
+        db.messaging.delete_room([req.body.id]).then( results=> {
+
             res.send(results)
-        })
+        }).catch(err=>console.error(err));
     }
 }

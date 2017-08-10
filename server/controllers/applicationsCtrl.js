@@ -1,51 +1,33 @@
 var app = require('./../server');
-var db = app.get('db');
+// var db = app.get('db');
 module.exports = {
-  get: function(req, res){
-    if(req.query.limit){
-      db.applications.get_6([req.session.passport.user.user_id],(err, results)=>{
-        if (err){
-        console.error(err);
-        return res.send(err);
-      }
+  get: (req, res) => {
+    db = req.app.get('db');
+      db.applications.get_6([req.session.passport.user.user_id]).then(results=>{
+
       res.send(results);
-      })
-    } else{
-      db.applications.get([req.session.passport.user.user_id], function(err, results){
-        if (err){
-        console.error(err);
-        return res.send(err);
-      }
+      }).catch(err=>console.error(err));
+    },
+  delete: (req, res) => {
+    db = req.app.get('db');
+    db.applications.delete([req.session.passport.user.user_id, req.params.id]).then (results=>{
+
       res.send(results);
-      })
-    }
+    }).catch(err=>console.error(err));
   },
-  delete: function(req, res){
-    db.applications.delete([req.session.passport.user.user_id, req.params.id], function(err, results){
-      if (err){
-        console.error(err);
-        return res.send(err);
-      }
-      res.send(results);
-    })
-  },
-  post: function(req, res){
+  post: (req, res) => {
+    db = req.app.get('db');
     let date = new Date()
-    db.applications.post([req.session.passport.user.user_id, req.params.jobId, date], function(err, results){
-      if(err){
-        console.error(err);
-        return res.send(err);
-      }
+    db.applications.post([req.session.passport.user.user_id, req.params.jobId, date]).then (results=>{
+
       res.send(results);
-    })
+    }).catch(err=>console.error(err));
   },
-  companyGet: function(req, res){
-    db.applications.company_get([req.params.company_id], function(err, results){
-      if (err){
-        console.error(err);
-        return res.send(err);
-      }
+  companyGet: (req, res) => {
+    db = req.app.get('db');
+    db.applications.company_get([req.params.company_id]).then (results=>{
+
       res.send(results);
-    })
+    }).catch(err=>console.error(err));
   }
 }

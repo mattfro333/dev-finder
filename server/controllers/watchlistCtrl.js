@@ -1,40 +1,32 @@
 var app = require('./../server');
-var db = app.get('db');
+
 module.exports = {
   get: function(req, res){
-    db.watchlist.get([req.session.passport.user.user_id], function(err, results){
-      if (err){
-        console.error(err);
-        return res.send(err);
-      }
+    db = req.app.get('db');
+    db.watchlist.get([req.session.passport.user.user_id]).then(  results=>{
+
       res.send(results);
-    })
+    }).catch(err=>console.error(err))
   },
    get6: function(req, res){
-    db.watchlist.get6([req.session.passport.user.user_id], function(err, results){
-      if (err){
-        console.error(err);
-        return res.send(err);
-      }
+     db = req.app.get('db');
+    db.watchlist.get6([req.session.passport.user.user_id]).then(results=>{
+
       res.send(results);
-    })
+    }).catch(err=>console.error(err))
   },
   delete: function(req, res){
-    db.watchlist.delete([req.session.passport.user.user_id, req.params.id], function(err, results){
-      if (err){
-        console.error(err);
-        return res.send(err);
-      }
+    db = req.app.get('db');
+    db.watchlist.delete([req.session.passport.user.user_id, req.params.id]).then(results=>{
+
       res.send(results);
-    })
+    }).catch(err=>console.error(err))
   },
   post: function(req, res){
-    db.watchlist.post([req.session.passport.user.user_id, req.params.jobId], function(err, results){
-      if (err){
-        console.error(err);
-        return res.send(err);
-      }
+    db = req.app.get('db');
+    db.watchlist.post([req.session.passport.user.user_id, req.params.jobId]).then(results=>{
+
       res.send(results);
-    })
+    }).catch(err=>console.error(err))
   }
 }

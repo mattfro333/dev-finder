@@ -1,31 +1,25 @@
 var app = require('./../server');
-var db = app.get('db');
+// var db = app.get('db');
 module.exports = {
-    get: function(req, res){
-        db.jobs.get(['%'+req.params.jobName+'%'], function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
+    get: (req, res) => {
+        db = req.app.get('db');
+        db.jobs.get(['%'+req.params.jobName+'%']).then(results=>{
+
             return res.send(results)
-        })
+        }).catch(err=>console.error(err));
     },
-    getOne: function(req, res){
-        db.jobs.get_one([req.params.id], function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
+    getOne: (req, res) => {
+        db = req.app.get('db');
+        db.jobs.get_one([req.params.id]).then(results=>{
+
            return res.send(results)
-        })
+        }).catch(err=>console.error(err));
     },
     getListings: (req, res) => {
-      db.jobs.get_company_listings([req.params.id], (err, results)=>{
-        if(err){
-            console.error(err);
-            return res.send(err);
-        }
+        db = req.app.get('db');
+      db.jobs.get_company_listings([req.params.id]).then(results=>{
+
         return res.status(200).send(results)
-      })
+      }).catch(err=>console.error(err));
     }
 }

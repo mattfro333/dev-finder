@@ -1,14 +1,12 @@
 var app = require('./../server');
-var db = app.get('db');
+// var db = app.get('db');
 module.exports = {
-    newjobs: function(req, res){
+    newjobs: (req, res) => {
+        db = req.app.get('db');
 
-        db.devDash.newjobs(function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
+        db.devDash.newjobs().then( results=> {
+
             res.send(results)
-        })
+        }).catch(err=>console.error(err));
     }
 }

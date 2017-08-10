@@ -51,18 +51,19 @@ var db
 // console.log(massive)
 const massiveInstance = massive(process.env.massiveUri).then(dbi=>{
     db = dbi;
+    // console.log(dbi)
     // db.init.create_tables([],function(err, results){
     //   console.log(err)    })
-    setTimeout(()=>{
-      console.log(Object.keys(dbi.skills));
-    },1000)
+    // setTimeout(()=>{
+    //   console.log(Object.keys(dbi.user));
+    // },1)
 
     app.set('db', dbi);
 }).catch((err)=>console.error(err))
 
 
 
-//Initialize the Tables for the Database
+// Initialize the Tables for the Database
 // function initDb(){
 //     console.log('creating tables')
 //     db.init.create_tables([], function(err, results){

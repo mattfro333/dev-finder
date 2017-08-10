@@ -1,24 +1,20 @@
 var app = require('./../server');
 var db = app.get('db');
 module.exports={
-    getComps: function(req, res){
+    getComps: (req, res) => {
+      db = req.app.get('db');
         console.log('Getting companies')
-        db.search.getComps(['%'+req.params.compName+'%'], function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
+        db.search.getComps(['%'+req.params.compName+'%']).then(results=>{
+
             return res.send(results)
-        })
+        }).catch(err=>console.error(err));
     },
-    getDevs: function(req, res){
+    getDevs: (req, res) => {
+      db = req.app.get('db');
         console.log('getting developers')
-        db.search.getDevs(['%'+req.params.devName+'%'], function(err, results){
-            if(err){
-                console.error(err);
-                return res.send(err);
-            }
+        db.search.getDevs(['%'+req.params.devName+'%']).then(results=>{
+          
             return res.send(results)
-        })
+        }).catch(err=>console.error(err));
     }
 }

@@ -1,4 +1,5 @@
 var app = require('./../server');
+
 var db = app.get('db');
 
 
@@ -21,26 +22,30 @@ module.exports = {
 		req.body.password = hashPassword(req.body.password);
 
 		req.body.username = req.body.username.toLowerCase();
-		db.user.insert([req.body.username, req.body.password, req.body.company], function(err, user) {
+		db.user.insert([req.body.username, req.body.password, req.body.company]).then( function(user) {
 			// If err, send err
-			if (err) {
-				console.log('Registration error: ', err);
-
-				return res.status(500).send(err);
-			}
-			else{
+			// if (err) {
+			// 	console.log('Registration error: ', err);
+			//
+			// 	return res.status(500).send(err);
+			// }
+			// else{
 				delete user.password;
 				userID = user[0].user_id
 				if(req.body.company === true){
-					db.user.create_company([userID],(err, user)=>{
+					db.user.create_company([userID]).then( function(user){
 						res.status(200).send(user)
 					})
 				}else{
-					db.user.create_dev([userID], (err, user)=>{
+					db.user.create_dev([userID]).then( function(user){
 						res.status(200).send(user)
 					})
 				}
-			}
+			// }
+		}).catch(err=>{
+				console.log('Registration error: ', err);
+
+				return res.status(500).send(err);
 		});
 	},
 
