@@ -5,7 +5,7 @@ import { getprofile } from '../../../services/devProfile';
 import FineUploaderS3 from 'fine-uploader-wrappers/s3';
 import Gallery from 'react-fine-uploader';
 import './compProfile.css';
-import config from './../../../../server/config'
+// import config from './../../../../server/config'
 import { getCompanyProfile } from '../../../services/companyProfile.js';
 import axios from 'axios';
 import Bar from '../../charts/bar.js'
@@ -17,7 +17,7 @@ const uploader = new FineUploaderS3({
     },
     request: {
       endpoint: 'http://devfind.s3.amazonaws.com',
-      accessKey: config.accessKey
+      accessKey: process.env.REACT_APP_ACCESSKEY
     },
     cors: {
        //all requests are expected to be cross-domain requests

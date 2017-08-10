@@ -50,7 +50,7 @@ module.exports = {
 	},
 
 	// RETURN CURRENT USER //
-	me: function(req, res, next) {
+	me: (req, res, next) => {
 		// Return user
 		return res.status(200)
 			.send(req.user);

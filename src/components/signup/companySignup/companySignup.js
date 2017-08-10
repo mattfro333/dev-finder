@@ -3,7 +3,7 @@ import {browserHistory} from 'react-router';
 import {Input, Button} from 'semantic-ui-react'
 import FineUploaderS3 from 'fine-uploader-wrappers/s3'
 import Gallery from 'react-fine-uploader'
-import config from './../../../../server/config'
+// import config from './../../../../server/config'
 import axios from 'axios'
 import './companySignup.css';
 import 'react-fine-uploader/gallery/gallery.css'
@@ -15,7 +15,7 @@ const uploader = new FineUploaderS3({
     },
     request: {
       endpoint: 'http://devfind.s3.amazonaws.com',
-      accessKey: config.accessKey
+      accessKey: process.env.REACT_APP_ACCESSKEY
     },
     cors: {
        //all requests are expected to be cross-domain requests
