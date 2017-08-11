@@ -28,7 +28,7 @@ const serverPublicKey = process.env.accessKey;
 const serverSecretKey = process.env.secretKey;
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const expectedBucket = 'devfind';
-const expectedHostname = 'http://devfind.s3.amazonaws.com';
+const expectedHostname = 'https://devfind.s3.amazonaws.com';
 const expectedMinSize = 0;
 const expectedMaxSize = null;
 // console.log(process.env.secretKey);

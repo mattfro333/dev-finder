@@ -14,7 +14,7 @@ const uploader = new FineUploaderS3({
       enabled: false
     },
     request: {
-      endpoint: 'http://devfind.s3.amazonaws.com',
+      endpoint: 'https://devfind.s3.amazonaws.com',
       accessKey: process.env.REACT_APP_ACCESSKEY
     },
     cors: {

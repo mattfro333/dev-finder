@@ -1,8 +1,10 @@
 var app = require('./../server');
 // var db = app.get('db');
+
 module.exports = {
     get: (req, res) => {
         db = req.app.get('db');
+        // console.log(Object.keys(db.jobs));
         db.jobs.get(['%'+req.params.jobName+'%']).then(results=>{
 
             return res.send(results)
